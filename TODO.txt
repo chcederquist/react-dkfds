@@ -1,0 +1,6 @@
+TODOs in Accordion.tsx
+strong vs. mark discussion on badges
+Storybook stories 1:1 with designsystem.dk
+Heading logic into a single component (Handle heading level, custom styles/class etc.)
+Should default labels be in danish?
+Strategy for exposing as much through props as possible? Or expose only what's needed?
