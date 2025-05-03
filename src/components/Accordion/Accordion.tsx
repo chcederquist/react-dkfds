@@ -1,17 +1,15 @@
 import { ReactNode, useState } from "react";
-import { HeadingLevel } from "../../types/headings";
+import { Heading, HeadingProps } from "../Shared/Heading";
 
 // TODO: Icon name type, icon component
-export type AccordionElementProps = {id: string | number; headerContent: {headingLevel: HeadingLevel; content: ReactNode; icon: {text: string; iconName: string }}; bodyContent: { content: ReactNode;}}
+export type AccordionElementProps = { id: string | number; headerContent: { headingProps: HeadingProps; children: ReactNode; icon: { text: string; iconName: string } }; bodyContent: { children: ReactNode; } }
 
-export function AccordionElement({bodyContent, headerContent, id}: AccordionElementProps) {
-  const Heading = headerContent.headingLevel;
-  const [isOpen, setIsOpen] = useState(false);
+export function AccordionElement({ bodyContent, headerContent, id, isOpen, setIsOpen }: AccordionElementProps & { setIsOpen: (isOpen: boolean) => void; isOpen: boolean; }) {
   return <>
-    <Heading>
+    <Heading {...headerContent.headingProps}>
       <button onClick={() => setIsOpen(!isOpen)} className="accordion-button" aria-expanded={isOpen} aria-controls={id.toString()}>
-        <span className="accordion-title">{headerContent.content}</span>
-        {headerContent.icon && 
+        <span className="accordion-title">{headerContent.children}</span>
+        {headerContent.icon &&
           <span className="accordion-icon">
             <span className="icon_text">{headerContent.icon.text}</span>
             <svg className="icon-svg" focusable="false" aria-hidden="true"><use xlinkHref={`#${headerContent.icon.iconName}`}></use></svg>
@@ -19,19 +17,25 @@ export function AccordionElement({bodyContent, headerContent, id}: AccordionElem
       </button>
     </Heading>
     <div id={id.toString()} aria-hidden={!isOpen} className="accordion-content">
-      {bodyContent.content}
+      {bodyContent.children}
     </div>
   </>
 }
 
-export function Accordion({accordionElements}: Readonly<{accordionElements: Array<AccordionElementProps>;}>) {
+export function Accordion({ accordionElements }: Readonly<{ accordionElements: Array<AccordionElementProps>; }>) {
+  const [openElements, setOpenElements] = useState<Record<AccordionElementProps['id'], boolean>>({});
+  const allOpen = accordionElements.every((element) => openElements[element.id]);
   return (<>
-  {/* TODO: Toggle all functionality */}
-  <ul className="accordion">
-    {accordionElements.map((element) => (
-      <li key={element.id}>
-        <AccordionElement {...element} />
-      </li>
-    ))}
-</ul></>)
+    <button className="accordion-bulk-button" data-accordion-bulk-expand={allOpen.toString()} onClick={() => {
+      for (let element of accordionElements) {
+        setOpenElements({ ...openElements, [element.id]: true });
+      }
+    }}>{allOpen ? 'Luk alle' : 'Åbn alle'}</button>
+    <ul className="accordion">
+      {accordionElements.map((element) => (
+        <li key={element.id}>
+          <AccordionElement isOpen={!!openElements[element.id]} setIsOpen={(isOpen) => setOpenElements({ ...openElements, [element.id]: isOpen })} {...element} />
+        </li>
+      ))}
+    </ul></>)
 }

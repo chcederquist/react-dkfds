@@ -1,12 +1,11 @@
 import { ReactNode } from "react";
-import { HeadingLevel } from "../../types/headings";
+import { Heading, HeadingProps } from "../Shared/Heading";
 
-export function Card({headerProps, textProps}: Readonly<{headerProps: { headingLevel: HeadingLevel; content: ReactNode;}, textProps: { content: ReactNode;}}>) {
-  const Heading = headerProps.headingLevel;
+export function Card({headerProps, textProps}: Readonly<{headerProps: { headingProps: HeadingProps}, textProps: { content: ReactNode;}}>) {
   return (
   <div className="card">
     <div className="card-header">
-        <Heading className="header-title">{headerProps.content}</Heading>
+        <Heading {...headerProps.headingProps} className={["header-title", ...headerProps.headingProps.className ?? []].join(' ')} />
     </div>
 
     <div className="card-text">
