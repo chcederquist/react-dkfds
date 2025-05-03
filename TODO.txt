@@ -1,10 +1,17 @@
 Small:
-strong vs. mark discussion on badges
-Should default labels be in danish?
+Issue: strong vs. mark discussion on badges
+Util-function for merging classnames
+Issue: Use of span inside buttons in tablist
 
 Medium:
 TODO in Accordion.tsx
+Make sure all labels are configurable
+Align Details with any DKFDS JS
+Align Tabs with any DKFDS JS
+Export prop types
 
 Big:
 Storybook stories 1:1 with designsystem.dk
 Strategy for exposing as much through props as possible? Or expose only what's needed?
+Input/Label/Errors/Forms-strategy
+Footers: Provide examples or just leave it out?

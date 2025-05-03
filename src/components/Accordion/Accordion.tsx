@@ -26,11 +26,7 @@ export function Accordion({ accordionElements }: Readonly<{ accordionElements: A
   const [openElements, setOpenElements] = useState<Record<AccordionElementProps['id'], boolean>>({});
   const allOpen = accordionElements.every((element) => openElements[element.id]);
   return (<>
-    <button className="accordion-bulk-button" data-accordion-bulk-expand={allOpen.toString()} onClick={() => {
-      for (let element of accordionElements) {
-        setOpenElements({ ...openElements, [element.id]: true });
-      }
-    }}>{allOpen ? 'Luk alle' : 'Åbn alle'}</button>
+    <button className="accordion-bulk-button" data-accordion-bulk-expand={allOpen.toString()} onClick={() => setOpenElements(Object.fromEntries(accordionElements.map(el => [el.id, !allOpen])))}>{allOpen ? 'Luk alle' : 'Åbn alle'}</button>
     <ul className="accordion">
       {accordionElements.map((element) => (
         <li key={element.id}>
