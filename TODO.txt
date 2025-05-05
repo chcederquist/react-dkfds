@@ -1,6 +1,5 @@
 Small:
 Issue: strong vs. mark discussion on badges
-Util-function for merging classnames
 Issue: Use of span inside buttons in tablist
 
 Medium:
@@ -9,9 +8,43 @@ Make sure all labels are configurable
 Align Details with any DKFDS JS
 Align Tabs with any DKFDS JS
 Export prop types
+Handle "header open" class set on <body>
+Pull Icon into own component in Button, Accordion
+Timed loading spinner - See guidelines on loading spinner, where certain timestamps change the text
+Overflow menu on Header
+Linting + Prettier
 
 Big:
 Storybook stories 1:1 with designsystem.dk
 Strategy for exposing as much through props as possible? Or expose only what's needed?
 Input/Label/Errors/Forms-strategy
 Footers: Provide examples or just leave it out?
+TODO in Header.tsx
+Roadmap for implementation of components
+
+
+
+
+Components:
+Cookie consent
+Date fields
+Datepicker
+Dropdown
+Error messages
+Error summation
+Footer
+Input fields
+Pagination
+Radio buttons
+Search field <- Check Header
+Tables
+Textarea
+Back-link <- Is it needed?
+Go to top
+Checkbox
+=======
+toggle switch
+tooltip
+step indicator
+attach file
+left menu
