@@ -1,6 +1,9 @@
 Small:
 Issue: strong vs. mark discussion on badges
 Issue: Use of span inside buttons in tablist
+Issue: Empty span on locked example and error example of stepindicator
+Issue: Double-span-wrap on extra information example
+Issue: Too much spacing in the code example of left menu
 
 Medium:
 TODO in Accordion.tsx
@@ -42,9 +45,7 @@ Textarea
 Back-link <- Is it needed?
 Go to top
 Checkbox
-=======
 toggle switch
 tooltip
-step indicator
 attach file
 left menu
