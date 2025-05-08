@@ -37,7 +37,7 @@ export function InputField({ labelProps, inputProps, formGroupProps, hint, chara
     <div className="form-group" {...formGroupProps}>
       <label className="form-label" htmlFor={inputProps.id} {...labelProps}></label>
       {hint && <span className="form-hint" id={inputProps.id + '-hint'}>{hint}</span>}
-      {error && <span className="form-error-message" id={inputProps.id + '-error'}><span className="sr-only">{error}</span></span>}
+      {error && <span className="form-error-message" id={inputProps.id + '-error'}><span className="sr-only">Fejl: </span>{error}</span>}
       {'prefix' in props && <div className="form-input-wrapper form-input-wrapper--prefix"><div className="form-input-prefix" aria-hidden="true"></div>{input}</div>}
       {'suffix' in props && <div className="form-input-wrapper form-input-wrapper--suffix">{input}<div className="form-input-suffix" aria-hidden="true"></div></div>}
       {!('suffix' in props) && !('prefix' in props) && input}

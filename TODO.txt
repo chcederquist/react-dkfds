@@ -16,6 +16,8 @@ Pull Icon into own component in Button, Accordion
 Timed loading spinner - See guidelines on loading spinner, where certain timestamps change the text
 Overflow menu on Header
 Linting + Prettier
+Error and hint into own component?
+Label into own component?
 
 Big:
 Storybook stories 1:1 with designsystem.dk
@@ -30,8 +32,6 @@ Roadmap for implementation of components
 
 Components:
 ====
-Datepicker
-Dropdown
 Radio buttons
 Search field <- Check Header
 Tables
@@ -40,10 +40,10 @@ Checkbox
 toggle switch
 attach file
 Error messages
-Error summation
 Pagination
 tooltip
 Go to top
 Cookie consent
 Back-link <- Is it needed?
 Footer
+Datepicker
