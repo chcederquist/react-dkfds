@@ -30,21 +30,20 @@ Roadmap for implementation of components
 
 Components:
 ====
-Date fields
 Datepicker
 Dropdown
-Error messages
-Error summation
-Footer
-Pagination
 Radio buttons
 Search field <- Check Header
 Tables
 Textarea
-Back-link <- Is it needed?
-Go to top
 Checkbox
 toggle switch
 attach file
-Cookie consent
+Error messages
+Error summation
+Pagination
 tooltip
+Go to top
+Cookie consent
+Back-link <- Is it needed?
+Footer

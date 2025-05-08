@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { mergeClassnames } from "../../util/merge-classnames";
+import { mergeStrings } from "../../util/merge-classnames";
 
 export type StepIndicatorMenuProps = {
   currentStep: number;
@@ -16,7 +16,7 @@ export type StepIndicatorListProps = {
 export function StepIndicatorMenu({ id, stepItems, side, currentStep, totalSteps }: Readonly<StepIndicatorMenuProps>) {
   const [expanded, setExpanded] = useState(false); // TODO: Close on click outside
   return (
-    <div className={mergeClassnames("overflow-menu",`overflow-menu--open-${side}`)}>
+    <div className={mergeStrings("overflow-menu",`overflow-menu--open-${side}`)}>
     <button className="button-overflow-menu js-dropdown" data-js-target={id}
         aria-expanded={expanded} aria-controls={id} onClick={() => setExpanded(!expanded)}>
         Trin {currentStep} af {totalSteps}
@@ -45,7 +45,7 @@ export function StepIndicatorList({ stepItems, currentStep }: Readonly<StepIndic
               </span>
             </div>
           </div>
-          return (<li key={item.id} className={mergeClassnames(index + 1 === currentStep ? 'active current' : undefined, item.hasError && 'sidenav-error')}>{item.action ? 
+          return (<li key={item.id} className={mergeStrings(index + 1 === currentStep ? 'active current' : undefined, item.hasError && 'sidenav-error')}>{item.action ? 
           <button className="unstyled nav-step" onClick={item.action}>{children}</button> : 
           <a className="nav-step" href={item.url}>{children}</a>}</li>)})}
     </ol>

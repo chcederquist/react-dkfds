@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { mergeClassnames } from "../../util/merge-classnames";
+import { mergeStrings } from "../../util/merge-classnames";
 
 export type NavLinkProps = {
   label: string; url: string;
@@ -27,18 +27,18 @@ function NavLink({ label, url }: Readonly<NavLinkProps>) {
 function NavigationMenu({ search, items }: Readonly<NonNullable<HeaderProps['navigationMenu']>>) {
   const [openMenuIndex, setOpenMenuIndex] = useState<number | undefined>();
   return (
-    <div className={mergeClassnames("navigation-menu", search && "contains-search")}>
+    <div className={mergeStrings("navigation-menu", search && "contains-search")}>
       <div className="navigation-menu-inner container">
         <nav className="nav" aria-label="Hovedmenu">
           <ul className="mainmenu">
             {items.map((item, index) => (
-              <li className={mergeClassnames(item.active && "current", (item.active || item.subItems?.some(si => si.active)) && "active")} key={item.url || item.label}>
+              <li className={mergeStrings(item.active && "current", (item.active || item.subItems?.some(si => si.active)) && "active")} key={item.url || item.label}>
                 {item.subItems ? <div className="submenu">
                   <button className="button-overflow-menu js-dropdown" onClick={() => {
                     setOpenMenuIndex((prevIndex) => prevIndex === index ? undefined : index);
                   }}
                     data-js-target={`desktopmenu-${index}`} aria-expanded={openMenuIndex === index} aria-controls={`desktopmenu-${index}`}></button>
-                  <div className={mergeClassnames("overflow-menu-inner", index === openMenuIndex && "collapsed")} id={`desktopmenu-${index}`}
+                  <div className={mergeStrings("overflow-menu-inner", index === openMenuIndex && "collapsed")} id={`desktopmenu-${index}`}
                     aria-hidden={openMenuIndex !== index ? "true" : "false"}>
                     <ul className="overflow-list">
                       {item.subItems.map((subItem) => (<li key={subItem.url || subItem.label} className={subItem.active ? 'active current' : ''}><NavLink url={subItem.url} label={subItem.label} ></NavLink></li>))}
@@ -69,13 +69,13 @@ function NavigationMenuMobile({ items }: Readonly<Omit<NonNullable<HeaderProps['
     <nav className="navigation-menu-mobile" aria-label="Hovedmenu">
       <ul className="mainmenu">
         {items.map((item, index) => (
-          <li className={mergeClassnames(item.active && "current", (item.active || item.subItems?.some(si => si.active)) && "active")} key={item.url || item.label}>
+          <li className={mergeStrings(item.active && "current", (item.active || item.subItems?.some(si => si.active)) && "active")} key={item.url || item.label}>
             {item.subItems ? <div className="submenu">
               <button className="button-mobile-menu js-menudropdown" onClick={() => {
                 setOpenMenuIndex((prevIndex) => prevIndex === index ? undefined : index);
               }}
                 data-js-target={`mobilemenu-${index}`} aria-expanded={openMenuIndex === index} aria-controls={`mobilemenu-${index}`}></button>
-              <div className={mergeClassnames("overflow-menu-inner", index === openMenuIndex && "collapsed")} id={`mobilemenu-${index}`}
+              <div className={mergeStrings("overflow-menu-inner", index === openMenuIndex && "collapsed")} id={`mobilemenu-${index}`}
                 aria-hidden={openMenuIndex !== index ? "true" : "false"}>
                 <ul className="overflow-list">
                   {item.subItems.map((subItem) => (<li key={subItem.url || subItem.label} className={subItem.active ? 'active current' : ''}><NavLink url={subItem.url} label={subItem.label} ></NavLink></li>))}
@@ -131,8 +131,8 @@ export function Header({ texts, navigationMenu }: Readonly<HeaderProps>) {
         </div>
       </div>
       {navigationMenu && <NavigationMenu {...navigationMenu} />}
-      <div className={mergeClassnames("overlay", isMobileMenuOpen && 'is-visible')}></div>
-      <div className={mergeClassnames("mobile-drawer", isMobileMenuOpen && 'is-visible')} role="dialog" aria-modal="true" aria-labelledby="menu-heading">
+      <div className={mergeStrings("overlay", isMobileMenuOpen && 'is-visible')}></div>
+      <div className={mergeStrings("mobile-drawer", isMobileMenuOpen && 'is-visible')} role="dialog" aria-modal="true" aria-labelledby="menu-heading">
         <div className="menu-top">
           <h2 id="menu-heading" className="menu-heading">Menu</h2>
           <button className="function-link button-menu-close js-menu-close"
