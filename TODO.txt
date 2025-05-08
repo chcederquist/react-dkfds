@@ -29,14 +29,13 @@ Roadmap for implementation of components
 
 
 Components:
-Cookie consent
+====
 Date fields
 Datepicker
 Dropdown
 Error messages
 Error summation
 Footer
-Input fields
 Pagination
 Radio buttons
 Search field <- Check Header
@@ -46,6 +45,6 @@ Back-link <- Is it needed?
 Go to top
 Checkbox
 toggle switch
-tooltip
 attach file
-left menu
+Cookie consent
+tooltip
