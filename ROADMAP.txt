@@ -1,7 +1,7 @@
 1. Build non-form components
-====
 2. Build form-components
 3. Split out shared functionality (Icons, Headings etc.)
+====
 4. Build complex components
 5. Storybook stories equivalent to examples on designsystem.dk + 1:1 JavaScript implementation
 6. Ensure consistency between components

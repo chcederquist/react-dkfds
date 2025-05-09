@@ -2,7 +2,6 @@ import { ReactNode, useState } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
 import { Icon, IconName } from "../Shared/Icon";
 
-// TODO: Icon name type, icon component
 export type AccordionElementProps = { id: string | number; headerContent: { headingProps: HeadingProps; children: ReactNode; icon: { text: string; iconName: IconName } }; bodyContent: { children: ReactNode; } }
 
 export function AccordionElement({ bodyContent, headerContent, id, isOpen, setIsOpen }: AccordionElementProps & { setIsOpen: (isOpen: boolean) => void; isOpen: boolean; }) {
