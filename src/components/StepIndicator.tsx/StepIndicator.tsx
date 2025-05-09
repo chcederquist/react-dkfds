@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
+import { Icon } from "../Shared/Icon";
 
 export type StepIndicatorMenuProps = {
   currentStep: number;
@@ -20,7 +21,7 @@ export function StepIndicatorMenu({ id, stepItems, side, currentStep, totalSteps
     <button className="button-overflow-menu js-dropdown" data-js-target={id}
         aria-expanded={expanded} aria-controls={id} onClick={() => setExpanded(!expanded)}>
         Trin {currentStep} af {totalSteps}
-        <svg className="icon-svg" focusable="false" aria-hidden="true"><use xlinkHref="#arrow-drop-down"></use></svg>
+        <Icon icon="arrow-drop-down"></Icon>
     </button>
     <div className="overflow-menu-inner" id={id} aria-hidden={!expanded}>
       <StepIndicatorList currentStep={currentStep} stepItems={stepItems}></StepIndicatorList>
@@ -40,8 +41,8 @@ export function StepIndicatorList({ stepItems, currentStep }: Readonly<StepIndic
               <span className="sidenav-maininfo">
                 <span className="sidenav-title">{item.title}</span>
                 {item.informationalText && <span className="sidenav-information">{item.informationalText}</span>}
-                {item.done && <span className="sidenav-icon"><svg className="icon-svg" aria-label="Gennemført" focusable="false"><use xlinkHref="#done"></use></svg></span>}
-                {!item.done && item.hasError && <span className="sidenav-icon"><svg className="icon-svg" aria-label="Fejl" focusable="false"><use xlinkHref="#highlight-off"></use></svg></span>}
+                {item.done && <span className="sidenav-icon"><Icon icon="done" svgProps={{"aria-label": "Gennemført"}}></Icon></span>}
+                {!item.done && item.hasError && <span className="sidenav-icon"><Icon icon="highlight-off" svgProps={{"aria-label": "Fejl"}}></Icon></span>}
               </span>
             </div>
           </div>

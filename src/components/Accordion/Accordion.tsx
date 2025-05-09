@@ -1,8 +1,9 @@
 import { ReactNode, useState } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
+import { Icon, IconName } from "../Shared/Icon";
 
 // TODO: Icon name type, icon component
-export type AccordionElementProps = { id: string | number; headerContent: { headingProps: HeadingProps; children: ReactNode; icon: { text: string; iconName: string } }; bodyContent: { children: ReactNode; } }
+export type AccordionElementProps = { id: string | number; headerContent: { headingProps: HeadingProps; children: ReactNode; icon: { text: string; iconName: IconName } }; bodyContent: { children: ReactNode; } }
 
 export function AccordionElement({ bodyContent, headerContent, id, isOpen, setIsOpen }: AccordionElementProps & { setIsOpen: (isOpen: boolean) => void; isOpen: boolean; }) {
   return <>
@@ -12,7 +13,7 @@ export function AccordionElement({ bodyContent, headerContent, id, isOpen, setIs
         {headerContent.icon &&
           <span className="accordion-icon">
             <span className="icon_text">{headerContent.icon.text}</span>
-            <svg className="icon-svg" focusable="false" aria-hidden="true"><use xlinkHref={`#${headerContent.icon.iconName}`}></use></svg>
+            <Icon icon={headerContent.icon.iconName} ></Icon>
           </span>}
       </button>
     </Heading>

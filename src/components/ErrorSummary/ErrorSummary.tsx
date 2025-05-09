@@ -1,8 +1,9 @@
 import { Heading, HeadingProps } from "../Shared/Heading";
+import { Icon } from "../Shared/Icon";
 
 function getScrollTarget(inputElement: HTMLInputElement | HTMLSelectElement) {
   const fieldset = inputElement?.closest('fieldset');
-                  
+
   if (fieldset) {
     const legends = fieldset.getElementsByTagName('legend')
 
@@ -36,41 +37,41 @@ function getScrollTarget(inputElement: HTMLInputElement | HTMLSelectElement) {
     }
   }
   return document.querySelector("label[for='" + inputElement.id + "']") ||
-  inputElement.closest('label')
+    inputElement.closest('label')
 }
 
-export function ErrorSummary({ errors, errorHeading }: Readonly<{ errorHeading: HeadingProps & Required<Pick<HeadingProps, 'id'>>; errors: {inputId: string; errorMessage: string;}[]}>) {
+export function ErrorSummary({ errors, errorHeading }: Readonly<{ errorHeading: HeadingProps & Required<Pick<HeadingProps, 'id'>>; errors: { inputId: string; errorMessage: string; }[] }>) {
   return <nav aria-labelledby={errorHeading.id}>
 
-  <div className="alert alert-error mt-0 mb-8" role="alert" data-module="error-summary">
-      <svg className="icon-svg alert-icon" aria-label="Fejl" focusable="false"><use xlinkHref="#highlight-off"></use></svg>
+    <div className="alert alert-error mt-0 mb-8" role="alert" data-module="error-summary">
+      <Icon icon={'highlight-off'} isAlertIcon svgProps={{ "aria-label": 'Fejl' }}></Icon>
       <div className="alert-body">
         <Heading className="alert-heading" {...errorHeading}></Heading>
-          <ul className="alert-text nobullet-list">
-            {errors.map((error) => (
-              <li>
-                <a onClick={(ev) => {
-                  const inputElement = document.getElementById(error.inputId) as HTMLInputElement | null;
-                  if (!inputElement) {
-                    return;
-                  }
-                  ev.preventDefault();
-                  const target = getScrollTarget(inputElement);
-                  if (target) {
-                    target.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center',
-                      inline: 'nearest'
-                    });
-                    inputElement.focus({preventScroll: true})
-                  }
-                  
-                }} className="function-link" href={`#${error.inputId}`}>{error.errorMessage}</a>
-              </li>
-            ))}
-          </ul>
-      </div>
-  </div>
+        <ul className="alert-text nobullet-list">
+          {errors.map((error) => (
+            <li>
+              <a onClick={(ev) => {
+                const inputElement = document.getElementById(error.inputId) as HTMLInputElement | null;
+                if (!inputElement) {
+                  return;
+                }
+                ev.preventDefault();
+                const target = getScrollTarget(inputElement);
+                if (target) {
+                  target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'nearest'
+                  });
+                  inputElement.focus({ preventScroll: true })
+                }
 
-</nav>
+              }} className="function-link" href={`#${error.inputId}`}>{error.errorMessage}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+  </nav>
 }

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
+import { Icon } from "../Shared/Icon";
 
 // TODO: Close all other modals
 export function Modal({ id, header, children, footer }: Readonly<{id: string; header: HeadingProps; children: ReactNode; footer?: ReactNode}>) {
@@ -10,7 +11,7 @@ export function Modal({ id, header, children, footer }: Readonly<{id: string; he
         {header && <div className="modal-header">
           <Heading {...header} id={`${id}-header`}></Heading>
           <button className="modal-close function-link"
-                data-modal-close><svg className="icon-svg" focusable="false" aria-hidden="true"><use xlinkHref="#close"></use></svg>Luk</button>
+                data-modal-close><Icon icon="close"></Icon>Luk</button>
         </div>}
         <div className="modal-body">
           {children}

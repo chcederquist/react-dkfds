@@ -1,10 +1,11 @@
 import { mergeStrings } from "../../util/merge-classnames";
+import { Icon, IconName } from "../Shared/Icon";
 
-export function Tag({ children, onClick, icon }: Readonly<{ children: string, onClick?: React.MouseEventHandler<HTMLButtonElement>, icon: string;}>) {
+export function Tag({ children, onClick, icon }: Readonly<{ children: string, onClick?: React.MouseEventHandler<HTMLButtonElement>, icon: IconName;}>) {
   return (
     <button onClick={onClick} className={mergeStrings('tag', icon && 'tag-icon')}>
       {children}
-      <svg className="icon-svg" focusable="false" aria-hidden="true"><use xlinkHref={`#${icon}`}></use></svg>
+      <Icon icon={icon}></Icon>
     </button>
   );
   

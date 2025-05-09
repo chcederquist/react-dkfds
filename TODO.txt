@@ -22,6 +22,7 @@ Label into own component?
 Rewrite legend-props/label-props to take a simple label string
 Collapse/expand-function on RadioButtons.tsx and Checkbox.tsx
 Shorthand for big type names
+Automate icon type generation
 
 Big:
 Storybook stories 1:1 with designsystem.dk

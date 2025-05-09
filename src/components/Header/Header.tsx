@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { SearchField, SearchFieldProps } from "../SearchField/SearchField";
+import { Icon } from "../Shared/Icon";
 
 export type NavLinkProps = {
   label: string; url: string;
@@ -97,15 +98,13 @@ export function Header({ texts, navigationMenu }: Readonly<HeaderProps>) {
           <button className="function-link button-menu-open js-menu-open ml-auto d-print-none" onClick={() => {
             setIsMobileMenuOpen(!isMobileMenuOpen);
           }}
-            aria-haspopup="dialog"><svg className="icon-svg" focusable="false" aria-hidden="true"><use xlinkHref="#menu"></use></svg>Menu</button>
+            aria-haspopup="dialog"><Icon icon="menu"></Icon>Menu</button>
 
           <div className="portal-user">
             <p className="user">
               {texts.userName}{texts.organisationName ? `, ${texts.organisationName}` : ''}
             </p>
-            <button className="function-link d-print-none log-off"><svg className="icon-svg" focusable="false" aria-hidden="true">
-              <use xlinkHref="#lock"></use>
-            </svg>{texts.logOffButton}</button>
+            <button className="function-link d-print-none log-off"><Icon icon="lock"></Icon>{texts.logOffButton}</button>
           </div>
         </div>
       </div>
@@ -131,7 +130,7 @@ export function Header({ texts, navigationMenu }: Readonly<HeaderProps>) {
         <div className="menu-top">
           <h2 id="menu-heading" className="menu-heading">Menu</h2>
           <button className="function-link button-menu-close js-menu-close"
-            aria-label="Luk menu"><svg className="icon-svg" focusable="false" aria-hidden="true"><use xlinkHref="#close"></use></svg>Luk</button>
+            aria-label="Luk menu"><Icon icon="close"></Icon>Luk</button>
         </div>
         {navigationMenu && <NavigationMenuMobile {...navigationMenu} />}
         <div className="solution-info-mobile">
@@ -153,7 +152,7 @@ export function Header({ texts, navigationMenu }: Readonly<HeaderProps>) {
 
           <p>
             <button
-              className="function-link d-print-none log-off"><svg className="icon-svg" focusable="false" aria-hidden="true"><use xlinkHref="#lock"></use></svg>Log
+              className="function-link d-print-none log-off"><Icon icon="lock"></Icon>Log
               af</button>
           </p>
         </div>
