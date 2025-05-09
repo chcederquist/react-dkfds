@@ -5,6 +5,7 @@ Issue: Empty span on locked example and error example of stepindicator
 Issue: Double-span-wrap on extra information example
 Issue: Too much spacing in the code example of left menu
 Issue: Radioknap legend bruger aria-labelledby med reference til legend, men det gør Datofelter ikke
+
 Medium:
 TODO in Accordion.tsx
 Make sure all labels are configurable
@@ -20,6 +21,7 @@ Error and hint into own component? (Dropdown, InputField, Datefields, Radiobutto
 Label into own component?
 Rewrite legend-props/label-props to take a simple label string
 Collapse/expand-function on RadioButtons.tsx
+Shorthand for big type names
 
 Big:
 Storybook stories 1:1 with designsystem.dk
@@ -33,10 +35,8 @@ Roadmap for implementation of components
 
 
 Components:
-====
-Search field <- Check Header
 Tables
-Textarea
+====
 Checkbox
 toggle switch
 attach file

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
+import { SearchField, SearchFieldProps } from "../SearchField/SearchField";
 
 export type NavLinkProps = {
   label: string; url: string;
@@ -13,7 +14,7 @@ export type NavigationItem = NavLinkProps & {
 
 export type HeaderProps = {
   texts: { authorityContactInfo: string; solutionName: string; authorityName: string; portalName: string; userName: string; organisationName: string; logOffButton: string; goToPortalsFrontpage: string; }
-  navigationMenu?: { items: NavigationItem[]; search?: { onSearchClicked: () => void; onInputChange: React.ChangeEventHandler<HTMLInputElement>; } }
+  navigationMenu?: { items: NavigationItem[]; search?: SearchFieldProps }
 }
 
 function NavLink({ label, url }: Readonly<NavLinkProps>) {
@@ -50,13 +51,7 @@ function NavigationMenu({ search, items }: Readonly<NonNullable<HeaderProps['nav
           </ul>
         </nav>
 
-        {search && <div className="form-group search">
-          <label htmlFor="header-search" className="sr-only">Søg efter indhold</label>
-          <input onChange={search.onInputChange} className="form-input" id="header-search" name="header-search" type="search" />
-          <button onClick={search.onSearchClicked} className="button button-search">
-            Søg
-          </button>
-        </div>}
+        {search && <SearchField {...search}></SearchField>}
 
       </div>
     </div>

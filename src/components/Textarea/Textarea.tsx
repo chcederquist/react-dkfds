@@ -4,7 +4,7 @@ import { InputSize } from "../../types/input-widths";
 
 export type InputFieldProps = {
   labelProps: React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>;
-  inputProps: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & Required<Pick<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'id' | 'name'>>;
+  textareaProps: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> & Required<Pick<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>, 'id' | 'name'>>;
   formGroupProps: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
   error?: string;
   hint?: string;
@@ -12,12 +12,12 @@ export type InputFieldProps = {
 }
   & ({ prefix?: string } | { suffix?: string })
   & Partial<InputSize>
-export function InputField({ labelProps, inputProps, formGroupProps, hint, characterLimit, error, ...props }: Readonly<InputFieldProps>) {
+export function InputField({ labelProps, textareaProps: inputProps, formGroupProps, hint, characterLimit, error, ...props }: Readonly<InputFieldProps>) {
   const [inputCount, setInputCount] = useState<number>(typeof inputProps.value === 'number' ? inputProps.value : inputProps.value?.length ?? 0);
   const [lastInputEventMs, setLastInputEventMs] = useState<number | undefined>(undefined);
   const [visibleInputCount, setVisibleInputCount] = useState<number>(inputCount);
   const charactersLeft = (characterLimit ?? 0) - (visibleInputCount ?? 0)
-  const input = <input
+  const input = <textarea
     className={mergeStrings("form-input", 'inputCharWidth' in props && `input-char-${props.inputCharWidth}`, 'inputWidth' in props && `input-width-${props.inputWidth}`)}
     aria-describedby={mergeStrings(characterLimit !== undefined ? `${inputProps.id}-limit-message` : undefined, error ? `${inputProps.id}-error` : undefined, hint ? `${inputProps.id}-hint` : undefined)}
     {...inputProps}
