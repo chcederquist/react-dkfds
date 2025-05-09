@@ -20,7 +20,7 @@ Linting + Prettier
 Error and hint into own component? (Dropdown, InputField, Datefields, Radiobuttons)
 Label into own component?
 Rewrite legend-props/label-props to take a simple label string
-Collapse/expand-function on RadioButtons.tsx
+Collapse/expand-function on RadioButtons.tsx and Checkbox.tsx
 Shorthand for big type names
 
 Big:
@@ -35,12 +35,9 @@ Roadmap for implementation of components
 
 
 Components:
-Tables
 ====
-Checkbox
 toggle switch
 attach file
-Error messages
 Pagination
 tooltip
 Go to top
@@ -48,3 +45,4 @@ Cookie consent
 Back-link <- Is it needed?
 Footer
 Datepicker
+Tables

@@ -6,4 +6,5 @@
 5. Storybook stories equivalent to examples on designsystem.dk + 1:1 JavaScript implementation
 6. Ensure consistency between components
 7. NPM release
-8. i18n / custom aria-labels support
+8. JSDoc
+9. i18n / custom aria-labels support
