@@ -36,8 +36,6 @@ Roadmap for implementation of components
 
 Components:
 ====
-toggle switch
-attach file
 Pagination
 tooltip
 Go to top
