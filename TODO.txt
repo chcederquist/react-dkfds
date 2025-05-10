@@ -8,8 +8,6 @@ Issue: Radioknap legend bruger aria-labelledby med reference til legend, men det
 Issue: switchTabOnKeyPress kode er forvirrende, da der blot kan bruges modulo-operator
 
 Medium:
-Export prop types
-Handle "header open" class set on <body>
 Timed loading spinner - See guidelines on loading spinner, where certain timestamps change the text
 Overflow menu on Header
 Linting + Prettier
@@ -19,6 +17,7 @@ Rewrite legend-props/label-props to take a simple label string
 Collapse/expand-function on RadioButtons.tsx and Checkbox.tsx
 Shorthand for big type names
 Automate icon type generation
+Handle close all other modals when opening modal
 
 Big:
 Storybook stories 1:1 with designsystem.dk

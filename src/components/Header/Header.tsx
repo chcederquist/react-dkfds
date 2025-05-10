@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { SearchField, SearchFieldProps } from "../SearchField/SearchField";
 import { Icon } from "../Shared/Icon";
@@ -88,6 +88,13 @@ function NavigationMenuMobile({ items }: Readonly<Omit<NonNullable<HeaderProps['
 export function Header({ texts, navigationMenu }: Readonly<HeaderProps>) {
   // TODO: Resize-observer should close mobile menu when above mobile breakpoint
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  useEffect(() => {
+    if (isMobileMenuOpen && !document.body.classList.contains('mobile-nav-active')) {
+      document.body.classList.add('mobile-nav-active');
+    } else if (!isMobileMenuOpen && document.body.classList.contains('mobile-nav-active')) {
+      document.body.classList.remove('mobile-nav-active');
+    }
+  }, [isMobileMenuOpen]);
   return (
     <header className="header">
       <div className="portal-info">
