@@ -12,6 +12,7 @@ export function Tabs({ tabs }: Readonly<TabsProps>) {
         {tabs.map((tab, index) => {
           return (
             <button
+              key={tab.id}
               className="tab-button"
               onKeyDown={(ev) => {
                 ev.preventDefault();
@@ -48,6 +49,7 @@ export function Tabs({ tabs }: Readonly<TabsProps>) {
       {tabs.map((tab, index) => {
         return (
           <div
+            key={tab.id}
             className="tab-panel"
             role="tabpanel"
             tabIndex={0}

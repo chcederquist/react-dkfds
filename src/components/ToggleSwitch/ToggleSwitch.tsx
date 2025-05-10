@@ -5,6 +5,7 @@ export type ToggleSwitchProps = {
   id: string;
   switches: {
     label: string;
+    id: string;
     checked: boolean;
     onClick: React.MouseEventHandler<HTMLButtonElement>;
   }[];
@@ -24,6 +25,7 @@ export function ToggleSwitch({
       <Heading {...headingProps}></Heading>
       {...switches.map((s) => (
         <button
+          key={s.id}
           className="toggle-switch w-percent-100"
           type="button"
           role="switch"

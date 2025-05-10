@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export type LoadingSpinnerProps =
   | { spinnerType: "static"; loadingLabel: string }
@@ -13,7 +13,10 @@ export function LoadingSpinner({
   spinnerType,
   ...props
 }: Readonly<LoadingSpinnerProps>) {
-  const messages = "messages" in props ? props.messages : [];
+  const messages = useMemo(
+    () => ("messages" in props ? props.messages : []),
+    [props],
+  );
   const [currentLoadingLabel, setCurrentLoadingLabel] = useState(
     spinnerType === "static" && "loadingLabel" in props
       ? props.loadingLabel
@@ -42,7 +45,7 @@ export function LoadingSpinner({
     return () => {
       timeouts.forEach((timeout) => clearTimeout(timeout));
     };
-  }, [messages]);
+  }, [messages, props, spinnerType]);
   return (
     <>
       <div className="spinner"></div>

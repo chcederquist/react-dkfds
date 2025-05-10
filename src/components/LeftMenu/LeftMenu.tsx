@@ -26,7 +26,7 @@ function LeftMenuItemList({ menuItems }: { menuItems: LeftMenuItem[] }) {
   return (
     <ul className="sidemenu">
       {menuItems.map((item) => (
-        <LeftMenuItem item={item}></LeftMenuItem>
+        <LeftMenuItem item={item} key={item.id}></LeftMenuItem>
       ))}
     </ul>
   );

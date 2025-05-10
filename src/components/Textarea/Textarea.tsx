@@ -84,7 +84,7 @@ export function InputField({
         setVisibleInputCount(inputCount);
       }
     }, 1000);
-  }, []);
+  }, [inputCount, lastInputEventMs]);
   return (
     <div className="form-group" {...formGroupProps}>
       <label

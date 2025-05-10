@@ -8,7 +8,7 @@ function getScrollTarget(inputElement: HTMLInputElement | HTMLSelectElement) {
     const legends = fieldset.getElementsByTagName("legend");
 
     if (legends.length) {
-      var $candidateLegend = legends[0];
+      const $candidateLegend = legends[0];
 
       // If the input type is radio or checkbox, always use the legend if there
       // is one.
@@ -22,13 +22,13 @@ function getScrollTarget(inputElement: HTMLInputElement | HTMLSelectElement) {
       //
       // This should avoid situations where the input either ends up off the
       // screen, or obscured by a software keyboard.
-      var legendTop = $candidateLegend.getBoundingClientRect().top;
-      var inputRect = inputElement.getBoundingClientRect();
+      const legendTop = $candidateLegend.getBoundingClientRect().top;
+      const inputRect = inputElement.getBoundingClientRect();
 
       // If the browser doesn't support Element.getBoundingClientRect().height
       // or window.innerHeight (like IE8), bail and just link to the label.
       if (inputRect.height && window.innerHeight) {
-        var inputBottom = inputRect.top + inputRect.height;
+        const inputBottom = inputRect.top + inputRect.height;
 
         if (inputBottom - legendTop < window.innerHeight / 2) {
           return $candidateLegend;
@@ -67,7 +67,7 @@ export function ErrorSummary({
           <Heading className="alert-heading" {...errorHeading}></Heading>
           <ul className="alert-text nobullet-list">
             {errors.map((error) => (
-              <li>
+              <li key={error.inputId + error.errorMessage}>
                 <a
                   onClick={(ev) => {
                     const inputElement = document.getElementById(

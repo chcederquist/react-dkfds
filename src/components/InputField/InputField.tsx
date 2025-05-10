@@ -76,7 +76,7 @@ export function InputField({
     />
   );
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       if (
         lastInputEventMs === undefined ||
         lastInputEventMs < Date.now() - 500
@@ -84,7 +84,10 @@ export function InputField({
         setVisibleInputCount(inputCount);
       }
     }, 1000);
-  }, []);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [inputCount, lastInputEventMs]);
   return (
     <div className="form-group" {...formGroupProps}>
       <label
