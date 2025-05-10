@@ -1,3 +1,5 @@
+import { mergeStrings } from "../../util/merge-classnames";
+
 export type DropdownProps = {
   labelProps: React.DetailedHTMLProps<
     React.LabelHTMLAttributes<HTMLLabelElement>,
@@ -49,7 +51,14 @@ export function Dropdown({
           <span className="sr-only">{error}</span>
         </span>
       )}
-      <select className="form-select" {...selectProps}>
+      <select
+        className="form-select"
+        aria-describedby={mergeStrings(
+          error && selectProps.id + "-error",
+          hint && selectProps.id + "-hint",
+        )}
+        {...selectProps}
+      >
         {options.map((option) => (
           <option key={option.key} value={option.value}>
             {option.text}
