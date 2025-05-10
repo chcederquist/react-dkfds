@@ -8,8 +8,6 @@ Issue: Radioknap legend bruger aria-labelledby med reference til legend, men det
 Issue: switchTabOnKeyPress kode er forvirrende, da der blot kan bruges modulo-operator
 
 Medium:
-Timed loading spinner - See guidelines on loading spinner, where certain timestamps change the text
-Overflow menu on Header
 Linting + Prettier
 Error and hint into own component? (Dropdown, InputField, Datefields, Radiobuttons)
 Label into own component?
@@ -18,6 +16,7 @@ Collapse/expand-function on RadioButtons.tsx and Checkbox.tsx
 Shorthand for big type names
 Automate icon type generation
 Handle close all other modals when opening modal
+Overflow menu on Header
 
 Big:
 Storybook stories 1:1 with designsystem.dk
