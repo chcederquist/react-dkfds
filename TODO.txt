@@ -5,11 +5,9 @@ Issue: Empty span on locked example and error example of stepindicator
 Issue: Double-span-wrap on extra information example
 Issue: Too much spacing in the code example of left menu
 Issue: Radioknap legend bruger aria-labelledby med reference til legend, men det gør Datofelter ikke
+Issue: switchTabOnKeyPress kode er forvirrende, da der blot kan bruges modulo-operator
 
 Medium:
-Make sure all labels are configurable
-Align Details with any DKFDS JS
-Align Tabs with any DKFDS JS
 Export prop types
 Handle "header open" class set on <body>
 Timed loading spinner - See guidelines on loading spinner, where certain timestamps change the text
