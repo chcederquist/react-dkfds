@@ -22,7 +22,9 @@ export function AccordionElement({ bodyContent, headerContent, id, isOpen, setIs
   </>
 }
 
-export function Accordion({ accordionElements }: Readonly<{ accordionElements: Array<AccordionElementProps>; }>) {
+export type AccordionProps = { accordionElements: Array<AccordionElementProps>; }
+
+export function Accordion({ accordionElements }: Readonly<AccordionProps>) {
   const [openElements, setOpenElements] = useState<Record<AccordionElementProps['id'], boolean>>({});
   const allOpen = accordionElements.every((element) => openElements[element.id]);
   return (<>

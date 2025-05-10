@@ -40,7 +40,9 @@ function getScrollTarget(inputElement: HTMLInputElement | HTMLSelectElement) {
     inputElement.closest('label')
 }
 
-export function ErrorSummary({ errors, errorHeading }: Readonly<{ errorHeading: HeadingProps & Required<Pick<HeadingProps, 'id'>>; errors: { inputId: string; errorMessage: string; }[] }>) {
+export type ErrorSummaryProps = { errorHeading: HeadingProps & Required<Pick<HeadingProps, 'id'>>; errors: { inputId: string; errorMessage: string; }[] }
+
+export function ErrorSummary({ errors, errorHeading }: Readonly<ErrorSummaryProps>) {
   return <nav aria-labelledby={errorHeading.id}>
 
     <div className="alert alert-error mt-0 mb-8" role="alert" data-module="error-summary">

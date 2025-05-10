@@ -2,7 +2,9 @@ import { ReactNode } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
 import { mergeStrings } from "../../util/merge-classnames";
 
-export function Card({headerProps, textProps}: Readonly<{headerProps: { headingProps: HeadingProps}, textProps: { content: ReactNode;}}>) {
+export type CardProps = {headerProps: { headingProps: HeadingProps}, textProps: { content: ReactNode;}};
+
+export function Card({headerProps, textProps}: Readonly<CardProps>) {
   return (
   <div className="card">
     <div className="card-header">

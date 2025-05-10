@@ -160,7 +160,9 @@ export type IconName = "accessibility-new"
 |"visibility"
 |"zoom-in"
 |"zoom-out"
-export function Icon({icon, isAlertIcon, svgProps}: Readonly<{ icon: IconName; isAlertIcon?: boolean; svgProps?: React.SVGProps<SVGSVGElement> }>) {
+
+export type IconProps = { icon: IconName; isAlertIcon?: boolean; svgProps?: React.SVGProps<SVGSVGElement> }
+export function Icon({icon, isAlertIcon, svgProps}: Readonly<IconProps>) {
   
   return <svg className={mergeStrings('icon-svg', isAlertIcon && 'alert-icon')} focusable="false" aria-hidden="true" {...svgProps}><use xlinkHref={`#${icon}`}></use></svg>
 }

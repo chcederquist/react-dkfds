@@ -1,6 +1,8 @@
 import { Heading, HeadingProps } from "../Shared/Heading";
 
-export function ToggleSwitch({ id, switches, headingProps }: Readonly<{ headingProps: HeadingProps; id: string; switches: { label: string; checked: boolean, onClick: React.MouseEventHandler<HTMLButtonElement> }[] }>) {
+export type ToggleSwitchProps = { headingProps: HeadingProps; id: string; switches: { label: string; checked: boolean, onClick: React.MouseEventHandler<HTMLButtonElement> }[] }
+
+export function ToggleSwitch({ id, switches, headingProps }: Readonly<ToggleSwitchProps>) {
   return (
     <div role="group" aria-labelledby={id + "-heading"}
       className="w-percent-100 w-percent-sm-60 w-percent-md-40">

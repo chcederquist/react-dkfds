@@ -2,7 +2,9 @@ import { useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { Icon } from "../Shared/Icon";
 
-export function OverflowMenu({ id, menuItems, side, menuButtonLabel }: Readonly<{menuButtonLabel: string; id: string, menuItems: {id: string; label: string; url?:string; action?: React.MouseEventHandler<HTMLButtonElement>}[]; side: 'right' | 'left'}>) {
+export type OverflowMenuProps = {menuButtonLabel: string; id: string, menuItems: {id: string; label: string; url?:string; action?: React.MouseEventHandler<HTMLButtonElement>}[]; side: 'right' | 'left'};
+
+export function OverflowMenu({ id, menuItems, side, menuButtonLabel }: Readonly<OverflowMenuProps>) {
   const [expanded, setExpanded] = useState(false); // TODO: Close on click outside
   return (
     <div className={mergeStrings("overflow-menu",`overflow-menu--open-${side}`)}>
