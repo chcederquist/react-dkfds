@@ -1,15 +1,19 @@
+import {
+  HTMLInputPropsWithRequiredFields,
+  HTMLElementProps,
+} from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
+import { InputField, InputFieldProps } from "../InputField/InputField";
 
 export type CheckboxProps = {
-  legendProps: React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLLegendElement>,
-    HTMLLegendElement
-  >;
-  fieldsetProps: React.DetailedHTMLProps<
-    React.FieldsetHTMLAttributes<HTMLFieldSetElement>,
-    HTMLFieldSetElement
-  >;
-  values: { value: string; id: string; label: string; hint?: string }[];
+  legendProps: HTMLElementProps<HTMLLegendElement>;
+  fieldsetProps: HTMLElementProps<HTMLFieldSetElement>;
+  values: {
+    inputProps: HTMLInputPropsWithRequiredFields<"value" | "id">;
+    label: string;
+    hint?: string;
+    hiddenInputField?: InputFieldProps;
+  }[];
   id: string;
   hint?: string;
   errorMessage?: string;
@@ -48,23 +52,38 @@ export function Checkbox({
         )}
         {values &&
           values.map((value) => (
-            <div className="form-group-radio" key={value.id}>
-              <input
-                type="checkbox"
-                id={value.id}
-                name={name}
-                className="form-checkbox"
-                value={value.value}
-              />
-              <label className="form-label" htmlFor={value.id}>
-                {value.label}
-              </label>
-              {hint && (
-                <span className="form-hint" id={value.id + "-hint"}>
-                  {hint}
-                </span>
+            <>
+              <div className="form-group-checkbox" key={value.inputProps.id}>
+                <input
+                  type="checkbox"
+                  name={name}
+                  className="form-checkbox"
+                  aria-describedby={
+                    value.hint ? value.inputProps.id + "-hint" : undefined
+                  }
+                  {...value.inputProps}
+                />
+                <label className="form-label" htmlFor={value.inputProps.id}>
+                  {value.label}
+                </label>
+                {value.hint && (
+                  <span
+                    className="form-hint"
+                    id={value.inputProps.id + "-hint"}
+                  >
+                    {value.hint}
+                  </span>
+                )}
+              </div>
+              {value.hiddenInputField && value.inputProps.checked && (
+                <div
+                  id={value.inputProps.id + "-collapse"}
+                  className="checkbox-content"
+                >
+                  <InputField {...value.hiddenInputField}></InputField>
+                </div>
               )}
-            </div>
+            </>
           ))}
       </fieldset>
     </div>

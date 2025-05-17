@@ -1,3 +1,7 @@
+import {
+  HTMLButtonProps,
+  HTMLInputPropsWithRequiredFields,
+} from "../../types/html-props";
 import { InputSize } from "../../types/input-widths";
 import { mergeStrings } from "../../util/merge-classnames";
 import { Icon } from "../Shared/Icon";
@@ -5,23 +9,8 @@ import { Icon } from "../Shared/Icon";
 export type SearchFieldProps = {
   srLabel: string;
   iconButton?: boolean;
-  inputProps: React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > &
-    Required<
-      Pick<
-        React.DetailedHTMLProps<
-          React.InputHTMLAttributes<HTMLInputElement>,
-          HTMLInputElement
-        >,
-        "id" | "name"
-      >
-    >;
-  searchButtonProps?: React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  >;
+  inputProps: HTMLInputPropsWithRequiredFields<"id" | "name">;
+  searchButtonProps?: HTMLButtonProps<HTMLButtonElement>;
   searchButtonLabel?: string;
 } & Partial<InputSize>;
 

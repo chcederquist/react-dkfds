@@ -1,6 +1,7 @@
 import { mergeStrings } from "../../util/merge-classnames";
 import { Heading, HeadingProps } from "../Shared/Heading";
-import { Icon, IconName } from "../Shared/Icon";
+import { Icon } from "../Shared/Icon";
+import { IconName } from "../../types/icon-names";
 
 export type AlertProps = {
   type: "info" | "success" | "warning" | "error";

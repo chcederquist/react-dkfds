@@ -9,7 +9,8 @@
     "format": "prettier --write --parser typescript '**/*.{ts,tsx}",
     "build": "rollup -c",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "gen-icon-types": "node icon-name-type-gen.js"
   },
   "repository": {
     "type": "git",

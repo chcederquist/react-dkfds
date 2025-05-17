@@ -1,15 +1,19 @@
+import {
+  HTMLElementProps,
+  HTMLInputPropsWithRequiredFields,
+} from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
+import { InputFieldProps, InputField } from "../InputField/InputField";
 
 export type RadioButtonsProps = {
-  legendProps: React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLLegendElement>,
-    HTMLLegendElement
-  >;
-  fieldsetProps: React.DetailedHTMLProps<
-    React.FieldsetHTMLAttributes<HTMLFieldSetElement>,
-    HTMLFieldSetElement
-  >;
-  values: { value: string; id: string; label: string; hint?: string }[];
+  legendProps: HTMLElementProps<HTMLLegendElement>;
+  fieldsetProps: HTMLElementProps<HTMLFieldSetElement>;
+  values: {
+    inputProps: HTMLInputPropsWithRequiredFields<"value" | "id">;
+    label: string;
+    hint?: string;
+    hiddenInputField?: InputFieldProps;
+  }[];
   id: string;
   hint?: string;
   errorMessage?: string;
@@ -48,23 +52,27 @@ export function RadioButtons({
         )}
         {values &&
           values.map((value) => (
-            <div className="form-group-radio" key={value.id}>
-              <input
-                type="radio"
-                id={value.id}
-                name={name}
-                className="form-radio"
-                value={value.value}
-              />
-              <label className="form-label" htmlFor={value.id}>
-                {value.label}
-              </label>
-              {hint && (
-                <span className="form-hint" id={value.id + "-hint"}>
-                  {hint}
-                </span>
+            <>
+              <div className="form-group-radio" key={value.inputProps.id}>
+                <input
+                  type="radio"
+                  name={name}
+                  className="form-radio"
+                  {...value.inputProps}
+                />
+                <label className="form-label" htmlFor={value.inputProps.id}>
+                  {value.label}
+                </label>
+              </div>
+              {value.hiddenInputField && value.inputProps.checked && (
+                <div
+                  id={value.inputProps.id + "-collapse"}
+                  className="radio-content"
+                >
+                  <InputField {...value.hiddenInputField}></InputField>
+                </div>
               )}
-            </div>
+            </>
           ))}
       </fieldset>
     </div>

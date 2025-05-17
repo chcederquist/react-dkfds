@@ -1,15 +1,10 @@
+import { HTMLElementProps } from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputField, InputFieldProps } from "../InputField/InputField";
 
 export type DateFieldsProps = {
-  legendProps: React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLLegendElement>,
-    HTMLLegendElement
-  >;
-  fieldsetProps: React.DetailedHTMLProps<
-    React.FieldsetHTMLAttributes<HTMLFieldSetElement>,
-    HTMLFieldSetElement
-  >;
+  legendProps: HTMLElementProps<HTMLLegendElement>;
+  fieldsetProps: HTMLElementProps<HTMLFieldSetElement>;
   dayInputProps: InputFieldProps["inputProps"];
   monthInputProps: InputFieldProps["inputProps"];
   yearInputProps: InputFieldProps["inputProps"];

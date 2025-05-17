@@ -1,35 +1,21 @@
 import { useEffect, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputSize } from "../../types/input-widths";
+import {
+  HTMLElementProps,
+  HTMLTextAreaPropsWithRequiredFields,
+} from "../../types/html-props";
 
-export type InputFieldProps = {
-  labelProps: React.DetailedHTMLProps<
-    React.LabelHTMLAttributes<HTMLLabelElement>,
-    HTMLLabelElement
-  >;
-  textareaProps: React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLTextAreaElement>,
-    HTMLTextAreaElement
-  > &
-    Required<
-      Pick<
-        React.DetailedHTMLProps<
-          React.InputHTMLAttributes<HTMLTextAreaElement>,
-          HTMLTextAreaElement
-        >,
-        "id" | "name"
-      >
-    >;
-  formGroupProps: React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  >;
+export type TextAreaProps = {
+  labelProps: HTMLElementProps<HTMLLabelElement>;
+  textareaProps: HTMLTextAreaPropsWithRequiredFields<"id" | "name">;
+  formGroupProps: HTMLElementProps<HTMLDivElement>;
   error?: string;
   hint?: string;
   characterLimit?: number;
 } & ({ prefix?: string } | { suffix?: string }) &
   Partial<InputSize>;
-export function InputField({
+export function TextArea({
   labelProps,
   textareaProps: inputProps,
   formGroupProps,
@@ -37,7 +23,7 @@ export function InputField({
   characterLimit,
   error,
   ...props
-}: Readonly<InputFieldProps>) {
+}: Readonly<TextAreaProps>) {
   const [inputCount, setInputCount] = useState<number>(
     typeof inputProps.value === "number"
       ? inputProps.value

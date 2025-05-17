@@ -8,9 +8,6 @@ Issue: Radioknap legend bruger aria-labelledby med reference til legend, men det
 Issue: switchTabOnKeyPress kode er forvirrende, da der blot kan bruges modulo-operator
 
 Medium:
-Collapse/expand-function on RadioButtons.tsx and Checkbox.tsx
-Shorthand for big type names
-Automate icon type generation
 Handle close all other modals when opening modal
 Overflow menu on Header
 Ensure error-message is on all relevant inputs

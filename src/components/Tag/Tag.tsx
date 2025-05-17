@@ -1,5 +1,6 @@
 import { mergeStrings } from "../../util/merge-classnames";
-import { Icon, IconName } from "../Shared/Icon";
+import { Icon } from "../Shared/Icon";
+import { IconName } from "../../types/icon-names";
 
 export type TagProps = {
   children: string;

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import { Icon, IconName } from "../Shared/Icon";
+import { Icon } from "../Shared/Icon";
+import { IconName } from "../../types/icon-names";
 
 export type ButtonProps = {
   icon: IconName;

@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
-import { Icon, IconName } from "../Shared/Icon";
+import { Icon } from "../Shared/Icon";
+import { IconName } from "../../types/icon-names";
 
 export type AccordionElementProps = {
   id: string | number;
