@@ -7,20 +7,12 @@ Issue: Too much spacing in the code example of left menu
 Issue: Radioknap legend bruger aria-labelledby med reference til legend, men det gør Datofelter ikke
 Issue: switchTabOnKeyPress kode er forvirrende, da der blot kan bruges modulo-operator
 
-Medium:
+Medium-big:
+Storybook stories 1:1 with designsystem.dk
+TODO in Header.tsx
 Handle close all other modals when opening modal
 Overflow menu on Header
-Ensure error-message is on all relevant inputs
-Rewrite legend-props/label-props to take a simple label string
-
-Big:
-Storybook stories 1:1 with designsystem.dk
-Strategy for exposing as much through props as possible? Or expose only what's needed?
-Input/Label/Errors/Forms-strategy
-Footers: Provide examples or just leave it out?
-TODO in Header.tsx
-Roadmap for implementation of components
-
+Consider label/legend refactor
 
 
 
