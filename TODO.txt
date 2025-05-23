@@ -18,7 +18,6 @@ Consider label/legend refactor
 
 Components:
 ====
-Pagination
 tooltip
 Go to top
 Cookie consent
