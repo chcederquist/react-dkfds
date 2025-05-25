@@ -6,6 +6,7 @@ Issue: Double-span-wrap on extra information example
 Issue: Too much spacing in the code example of left menu
 Issue: Radioknap legend bruger aria-labelledby med reference til legend, men det gør Datofelter ikke
 Issue: switchTabOnKeyPress kode er forvirrende, da der blot kan bruges modulo-operator
+Issue: Anchor-tag i cookiemeddelelse
 
 Medium-big:
 Storybook stories 1:1 with designsystem.dk
@@ -18,10 +19,7 @@ Consider label/legend refactor
 
 Components:
 ====
-tooltip
-Go to top
-Cookie consent
-Back-link <- Is it needed?
 Footer
 Datepicker
 Tables
+tooltip
