@@ -19,7 +19,5 @@ Consider label/legend refactor
 
 Components:
 ====
-Footer
 Datepicker
-Tables
 tooltip
