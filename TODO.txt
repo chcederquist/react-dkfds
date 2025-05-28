@@ -7,10 +7,13 @@ Issue: Too much spacing in the code example of left menu
 Issue: Radioknap legend bruger aria-labelledby med reference til legend, men det gør Datofelter ikke
 Issue: switchTabOnKeyPress kode er forvirrende, da der blot kan bruges modulo-operator
 Issue: Anchor-tag i cookiemeddelelse
+Issue: Tabelpaginering bruger knapper, paginering bruger links
+Consider: Refactoring select in TablePagination to expose more props
 
 Medium-big:
 Storybook stories 1:1 with designsystem.dk
 TODO in Header.tsx
+TODO in Table.tsx
 Handle close all other modals when opening modal
 Overflow menu on Header
 Consider label/legend refactor
