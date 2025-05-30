@@ -5,9 +5,17 @@ import { TablePagination, TablePaginationProps } from "./TablePagination";
 export type TdProps = {
   children?: React.ReactNode;
   verticalAlign?: "top" | "middle" | "bottom";
+  thResponsiveTitle?: string; // Title of the header for use in responsive table
+  responsiveHeadersSize?: "sm" | "md" | "lg"; // Size of the responsive headers, if applicable
 } & HTMLElementProps<HTMLTableCellElement>;
 
-export function Td({ children, verticalAlign, ...props }: TdProps) {
+export function Td({
+  children,
+  verticalAlign,
+  thResponsiveTitle,
+  responsiveHeadersSize,
+  ...props
+}: TdProps) {
   return (
     <td
       {...props}
@@ -16,6 +24,13 @@ export function Td({ children, verticalAlign, ...props }: TdProps) {
         verticalAlign && `vertical-align-${verticalAlign}`,
       )}
     >
+      {thResponsiveTitle && responsiveHeadersSize && (
+        <div
+          className={`d-${responsiveHeadersSize === "sm" ? "md" : responsiveHeadersSize === "md" ? "lg" : "xl"}-none`} // Hide on sizes above the selected breakpoint
+        >
+          {thResponsiveTitle}
+        </div>
+      )}
       {children}
     </td>
   );
@@ -45,7 +60,8 @@ export type TableProps = {
   zebra?: boolean;
   compact?: "compact" | "extra-compact";
   tablePaginationProps?: TablePaginationProps;
-  // TODO: DKFDS.ResponsiveTable + DKFDS.SelectableRows
+  responsiveHeaders?: "sm" | "md" | "lg";
+  // TODO: DKFDS.ResponsiveTable
 } & HTMLElementProps<HTMLTableElement>;
 
 function InnerTable({
@@ -53,6 +69,7 @@ function InnerTable({
   zebra,
   borderless,
   compact,
+  responsiveHeaders,
   ...props
 }: TableProps) {
   return (
@@ -64,6 +81,7 @@ function InnerTable({
         compact === "compact" && "table--compact",
         compact === "extra-compact" && "table--extracompact",
         props.className,
+        responsiveHeaders && `table-${responsiveHeaders}-responsive-headers`, // TODO: do the data-title thing
       )}
     >
       {children}

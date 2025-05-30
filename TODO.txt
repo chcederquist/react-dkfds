@@ -11,12 +11,9 @@ Issue: Tabelpaginering bruger knapper, paginering bruger links
 Consider: Refactoring select in TablePagination to expose more props
 
 Medium-big:
-Storybook stories 1:1 with designsystem.dk
 TODO in Header.tsx
-TODO in Table.tsx
 Handle close all other modals when opening modal
 Overflow menu on Header
-Consider label/legend refactor
 
 
 
