@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Card,
   CardActionButtons,
+  CardActionLinks,
   CardContent,
   CardFooter,
   CardHeader,
@@ -10,6 +11,7 @@ import {
   CardSubHeading,
   CardText,
 } from "../../components/Card/Card";
+import { Icon } from "../../components/Shared/Icon";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -65,6 +67,24 @@ export const MainCard: Story = {
               },
             ]}
           ></CardActionButtons>
+          <CardActionLinks
+            links={[
+              {
+                children: "Et link til et sted i løsningen",
+                href: "#1",
+              },
+              {
+                children: (
+                  <>
+                    Et link til et sted uden for løsningen
+                    <Icon icon="open-in-new"></Icon>
+                  </>
+                ),
+                className: "icon-link", // TODO: Add Link-component that allows for icon-links
+                href: "#2",
+              },
+            ]}
+          ></CardActionLinks>
         </CardFooter>
       </>
     ),

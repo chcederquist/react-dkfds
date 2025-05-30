@@ -66,12 +66,13 @@ export type CardActionLinks = {
 export function CardActionLinks({ links, ...props }: CardActionLinks) {
   return (
     <div className="action-links" {...props}>
-      <ul className="nobullet-list"></ul>
-      {links.map((link, index) => (
-        <li key={link.href || index}>
-          <a {...link}></a>
-        </li>
-      ))}
+      <ul className="nobullet-list">
+        {links.map((link, index) => (
+          <li key={link.href || index}>
+            <a {...link}></a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

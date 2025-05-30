@@ -9,14 +9,14 @@ export type ButtonProps = {
 } & ComponentProps<"button">;
 
 export function Button({
-  type,
+  buttonType,
   children,
   srLabel,
   icon,
   ...props
 }: ButtonProps) {
   return (
-    <button className={`button button-${type}`} {...props}>
+    <button className={`button button-${buttonType}`} {...props}>
       {icon && <Icon icon={icon}></Icon>}
       {children}
       {srLabel && <span className="sr-only">{srLabel}</span>}
