@@ -1,13 +1,11 @@
-import {
-  HTMLElementProps,
-  HTMLInputPropsWithRequiredFields,
-} from "../../types/html-props";
+import { ComponentProps } from "react";
+import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputFieldProps, InputField } from "../InputField/InputField";
 
 export type RadioButtonsProps = {
-  legendProps: HTMLElementProps<HTMLLegendElement>;
-  fieldsetProps: HTMLElementProps<HTMLFieldSetElement>;
+  legendProps: ComponentProps<"legend">;
+  fieldsetProps: ComponentProps<"fieldset">;
   values: {
     inputProps: HTMLInputPropsWithRequiredFields<"value" | "id">;
     label: string;

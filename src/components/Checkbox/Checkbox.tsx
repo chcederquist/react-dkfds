@@ -1,13 +1,11 @@
-import {
-  HTMLInputPropsWithRequiredFields,
-  HTMLElementProps,
-} from "../../types/html-props";
+import { ComponentProps } from "react";
+import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputField, InputFieldProps } from "../InputField/InputField";
 
 export type CheckboxProps = {
-  legendProps: HTMLElementProps<HTMLLegendElement>;
-  fieldsetProps: HTMLElementProps<HTMLFieldSetElement>;
+  legendProps: ComponentProps<"legend">;
+  fieldsetProps: ComponentProps<"fieldset">;
   values: {
     inputProps: HTMLInputPropsWithRequiredFields<"value" | "id">;
     label: string;

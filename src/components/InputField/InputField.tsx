@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputSize } from "../../types/input-widths";
-import {
-  HTMLElementProps,
-  HTMLInputPropsWithRequiredFields,
-} from "../../types/html-props";
+import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
 
 export type InputFieldProps = {
-  labelProps: HTMLElementProps<HTMLLabelElement>;
+  labelProps: ComponentProps<"label">;
   inputProps: HTMLInputPropsWithRequiredFields<"id" | "name">;
-  formGroupProps: HTMLElementProps<HTMLDivElement>;
+  formGroupProps: ComponentProps<"div">;
   error?: string;
   hint?: string;
   characterLimit?: number;

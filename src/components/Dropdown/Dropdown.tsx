@@ -1,14 +1,12 @@
-import {
-  HTMLElementProps,
-  HTMLSelectPropsWithRequiredFields,
-} from "../../types/html-props";
+import { ComponentProps } from "react";
+import { HTMLSelectPropsWithRequiredFields } from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
 
 export type DropdownProps = {
-  labelProps: HTMLElementProps<HTMLLabelElement>;
+  labelProps: ComponentProps<"label">;
   selectProps: HTMLSelectPropsWithRequiredFields<"id" | "name">;
   options: { value: string; key: string; text: string }[];
-  formGroupProps: HTMLElementProps<HTMLDivElement>;
+  formGroupProps: ComponentProps<"div">;
   error?: string;
   hint?: string;
 };

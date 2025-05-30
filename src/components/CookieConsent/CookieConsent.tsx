@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import { HTMLElementProps } from "../../types/html-props";
+import { ComponentProps, ReactNode } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
 
 export function CookieConsent({
@@ -10,8 +9,8 @@ export function CookieConsent({
 }: Readonly<{
   headingProps: HeadingProps;
   body: ReactNode;
-  acceptButtonProps: HTMLElementProps<HTMLAnchorElement>;
-  declineButtonProps: HTMLElementProps<HTMLAnchorElement>;
+  acceptButtonProps: ComponentProps<"a">;
+  declineButtonProps: ComponentProps<"a">;
 }>) {
   return (
     <div

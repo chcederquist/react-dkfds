@@ -1,21 +1,11 @@
-export type HTMLElementProps<T extends HTMLElement> = React.DetailedHTMLProps<
-  React.HTMLAttributes<T>,
-  T
->;
-export type HTMLButtonProps<T extends HTMLElement> = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<T>,
-  T
->;
+import { ComponentProps } from "react";
 
 export type HTMLTextAreaPropsWithRequiredFields<
   R extends keyof React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLTextAreaElement>,
     HTMLTextAreaElement
   >,
-> = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLTextAreaElement>,
-  HTMLTextAreaElement
-> &
+> = ComponentProps<"textarea"> &
   Required<
     Pick<
       React.DetailedHTMLProps<
@@ -31,10 +21,7 @@ export type HTMLInputPropsWithRequiredFields<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   >,
-> = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
-> &
+> = ComponentProps<"input"> &
   Required<
     Pick<
       React.DetailedHTMLProps<
@@ -50,10 +37,7 @@ export type HTMLSelectPropsWithRequiredFields<
     React.SelectHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
   >,
-> = React.DetailedHTMLProps<
-  React.SelectHTMLAttributes<HTMLSelectElement>,
-  HTMLSelectElement
-> &
+> = ComponentProps<"select"> &
   Required<
     Pick<
       React.DetailedHTMLProps<

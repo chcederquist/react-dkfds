@@ -9,6 +9,7 @@ Issue: switchTabOnKeyPress kode er forvirrende, da der blot kan bruges modulo-op
 Issue: Anchor-tag i cookiemeddelelse
 Issue: Tabelpaginering bruger knapper, paginering bruger links
 Consider: Refactoring select in TablePagination to expose more props
+TODO: Path alias for components
 
 Medium-big:
 TODO in Header.tsx

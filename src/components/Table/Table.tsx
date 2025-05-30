@@ -1,4 +1,4 @@
-import { HTMLElementProps } from "../../types/html-props";
+import { ComponentProps } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { TablePagination, TablePaginationProps } from "./TablePagination";
 
@@ -7,7 +7,7 @@ export type TdProps = {
   verticalAlign?: "top" | "middle" | "bottom";
   thResponsiveTitle?: string; // Title of the header for use in responsive table
   responsiveHeadersSize?: "sm" | "md" | "lg"; // Size of the responsive headers, if applicable
-} & HTMLElementProps<HTMLTableCellElement>;
+} & ComponentProps<"td">;
 
 export function Td({
   children,
@@ -62,7 +62,7 @@ export type TableProps = {
   tablePaginationProps?: TablePaginationProps;
   responsiveHeaders?: "sm" | "md" | "lg";
   // TODO: DKFDS.ResponsiveTable
-} & HTMLElementProps<HTMLTableElement>;
+} & ComponentProps<"table">;
 
 function InnerTable({
   children,
