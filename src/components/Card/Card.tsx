@@ -2,6 +2,7 @@ import { ComponentProps, ReactNode } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
 import { mergeStrings } from "../../util/merge-classnames";
 import { Button, ButtonProps } from "../Button/Button";
+import { Link, LinkProps } from "../Link/Link";
 
 export type CardProps = {
   children: ReactNode;
@@ -61,7 +62,7 @@ export function CardActionButtons({ buttons, ...props }: CardActionButtons) {
 }
 
 export type CardActionLinks = {
-  links: ComponentProps<"a">[];
+  links: LinkProps[];
 } & ComponentProps<"div">;
 export function CardActionLinks({ links, ...props }: CardActionLinks) {
   return (
@@ -69,7 +70,7 @@ export function CardActionLinks({ links, ...props }: CardActionLinks) {
       <ul className="nobullet-list">
         {links.map((link, index) => (
           <li key={link.href || index}>
-            <a {...link}></a>
+            <Link {...link}></Link>
           </li>
         ))}
       </ul>

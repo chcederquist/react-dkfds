@@ -2,22 +2,27 @@ import { ReactNode, useState } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
 import { Icon } from "../Shared/Icon";
 import { IconName } from "../../types/icon-names";
+import { mergeStrings } from "../../util/merge-classnames";
 
 export type AccordionElementProps = {
   id: string | number;
   headerContent: {
-    headingProps: HeadingProps;
+    headingProps: Omit<HeadingProps, "children">;
     children: ReactNode;
-    icon: { text: string; iconName: IconName };
+    icon?: { text: string; iconName: IconName };
   };
-  bodyContent: { children: ReactNode };
+  children: ReactNode;
+  error?: boolean;
+  errorMessageId?: string;
 };
 
 export function AccordionElement({
-  bodyContent,
+  children,
   headerContent,
   id,
+  error,
   isOpen,
+  errorMessageId,
   setIsOpen,
 }: AccordionElementProps & {
   setIsOpen: (isOpen: boolean) => void;
@@ -28,7 +33,11 @@ export function AccordionElement({
       <Heading {...headerContent.headingProps}>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="accordion-button"
+          className={mergeStrings(
+            "accordion-button",
+            error && "accordion-error",
+          )}
+          aria-describedby={errorMessageId}
           aria-expanded={isOpen}
           aria-controls={id.toString()}
         >
@@ -46,7 +55,7 @@ export function AccordionElement({
         aria-hidden={!isOpen}
         className="accordion-content"
       >
-        {bodyContent.children}
+        {children}
       </div>
     </>
   );
@@ -67,7 +76,7 @@ export function Accordion({ accordionElements }: Readonly<AccordionProps>) {
     <>
       <button
         className="accordion-bulk-button"
-        data-accordion-bulk-expand={allOpen.toString()}
+        data-accordion-bulk-expand={(!allOpen).toString()}
         onClick={() =>
           setOpenElements(
             Object.fromEntries(

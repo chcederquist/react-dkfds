@@ -11,7 +11,6 @@ import {
   CardSubHeading,
   CardText,
 } from "../../components/Card/Card";
-import { Icon } from "../../components/Shared/Icon";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -74,49 +73,15 @@ export const MainCard: Story = {
                 href: "#1",
               },
               {
-                children: (
-                  <>
-                    Et link til et sted uden for løsningen
-                    <Icon icon="open-in-new"></Icon>
-                  </>
-                ),
-                className: "icon-link", // TODO: Add Link-component that allows for icon-links
+                children: <>Et link til et sted uden for løsningen</>,
+                iconProps: {
+                  icon: "open-in-new",
+                },
                 href: "#2",
               },
             ]}
           ></CardActionLinks>
         </CardFooter>
-      </>
-    ),
-  },
-};
-
-export const CardMedTredjedelBredde: Story = {
-  args: {
-    children: (
-      <>
-        <CardHeader>
-          <CardHeading level="h2">Header</CardHeading>
-          <CardSubHeading>Understøttende tekst</CardSubHeading>
-        </CardHeader>
-        <CardText>
-          <p>
-            Dette er et <em>tekstområde</em>, hvor du kan skrive hvad du har
-            lyst til
-          </p>
-        </CardText>
-        <CardContent>
-          <div className="row background-data-green-blue-300 p-6">
-            <div className="col-12 col-md-6 col-lg-5 align-text-left mb-6 mb-md-0">
-              <h2>Aliquam aliquet niboh faucibus varius</h2>
-              <p>
-                Aenean euismod vestibulum lacinia. Pellentesque nec nisi diam.
-                Pellentesque nec urna vel ante ultrices facilisis sed in dolor.
-                Curabitur eu leo semper, gravida justo at, euismod ex.
-              </p>
-            </div>
-          </div>
-        </CardContent>
       </>
     ),
   },
