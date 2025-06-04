@@ -45,6 +45,7 @@
     "@storybook/react": "^8.5.0",
     "@storybook/react-webpack5": "^8.5.0",
     "@storybook/test": "^8.5.0",
+    "@svgr/webpack": "^6.5.1",
     "@typescript-eslint/eslint-plugin": "^8.32.0",
     "@typescript-eslint/parser": "^8.32.0",
     "dkfds": "^10.2.1",
