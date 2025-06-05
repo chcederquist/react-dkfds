@@ -61,7 +61,7 @@ export const MainAccordion: Story = {
   },
 };
 
-export const ErrorAccordion: Story = {
+export const Fejlmeddelelse: Story = {
   args: {
     accordionElements: [
       {
@@ -78,13 +78,13 @@ export const ErrorAccordion: Story = {
           headingProps: { level: "h2" },
           icon: {
             text: "Fejl",
-            iconName: "highlight-off", // TODO: Make icons work in Storybook
+            iconName: "highlight-off",
           },
           children: "Consectetur adipiscing elit",
         },
         id: "accordion-2",
         error: true,
-        errorMessageId: "error-message-accordion-2",
+        alertId: "error-message-accordion-2",
         children: (
           <>
             <Alert id={"error-message-accordion-2"} type="error">
@@ -102,12 +102,109 @@ export const ErrorAccordion: Story = {
         headerContent: {
           headingProps: { level: "h2" },
           children: "Sed do eiusmod tempor",
+          icon: {
+            text: "Advarsel",
+            iconName: "report-problem",
+          },
         },
         id: "accordion-3",
         children:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       },
 
+      {
+        headerContent: {
+          headingProps: { level: "h2" },
+          children: "Labore et dolore magna",
+        },
+        id: "accordion-4",
+        children:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+    ],
+  },
+};
+
+export const AabnLukAlle: Story = {
+  name: "Åbn/luk alle",
+  args: {
+    hasOpenCloseAllButton: true,
+    accordionElements: [
+      {
+        headerContent: {
+          headingProps: { level: "h2" },
+          children: "Lorem ipsum dolor sit amet",
+        },
+        id: "accordion-1",
+        children:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+      {
+        headerContent: {
+          headingProps: { level: "h2" },
+          children: "Consectetur adipiscing elit",
+        },
+        id: "accordion-2",
+        children:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+      {
+        headerContent: {
+          headingProps: { level: "h2" },
+          children: "Sed do eiusmod tempor",
+        },
+        id: "accordion-3",
+        children:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+
+      {
+        headerContent: {
+          headingProps: { level: "h2" },
+          children: "Labore et dolore magna",
+        },
+        id: "accordion-4",
+        children:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+    ],
+  },
+};
+
+export const MedSuccesbeskeder: Story = {
+  args: {
+    accordionElements: [
+      {
+        headerContent: {
+          headingProps: { level: "h2" },
+          children: "Lorem ipsum dolor sit amet",
+        },
+        id: "accordion-1",
+        children:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+      {
+        headerContent: {
+          headingProps: { level: "h2" },
+          children: "Consectetur adipiscing elit",
+        },
+        id: "accordion-2",
+        children:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+      {
+        headerContent: {
+          headingProps: { level: "h2" },
+          children: "Sed do eiusmod tempor",
+          icon: {
+            text: "Succes",
+            iconName: "check-circle",
+          },
+        },
+        id: "accordion-3",
+        children:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
       {
         headerContent: {
           headingProps: { level: "h2" },

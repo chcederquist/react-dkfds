@@ -13,7 +13,7 @@ export type AccordionElementProps = {
   };
   children: ReactNode;
   error?: boolean;
-  errorMessageId?: string;
+  alertId?: string;
 };
 
 export function AccordionElement({
@@ -22,7 +22,7 @@ export function AccordionElement({
   id,
   error,
   isOpen,
-  errorMessageId,
+  alertId,
   setIsOpen,
 }: AccordionElementProps & {
   setIsOpen: (isOpen: boolean) => void;
@@ -37,7 +37,7 @@ export function AccordionElement({
             "accordion-button",
             error && "accordion-error",
           )}
-          aria-describedby={errorMessageId}
+          aria-describedby={alertId}
           aria-expanded={isOpen}
           aria-controls={id.toString()}
         >
@@ -63,9 +63,13 @@ export function AccordionElement({
 
 export type AccordionProps = {
   accordionElements: Array<AccordionElementProps>;
+  hasOpenCloseAllButton?: boolean;
 };
 
-export function Accordion({ accordionElements }: Readonly<AccordionProps>) {
+export function Accordion({
+  accordionElements,
+  hasOpenCloseAllButton,
+}: Readonly<AccordionProps>) {
   const [openElements, setOpenElements] = useState<
     Record<AccordionElementProps["id"], boolean>
   >({});
@@ -74,19 +78,21 @@ export function Accordion({ accordionElements }: Readonly<AccordionProps>) {
   );
   return (
     <>
-      <button
-        className="accordion-bulk-button"
-        data-accordion-bulk-expand={(!allOpen).toString()}
-        onClick={() =>
-          setOpenElements(
-            Object.fromEntries(
-              accordionElements.map((el) => [el.id, !allOpen]),
-            ),
-          )
-        }
-      >
-        {allOpen ? "Luk alle" : "Åbn alle"}
-      </button>
+      {hasOpenCloseAllButton && (
+        <button
+          className="accordion-bulk-button"
+          data-accordion-bulk-expand={(!allOpen).toString()}
+          onClick={() =>
+            setOpenElements(
+              Object.fromEntries(
+                accordionElements.map((el) => [el.id, !allOpen]),
+              ),
+            )
+          }
+        >
+          {allOpen ? "Luk alle" : "Åbn alle"}
+        </button>
+      )}
       <ul className="accordion">
         {accordionElements.map((element) => (
           <li key={element.id}>
