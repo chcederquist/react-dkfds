@@ -1,5 +1,5 @@
 export type BreadcrumbProps = {
-  breadcrumbList: { url: string; text: string; id: string | number }[];
+  breadcrumbList: { href: string; text: string; id: string | number }[];
 };
 
 export function Breadcrumb({ breadcrumbList }: Readonly<BreadcrumbProps>) {
@@ -12,8 +12,8 @@ export function Breadcrumb({ breadcrumbList }: Readonly<BreadcrumbProps>) {
             aria-current={index === array.length - 1 ? "page" : undefined}
             className="breadcrumbs__list-item"
           >
-            {index === array.length - 1 ? (
-              <a className="breadcrumbs__link" href={item.url}>
+            {index !== array.length - 1 ? (
+              <a className="breadcrumbs__link" href={item.href}>
                 {item.text}
               </a>
             ) : (

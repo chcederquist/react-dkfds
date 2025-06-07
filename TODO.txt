@@ -20,6 +20,6 @@ Overflow menu on Header
 
 Components:
 ====
-Anchorlinks <- WIP
+Anchorlinks
 Datepicker
 tooltip

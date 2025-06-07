@@ -1,15 +1,15 @@
 import { ReactNode } from "react";
 
 export type BadgeProps = {
-  content: ReactNode;
+  children: ReactNode;
   size: "small" | "large";
   type?: "info" | "success" | "warning" | "error";
 };
 
-export function Badge({ content, size, type }: Readonly<BadgeProps>) {
+export function Badge({ children, size, type }: Readonly<BadgeProps>) {
   return (
     <span className={`badge badge-${size} ${type ? `badge-${type}` : ""}`}>
-      {content}
+      {children}
     </span>
   );
 }

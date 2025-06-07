@@ -1,25 +1,24 @@
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 
 export type DetailsProps = {
-  summaryProps: { className: string; children: ReactNode };
-  detailsContentProps: { className: string; children: ReactNode };
+  summaryProps: ComponentProps<"summary">;
+  detailsProps?: ComponentProps<"details">;
+  children: ReactNode;
 };
 
 export function Details({
   summaryProps,
-  detailsContentProps,
+  detailsProps,
+  children,
 }: Readonly<DetailsProps>) {
   return (
-    <details className="details">
+    <details className="details" {...detailsProps}>
       <summary
         {...summaryProps}
         className={mergeStrings("details-summary", summaryProps.className)}
       />
-      <div
-        {...detailsContentProps}
-        className={mergeStrings("details-text", detailsContentProps.className)}
-      />
+      <div className={"details-text"}>{children}</div>
     </details>
   );
 }

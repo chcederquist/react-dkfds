@@ -3,12 +3,12 @@ import { Heading, HeadingProps } from "../Shared/Heading";
 
 export function CookieConsent({
   headingProps,
-  body,
+  children,
   acceptButtonProps,
   declineButtonProps,
 }: Readonly<{
   headingProps: HeadingProps;
-  body: ReactNode;
+  children: ReactNode;
   acceptButtonProps: ComponentProps<"a">;
   declineButtonProps: ComponentProps<"a">;
 }>) {
@@ -27,7 +27,7 @@ export function CookieConsent({
             {...headingProps}
           ></Heading>
           <p className="mt-0" id="cookie-message-text">
-            {body}
+            {children}
           </p>
         </div>
         <div className="cookie-actions">

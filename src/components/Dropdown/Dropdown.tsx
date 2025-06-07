@@ -6,7 +6,7 @@ export type DropdownProps = {
   labelProps: ComponentProps<"label">;
   selectProps: HTMLSelectPropsWithRequiredFields<"id" | "name">;
   options: { value: string; key: string; text: string }[];
-  formGroupProps: ComponentProps<"div">;
+  formGroupProps?: ComponentProps<"div">;
   error?: string;
   hint?: string;
 };

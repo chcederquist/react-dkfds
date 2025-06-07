@@ -4,7 +4,7 @@ import { InputField, InputFieldProps } from "../InputField/InputField";
 
 export type DateFieldsProps = {
   legendProps: ComponentProps<"legend">;
-  fieldsetProps: ComponentProps<"fieldset">;
+  fieldsetProps?: ComponentProps<"fieldset">;
   dayInputProps: InputFieldProps["inputProps"];
   monthInputProps: InputFieldProps["inputProps"];
   yearInputProps: InputFieldProps["inputProps"];
@@ -24,7 +24,7 @@ export function DateFields({
   errorMessage,
 }: Readonly<DateFieldsProps>) {
   return (
-    <div className="form-group">
+    <div className={mergeStrings("form-group", errorMessage && "form-error")}>
       <fieldset
         aria-describedby={mergeStrings(
           hint && id + "-hint",
