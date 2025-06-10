@@ -19,7 +19,10 @@ export function Dropdown({
   options,
 }: Readonly<DropdownProps>) {
   return (
-    <div className="form-group" {...formGroupProps}>
+    <div
+      className={mergeStrings("form-group", error && "form-error")}
+      {...formGroupProps}
+    >
       <label
         className="form-label"
         htmlFor={selectProps.id}
@@ -32,7 +35,8 @@ export function Dropdown({
       )}
       {error && (
         <span className="form-error-message" id={selectProps.id + "-error"}>
-          <span className="sr-only">{error}</span>
+          <span className="sr-only">Fejl:</span>
+          {error}
         </span>
       )}
       <select

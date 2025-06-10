@@ -1,10 +1,16 @@
 import { ReactNode, useState } from "react";
 
-export type TabsProps = {
-  tabs: Array<{ id: string | number; title: string; content: ReactNode }>;
+export type TabProps = {
+  id: string | number;
+  label: string;
+  children: ReactNode;
 };
 
-export function Tabs({ tabs }: Readonly<TabsProps>) {
+export type TabContainerProps = {
+  tabs: Array<TabProps>;
+};
+
+export function TabContainer({ tabs }: Readonly<TabContainerProps>) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   return (
     <div className="tab-container">
@@ -41,7 +47,7 @@ export function Tabs({ tabs }: Readonly<TabsProps>) {
               id={`tabcontrol${tab.id}`}
               tabIndex={activeTabIndex === index ? 0 : -1}
             >
-              {tab.title}
+              {tab.label}
             </button>
           );
         })}
@@ -57,7 +63,7 @@ export function Tabs({ tabs }: Readonly<TabsProps>) {
             aria-labelledby={`tabcontrol${tab.id}`}
             hidden={activeTabIndex !== index}
           >
-            {tab.content}
+            {tab.children}
           </div>
         );
       })}
