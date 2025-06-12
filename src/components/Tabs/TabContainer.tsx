@@ -1,8 +1,11 @@
 import { ReactNode, useState } from "react";
+import { IconName } from "../../types/icon-names";
+import { Icon } from "../Shared/Icon";
 
 export type TabProps = {
   id: string | number;
   label: string;
+  icon?: IconName;
   children: ReactNode;
 };
 
@@ -47,7 +50,7 @@ export function TabContainer({ tabs }: Readonly<TabContainerProps>) {
               id={`tabcontrol${tab.id}`}
               tabIndex={activeTabIndex === index ? 0 : -1}
             >
-              {tab.label}
+              {tab.icon && <Icon icon={tab.icon}></Icon>} {tab.label}
             </button>
           );
         })}
