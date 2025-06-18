@@ -1,6 +1,6 @@
 import React from "react";
 import type { Preview } from "@storybook/react";
-import BaseSVG from "/src/stories/assets/dkfds/img/all-svg-icons.svg?svgr";
+import BaseSVG from "/node_modules/dkfds/dist/img/all-svg-icons.svg?svgr";
 const withSVGHeader = (Story) => {
   return (
     <>

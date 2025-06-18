@@ -2,7 +2,7 @@ import type { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-  staticDirs: ["../src/stories/assets/dkfds"],
+  staticDirs: ["../node_modules/dkfds/dist"],
   previewHead: (head) => `${head}
     <link rel="stylesheet" href="/css/dkfds.css" />
     `,
