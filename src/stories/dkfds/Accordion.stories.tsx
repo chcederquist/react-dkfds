@@ -78,7 +78,7 @@ export const Fejlmeddelelse: Story = {
           headingProps: { level: "h2" },
           icon: {
             text: "Fejl",
-            iconName: "highlight-off",
+            iconName: "error",
           },
           children: "Consectetur adipiscing elit",
         },
@@ -104,7 +104,7 @@ export const Fejlmeddelelse: Story = {
           children: "Sed do eiusmod tempor",
           icon: {
             text: "Advarsel",
-            iconName: "report-problem",
+            iconName: "warning",
           },
         },
         id: "accordion-3",
@@ -198,7 +198,7 @@ export const MedSuccesbeskeder: Story = {
           children: "Sed do eiusmod tempor",
           icon: {
             text: "Succes",
-            iconName: "check-circle",
+            iconName: "success",
           },
         },
         id: "accordion-3",

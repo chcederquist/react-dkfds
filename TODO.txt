@@ -14,12 +14,18 @@ TODO: Path alias for components
 Medium-big:
 TODO in Header.tsx
 Handle close all other modals when opening modal
+Modal backdrop
+Modal focus on opening
 Overflow menu on Header
-Upgrade to Veersion 11.0.0
-
+All cards in Storybook
 
 Components:
 ====
+LoadingSpinner
+StepIndicator
 Anchorlinks
 Datepicker
 tooltip
+Overflow menu sorting
+Left menu (Venstremenu)
+Structured lists (Tables)

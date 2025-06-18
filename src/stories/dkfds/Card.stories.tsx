@@ -3,14 +3,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Card,
   CardActionButtons,
-  CardActionLinks,
   CardContent,
-  CardFooter,
-  CardHeader,
   CardHeading,
   CardSubHeading,
   CardText,
 } from "../../components/Card/Card";
+import { Button } from "../../components/Button/Button";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -30,59 +28,112 @@ type Story = StoryObj<typeof meta>;
 export const MainCard: Story = {
   args: {
     children: (
-      <>
-        <CardHeader>
-          <CardHeading level="h2">Header</CardHeading>
-          <CardSubHeading>Understøttende tekst</CardSubHeading>
-        </CardHeader>
-        <CardText>
-          <p>
-            Dette er et <em>tekstområde</em>, hvor du kan skrive hvad du har
-            lyst til
-          </p>
-        </CardText>
-        <CardContent>
-          <div className="row background-data-green-blue-300 p-6">
-            <div className="col-12 col-md-6 col-lg-5 align-text-left mb-6 mb-md-0">
-              <h2>Aliquam aliquet niboh faucibus varius</h2>
-              <p>
-                Aenean euismod vestibulum lacinia. Pellentesque nec nisi diam.
-                Pellentesque nec urna vel ante ultrices facilisis sed in dolor.
-                Curabitur eu leo semper, gravida justo at, euismod ex.
-              </p>
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter>
+      <CardContent
+        text={
+          <CardText>
+            <p>
+              Dette er et <em>tekstområde</em>, hvor du kan skrive hvad du har
+              lyst til
+            </p>
+          </CardText>
+        }
+        heading={<CardHeading level="h2">Header</CardHeading>}
+        subHeading={<CardSubHeading>Understøttende tekst</CardSubHeading>}
+        cardActions={
           <CardActionButtons
             buttons={[
-              {
-                buttonType: "secondary",
-                children: "Sekundærknap",
-              },
-              {
-                buttonType: "tertiary",
-                children: "Tertiærknap",
-              },
+              <Button key={"1"} buttonType="secondary">
+                Sekundær knap
+              </Button>,
+              <Button key={"2"} buttonType="tertiary">
+                Tertiær knap
+              </Button>,
             ]}
           ></CardActionButtons>
-          <CardActionLinks
-            links={[
-              {
-                children: "Et link til et sted i løsningen",
-                href: "#1",
-              },
-              {
-                children: <>Et link til et sted uden for løsningen</>,
-                iconProps: {
-                  icon: "open-in-new",
-                },
-                href: "#2",
-              },
-            ]}
-          ></CardActionLinks>
-        </CardFooter>
-      </>
+        }
+      ></CardContent>
     ),
   },
+};
+
+export const NavigationCard: Story = {
+  args: {
+    navigationProps: {
+      href: "/",
+      isExternal: true,
+      target: "_blank",
+      rel: "noopener noreferrer",
+    },
+    children: (
+      <CardContent
+        text={
+          <CardText>
+            Dette card linker til en side, der åbner i en ny fane
+          </CardText>
+        }
+        heading={<CardHeading level="h2">Header</CardHeading>}
+      ></CardContent>
+    ),
+  },
+};
+
+export const MultipleLinkCards: Story = {
+  args: {
+    children: <></>,
+  },
+  render: () => (
+    <ul className="row card-row">
+      <li className="col-12 col-sm-6 col-md-4">
+        <Card
+          navigationProps={{
+            href: "/",
+          }}
+          image={<img src="static/media/src/stories/assets/docs.png"></img>}
+        >
+          <CardContent
+            text={<CardText>Dette card linker til en anden side</CardText>}
+            heading={<CardHeading level="h2">Lorem</CardHeading>}
+          ></CardContent>
+        </Card>
+      </li>
+      <li className="col-12 col-sm-6 col-md-4">
+        <Card
+          navigationProps={{
+            href: "/",
+          }}
+          image={
+            <img src="static/media/src/stories/assets/accessibility.png"></img>
+          }
+        >
+          <CardContent
+            text={
+              <CardText>
+                Dette card linker til en side, der åbner i en ny fane
+              </CardText>
+            }
+            heading={<CardHeading level="h2">Sit amet</CardHeading>}
+          ></CardContent>
+        </Card>
+      </li>
+      <li className="col-12 col-sm-6 col-md-4">
+        <Card
+          navigationProps={{
+            href: "/",
+          }}
+        >
+          <CardContent
+            text={
+              <CardText>
+                Dette card linker til en anden side. <br />
+                <br />
+                Der er ikke noget billede på dette eksempelcard. Normalt vil
+                enten alle eller ingen cards i samme liste have billede
+              </CardText>
+            }
+            heading={<CardHeading level="h2">Ipsum dolor</CardHeading>}
+          ></CardContent>
+        </Card>
+      </li>
+    </ul>
+  ),
 };

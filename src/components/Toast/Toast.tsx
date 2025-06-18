@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 
 export type ToastProps = {
@@ -9,6 +9,15 @@ export type ToastProps = {
 
 export function Toast({ type, children, heading }: Readonly<ToastProps>) {
   const [isVisible, setIsVisible] = useState(true); // TODO: Add timeout to hide toast according to DKFDS js
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 5000); // Hide toast after 5 seconds
+      return () => clearTimeout(timer); // Cleanup timer on unmount
+    }
+    // If the toast is not visible, we can do any cleanup if needed
+  }, [isVisible, setIsVisible]);
   return (
     <div
       className={mergeStrings("toast", `toast-${type}`, isVisible && "show")}

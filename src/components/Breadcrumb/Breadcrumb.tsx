@@ -1,3 +1,5 @@
+import { Icon } from "../Shared/Icon";
+
 export type BreadcrumbProps = {
   breadcrumbList: { href: string; text: string; id: string | number }[];
 };
@@ -12,6 +14,7 @@ export function Breadcrumb({ breadcrumbList }: Readonly<BreadcrumbProps>) {
             aria-current={index === array.length - 1 ? "page" : undefined}
             className="breadcrumbs__list-item"
           >
+            {index !== 0 && <Icon icon="chevron-right"></Icon>}
             {index !== array.length - 1 ? (
               <a className="breadcrumbs__link" href={item.href}>
                 {item.text}

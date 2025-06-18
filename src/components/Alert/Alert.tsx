@@ -32,10 +32,10 @@ export function Alert({
     type === "info"
       ? "info"
       : type === "success"
-        ? "check-circle"
+        ? "success"
         : type === "warning"
-          ? "report-problem"
-          : "highlight-off";
+          ? "warning"
+          : "error";
   return (
     <div className={`alert alert-${type}`} id={id}>
       <Icon

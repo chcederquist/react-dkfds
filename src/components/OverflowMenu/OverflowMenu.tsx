@@ -35,7 +35,13 @@ export function OverflowMenu({
         {menuButtonLabel}
         <Icon icon="more-vert"></Icon>
       </button>
-      <div className="overflow-menu-inner" id={id} aria-hidden={!expanded}>
+      <div
+        className={mergeStrings(
+          "overflow-menu-inner",
+          expanded ? "" : "collapsed",
+        )}
+        id={id}
+      >
         <ul className="overflow-list">
           {menuItems.map((item) => (
             <li key={item.id}>

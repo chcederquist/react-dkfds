@@ -19,21 +19,12 @@ type Story = StoryObj<typeof meta>;
 export const SmallBadge: Story = {
   args: {
     children: "Lille badge",
-    size: "small",
-  },
-};
-
-export const LargeBadge: Story = {
-  args: {
-    children: "Stort badge",
-    size: "large",
   },
 };
 
 export const SuccessBadge: Story = {
   args: {
     children: "Positiv status",
-    size: "small",
     type: "success",
   },
 };
@@ -41,7 +32,6 @@ export const SuccessBadge: Story = {
 export const InfoBadge: Story = {
   args: {
     children: "Neutral status",
-    size: "small",
     type: "info",
   },
 };
@@ -49,7 +39,6 @@ export const InfoBadge: Story = {
 export const WarningBadge: Story = {
   args: {
     children: "Advarende status",
-    size: "small",
     type: "warning",
   },
 };
@@ -57,7 +46,6 @@ export const WarningBadge: Story = {
 export const ErrorBadge: Story = {
   args: {
     children: "Negativ status",
-    size: "small",
     type: "error",
   },
 };

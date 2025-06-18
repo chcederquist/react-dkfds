@@ -9,12 +9,16 @@ export type IconProps = {
 export function Icon({ icon, isAlertIcon, svgProps }: Readonly<IconProps>) {
   return (
     <svg
-      className={mergeStrings("icon-svg", isAlertIcon && "alert-icon")}
       focusable="false"
       aria-hidden="true"
       {...svgProps}
+      className={mergeStrings(
+        "icon-svg",
+        isAlertIcon && "alert-icon",
+        svgProps?.className,
+      )}
     >
-      <use xlinkHref={`#${icon}`}></use>
+      <use href={`#${icon}`}></use>
     </svg>
   );
 }

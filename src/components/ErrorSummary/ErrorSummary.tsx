@@ -59,7 +59,7 @@ export function ErrorSummary({
         data-module="error-summary"
       >
         <Icon
-          icon={"highlight-off"}
+          icon={"error"}
           isAlertIcon
           svgProps={{ "aria-label": "Fejl" }}
         ></Icon>

@@ -116,14 +116,14 @@ export function BackToTop() {
     <a
       ref={aRef}
       className={mergeStrings(
-        "back-to-top-button button button-tertiary d-print-none",
+        "button back-to-top-button d-print-none",
         limit > pageHeight ? "d-none" : null,
         footerSticky ? "footer-sticky" : null,
       )}
       href="#top"
     >
       <svg className="icon-svg" focusable="false" aria-hidden="true">
-        <use xlinkHref="#arrow-upward"></use>
+        <use href="#arrow-upward"></use>
       </svg>
       <span className="sr-only">Til toppen af siden</span>
       <span className="d-none d-md-inline-block" aria-hidden="true">

@@ -5,7 +5,7 @@ import { ComponentProps } from "react";
 export type ButtonProps = {
   icon?: IconName;
   srLabel?: string;
-  buttonType: "primary" | "secondary" | "tertiary" | "qauternary" | "unstyled";
+  buttonType: "primary" | "secondary" | "tertiary" | "unstyled" | "warning";
 } & ComponentProps<"button">;
 
 export function Button({
@@ -18,7 +18,7 @@ export function Button({
   return (
     <button className={`button button-${buttonType}`} {...props}>
       {icon && <Icon icon={icon}></Icon>}
-      {children}
+      <span>{children}</span>
       {srLabel && <span className="sr-only">{srLabel}</span>}
     </button>
   );

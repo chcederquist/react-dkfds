@@ -75,7 +75,7 @@ export function TablePagination({
               className="button button-arrow button-first"
             >
               <svg className="icon-svg" focusable="false" aria-hidden="true">
-                <use xlinkHref="#first-page"></use>
+                <use href="#first-page"></use>
               </svg>
               <span className="sr-only">Første side</span>
             </button>
@@ -86,7 +86,7 @@ export function TablePagination({
               onClick={() => onPageSelected(currentPageNumber - 1)}
             >
               <svg className="icon-svg" focusable="false" aria-hidden="true">
-                <use xlinkHref="#chevron-left"></use>
+                <use href="#chevron-left"></use>
               </svg>
               <span className="pagination-nav-link">Forrige</span>
             </button>
@@ -185,12 +185,12 @@ export function TablePagination({
             >
               <span className="pagination-nav-link">Næste</span>
               <svg className="icon-svg" focusable="false" aria-hidden="true">
-                <use xlinkHref="#chevron-right"></use>
+                <use href="#chevron-right"></use>
               </svg>
             </a>
             <a href="#" className="button button-arrow button-last">
               <svg className="icon-svg" focusable="false" aria-hidden="true">
-                <use xlinkHref="#last-page"></use>
+                <use href="#last-page"></use>
               </svg>
               <span className="sr-only">Sidste side</span>
             </a>

@@ -95,7 +95,10 @@ export function Accordion({
       )}
       <ul className="accordion">
         {accordionElements.map((element) => (
-          <li key={element.id}>
+          <li
+            key={element.id}
+            className={element.error ? "accordion-error" : ""}
+          >
             <AccordionElement
               isOpen={!!openElements[element.id]}
               setIsOpen={(isOpen) =>

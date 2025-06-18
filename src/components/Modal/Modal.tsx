@@ -8,7 +8,7 @@ export type ModalProps = {
   children: ReactNode;
   footer?: ReactNode;
 };
-// TODO: Close all other modals
+// TODO: Close all other modals, create backdrop
 export function Modal({ id, header, children, footer }: Readonly<ModalProps>) {
   return (
     <div
