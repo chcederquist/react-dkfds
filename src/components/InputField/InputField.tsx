@@ -6,7 +6,7 @@ import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
 export type InputFieldProps = {
   labelProps: ComponentProps<"label">;
   inputProps: HTMLInputPropsWithRequiredFields<"id" | "name">;
-  formGroupProps: ComponentProps<"div">;
+  formGroupProps?: ComponentProps<"div">;
   error?: string;
   hint?: string;
   characterLimit?: number;
@@ -26,6 +26,12 @@ export function InputField({
       ? inputProps.value
       : (inputProps.value?.length ?? 0),
   );
+  let _error = error;
+  if (_error === undefined) {
+    if (characterLimit !== undefined && inputCount > characterLimit) {
+      _error = `Du kan maks. taste ${characterLimit} tegn`;
+    }
+  }
   const [lastInputEventMs, setLastInputEventMs] = useState<number | undefined>(
     undefined,
   );
@@ -51,7 +57,9 @@ export function InputField({
         characterLimit !== undefined
           ? (ev) => {
               setInputCount(ev.target.value.length);
-              setLastInputEventMs(Date.now());
+              if (lastInputEventMs === undefined) {
+                setLastInputEventMs(Date.now());
+              }
               inputProps.onChange?.(ev);
             }
           : inputProps.onChange
@@ -62,17 +70,27 @@ export function InputField({
     const interval = setInterval(() => {
       if (
         lastInputEventMs === undefined ||
-        lastInputEventMs < Date.now() - 500
+        lastInputEventMs < Date.now() - 300
       ) {
         setVisibleInputCount(inputCount);
+        if (lastInputEventMs !== undefined) {
+          setLastInputEventMs(undefined);
+        }
       }
-    }, 1000);
+    }, 100);
     return () => {
       clearInterval(interval);
     };
   }, [inputCount, lastInputEventMs]);
   return (
-    <div className="form-group" {...formGroupProps}>
+    <div
+      className={mergeStrings(
+        "form-group",
+        _error && "form-error",
+        !!characterLimit && "form-limit",
+      )}
+      {...formGroupProps}
+    >
       <label
         className="form-label"
         htmlFor={inputProps.id}
@@ -83,10 +101,10 @@ export function InputField({
           {hint}
         </span>
       )}
-      {error && (
+      {_error && (
         <span className="form-error-message" id={inputProps.id + "-error"}>
           <span className="sr-only">Fejl: </span>
-          {error}
+          {_error}
         </span>
       )}
       {"prefix" in props && (
@@ -108,11 +126,19 @@ export function InputField({
             Du kan indtaste op til {charactersLeft}
             tegn
           </span>
-          <span className="form-hint character-limit" aria-hidden="true">
-            Du har {charactersLeft} tegn tilbage
+          <span
+            className={mergeStrings(
+              "form-hint character-limit",
+              charactersLeft < 0 && "limit-exceeded",
+            )}
+            aria-hidden="true"
+          >
+            Du har {Math.abs(charactersLeft)} tegn{" "}
+            {charactersLeft < 0 ? "for meget" : "tilbage"}
           </span>
           <span className="character-limit-sr-only sr-only" aria-live="polite">
-            Du har {charactersLeft} tegn tilbage
+            Du har {Math.abs(charactersLeft)} tegn{" "}
+            {charactersLeft < 0 ? "for meget" : "tilbage"}
           </span>
         </>
       )}
