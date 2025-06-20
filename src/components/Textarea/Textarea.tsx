@@ -6,7 +6,7 @@ import { HTMLTextAreaPropsWithRequiredFields } from "../../types/html-props";
 export type TextAreaProps = {
   labelProps: ComponentProps<"label">;
   textareaProps: HTMLTextAreaPropsWithRequiredFields<"id" | "name">;
-  formGroupProps: ComponentProps<"div">;
+  formGroupProps?: ComponentProps<"div">;
   error?: string;
   hint?: string;
   characterLimit?: number;
@@ -26,6 +26,14 @@ export function TextArea({
       ? inputProps.value
       : (inputProps.value?.length ?? 0),
   );
+
+  let _error = error;
+  if (_error === undefined) {
+    if (characterLimit !== undefined && inputCount > characterLimit) {
+      _error = `Du kan maks. taste ${characterLimit} tegn`;
+    }
+  }
+
   const [lastInputEventMs, setLastInputEventMs] = useState<number | undefined>(
     undefined,
   );
@@ -51,7 +59,9 @@ export function TextArea({
         characterLimit !== undefined
           ? (ev) => {
               setInputCount(ev.target.value.length);
-              setLastInputEventMs(Date.now());
+              if (lastInputEventMs === undefined) {
+                setLastInputEventMs(Date.now());
+              }
               inputProps.onChange?.(ev);
             }
           : inputProps.onChange
@@ -59,17 +69,30 @@ export function TextArea({
     />
   );
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       if (
         lastInputEventMs === undefined ||
-        lastInputEventMs < Date.now() - 500
+        lastInputEventMs < Date.now() - 300
       ) {
         setVisibleInputCount(inputCount);
+        if (lastInputEventMs !== undefined) {
+          setLastInputEventMs(undefined);
+        }
       }
-    }, 1000);
+    }, 100);
+    return () => {
+      clearInterval(interval);
+    };
   }, [inputCount, lastInputEventMs]);
   return (
-    <div className="form-group" {...formGroupProps}>
+    <div
+      className={mergeStrings(
+        "form-group",
+        _error && "form-error",
+        !!characterLimit && "form-limit",
+      )}
+      {...formGroupProps}
+    >
       <label
         className="form-label"
         htmlFor={inputProps.id}
@@ -80,10 +103,10 @@ export function TextArea({
           {hint}
         </span>
       )}
-      {error && (
+      {_error && (
         <span className="form-error-message" id={inputProps.id + "-error"}>
           <span className="sr-only">Fejl: </span>
-          {error}
+          {_error}
         </span>
       )}
       {"prefix" in props && (

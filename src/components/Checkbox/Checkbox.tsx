@@ -1,20 +1,22 @@
 import { ComponentProps } from "react";
-import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputField, InputFieldProps } from "../InputField/InputField";
 
 export type CheckboxProps = {
   legendProps: ComponentProps<"legend">;
-  fieldsetProps: ComponentProps<"fieldset">;
-  values: {
-    inputProps: HTMLInputPropsWithRequiredFields<"value" | "id">;
+  fieldsetProps?: ComponentProps<"fieldset">;
+  options: {
+    value: string;
+    id: string;
+    inputProps?: ComponentProps<"input">;
+    checked?: boolean;
     label: string;
     hint?: string;
     hiddenInputField?: InputFieldProps;
   }[];
   id: string;
   hint?: string;
-  errorMessage?: string;
+  error?: string;
   name: string;
 };
 
@@ -23,16 +25,16 @@ export function Checkbox({
   hint,
   id,
   legendProps,
-  errorMessage,
-  values,
+  error,
+  options,
   name,
 }: Readonly<CheckboxProps>) {
   return (
-    <div className="form-group">
+    <div className={mergeStrings("form-group", error && "form-error")}>
       <fieldset
         aria-describedby={mergeStrings(
           hint && id + "-hint",
-          errorMessage && id + "-error",
+          error && id + "-error",
         )}
         {...fieldsetProps}
       >
@@ -42,42 +44,35 @@ export function Checkbox({
             {hint}
           </span>
         )}
-        {errorMessage && (
+        {error && (
           <span className="form-error-message" id={id + "-error"}>
             <span className="sr-only">Fejl: </span>
-            {errorMessage}
+            {error}
           </span>
         )}
-        {values &&
-          values.map((value) => (
+        {options &&
+          options.map((value) => (
             <>
-              <div className="form-group-checkbox" key={value.inputProps.id}>
+              <div className="form-group-checkbox" key={value.id}>
                 <input
                   type="checkbox"
                   name={name}
                   className="form-checkbox"
-                  aria-describedby={
-                    value.hint ? value.inputProps.id + "-hint" : undefined
-                  }
+                  checked={value.checked}
+                  aria-describedby={value.hint ? value.id + "-hint" : undefined}
                   {...value.inputProps}
                 />
-                <label className="form-label" htmlFor={value.inputProps.id}>
+                <label className="form-label" htmlFor={value.id}>
                   {value.label}
                 </label>
                 {value.hint && (
-                  <span
-                    className="form-hint"
-                    id={value.inputProps.id + "-hint"}
-                  >
+                  <span className="form-hint" id={value.id + "-hint"}>
                     {value.hint}
                   </span>
                 )}
               </div>
-              {value.hiddenInputField && value.inputProps.checked && (
-                <div
-                  id={value.inputProps.id + "-collapse"}
-                  className="checkbox-content"
-                >
+              {value.hiddenInputField && value.checked && (
+                <div id={value.id + "-collapse"} className="checkbox-content">
                   <InputField {...value.hiddenInputField}></InputField>
                 </div>
               )}

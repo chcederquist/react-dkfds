@@ -56,7 +56,7 @@ export const ErroredDateFields: Story = {
     legendProps: {
       children: "Hvornår blev dit pas udstedt?",
     },
-    errorMessage: "Datoen kan ikke være i fremtiden.",
+    error: "Datoen kan ikke være i fremtiden.",
     hint: "For eksempel: 05 12 2018",
   },
 };

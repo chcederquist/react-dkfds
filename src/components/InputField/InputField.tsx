@@ -109,14 +109,18 @@ export function InputField({
       )}
       {"prefix" in props && (
         <div className="form-input-wrapper form-input-wrapper--prefix">
-          <div className="form-input-prefix" aria-hidden="true"></div>
+          <div className="form-input-prefix" aria-hidden="true">
+            {props.prefix}
+          </div>
           {input}
         </div>
       )}
       {"suffix" in props && (
         <div className="form-input-wrapper form-input-wrapper--suffix">
           {input}
-          <div className="form-input-suffix" aria-hidden="true"></div>
+          <div className="form-input-suffix" aria-hidden="true">
+            {props.suffix}
+          </div>
         </div>
       )}
       {!("suffix" in props) && !("prefix" in props) && input}

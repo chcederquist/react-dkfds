@@ -10,7 +10,7 @@ export type DateFieldsProps = {
   yearInputProps: InputFieldProps["inputProps"];
   id: string;
   hint?: string;
-  errorMessage?: string;
+  error?: string;
 };
 
 export function DateFields({
@@ -21,14 +21,14 @@ export function DateFields({
   dayInputProps,
   monthInputProps,
   yearInputProps,
-  errorMessage,
+  error,
 }: Readonly<DateFieldsProps>) {
   return (
-    <div className={mergeStrings("form-group", errorMessage && "form-error")}>
+    <div className={mergeStrings("form-group", error && "form-error")}>
       <fieldset
         aria-describedby={mergeStrings(
           hint && id + "-hint",
-          errorMessage && id + "-error",
+          error && id + "-error",
         )}
         {...fieldsetProps}
       >
@@ -38,10 +38,10 @@ export function DateFields({
             {hint}
           </span>
         )}
-        {errorMessage && (
+        {error && (
           <span className="form-error-message" id={id + "-error"}>
             <span className="sr-only">Fejl: </span>
-            {errorMessage}
+            {error}
           </span>
         )}
         <div className="date-group mt-3">

@@ -4,6 +4,9 @@ import { Accordion } from "../../components/Accordion/Accordion";
 import { Alert } from "../../components/Alert/Alert";
 import { DateFields } from "../../components/DateFields/DateFields";
 import { Dropdown } from "../../components/Dropdown/Dropdown";
+import { RadioButtons } from "../../components/RadioButtons/RadioButtons";
+import { TextArea } from "../../components/Textarea/Textarea";
+import { Checkbox } from "../../components/Checkbox/Checkbox";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -83,7 +86,7 @@ export const DateFieldsError: Story = {
       legendProps={{
         children: "Hvornår blev dit pas udstedt?",
       }}
-      errorMessage="Datoen kan ikke være i fremtiden."
+      error="Datoen kan ikke være i fremtiden."
       hint={"For eksempel: 05 12 2018"}
     ></DateFields>
   ),
@@ -113,7 +116,7 @@ export const ErrorDropdown: Story = {
   ),
 };
 
-export const InputFieldWithSuffix: Story = {
+export const InputFieldWithSuffixError: Story = {
   render: () => (
     <InputField
       labelProps={{ children: "Pris i 1000 kr." }}
@@ -135,7 +138,82 @@ export const InputFieldWithCharacterLimit: Story = {
       inputProps={{
         id: "char-limit-error",
         name: "char-limit-error",
+        value: "Dette er mere end 20 tegn",
       }}
     ></InputField>
   ),
 };
+
+export const RadiobuttonWithError: Story = {
+  render: () => (
+    <RadioButtons
+      legendProps={{ children: "Sagen handler om" }}
+      id="radio-buttons-error"
+      name="radio-buttons-error"
+      options={[
+        { id: "option1", value: "option1", label: "Mulighed 1" },
+        { id: "option2", value: "option2", label: "Mulighed 2" },
+        { id: "option3", value: "option3", label: "Mulighed 3" },
+      ]}
+      error="Væl hvad sagen handler om"
+    ></RadioButtons>
+  ),
+};
+
+export const TextareaWithError: Story = {
+  render: () => (
+    <TextArea
+      labelProps={{ children: "Tekstområde med fejlmeddelelse" }}
+      textareaProps={{
+        id: "textarea-error",
+        name: "textarea-error",
+      }}
+      error="Hjælpsom fejlmeddelelse"
+    ></TextArea>
+  ),
+};
+
+export const TextareaWithCharacterLimitError: Story = {
+  render: () => (
+    <TextArea
+      labelProps={{ children: "Tekstområde med fejlmeddelelse" }}
+      textareaProps={{
+        id: "textarea-error",
+        name: "textarea-error",
+        value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      }}
+      characterLimit={50}
+    ></TextArea>
+  ),
+};
+
+export const CheckboxWithError: Story = {
+  render: () => (
+    <Checkbox
+      id="checkbox-error"
+      legendProps={{ children: "Hvad er din nationalitet?" }}
+      error="Angiv om du er dansk, svensk eller anden nationalitet"
+      name="checkbox-error"
+      options={[
+        {
+          id: "danish",
+          value: "danish",
+          label: "Dansk",
+        },
+        {
+          id: "swedish",
+          value: "swedish",
+          label: "Svensk",
+        },
+        {
+          id: "other",
+          value: "other",
+          label: "Anden nationalitet",
+        },
+      ]}
+    ></Checkbox>
+  ),
+};
+
+// TODO: Datepicker
+// TODO: Vedhæft fil

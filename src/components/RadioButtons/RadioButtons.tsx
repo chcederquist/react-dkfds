@@ -1,20 +1,21 @@
 import { ComponentProps } from "react";
-import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputFieldProps, InputField } from "../InputField/InputField";
 
 export type RadioButtonsProps = {
   legendProps: ComponentProps<"legend">;
-  fieldsetProps: ComponentProps<"fieldset">;
-  values: {
-    inputProps: HTMLInputPropsWithRequiredFields<"value" | "id">;
+  fieldsetProps?: ComponentProps<"fieldset">;
+  options: {
+    value: string;
+    id: string;
+    inputProps?: ComponentProps<"input">;
+    checked?: boolean;
     label: string;
-    hint?: string;
     hiddenInputField?: InputFieldProps;
   }[];
   id: string;
   hint?: string;
-  errorMessage?: string;
+  error?: string;
   name: string;
 };
 
@@ -23,16 +24,16 @@ export function RadioButtons({
   hint,
   id,
   legendProps,
-  errorMessage,
-  values,
+  error,
+  options,
   name,
 }: Readonly<RadioButtonsProps>) {
   return (
-    <div className="form-group">
+    <div className={mergeStrings("form-group", error && "form-error")}>
       <fieldset
         aria-describedby={mergeStrings(
           hint && id + "-hint",
-          errorMessage && id + "-error",
+          error && id + "-error",
         )}
         {...fieldsetProps}
       >
@@ -42,32 +43,31 @@ export function RadioButtons({
             {hint}
           </span>
         )}
-        {errorMessage && (
+        {error && (
           <span className="form-error-message" id={id + "-error"}>
             <span className="sr-only">Fejl: </span>
-            {errorMessage}
+            {error}
           </span>
         )}
-        {values &&
-          values.map((value) => (
+        {options &&
+          options.map((option) => (
             <>
-              <div className="form-group-radio" key={value.inputProps.id}>
+              <div className="form-group-radio" key={option.id}>
                 <input
                   type="radio"
                   name={name}
                   className="form-radio"
-                  {...value.inputProps}
+                  id={option.id}
+                  checked={option.checked}
+                  {...option.inputProps}
                 />
-                <label className="form-label" htmlFor={value.inputProps.id}>
-                  {value.label}
+                <label className="form-label" htmlFor={option.id}>
+                  {option.label}
                 </label>
               </div>
-              {value.hiddenInputField && value.inputProps.checked && (
-                <div
-                  id={value.inputProps.id + "-collapse"}
-                  className="radio-content"
-                >
-                  <InputField {...value.hiddenInputField}></InputField>
+              {option.hiddenInputField && option.checked && (
+                <div id={option.id + "-collapse"} className="radio-content">
+                  <InputField {...option.hiddenInputField}></InputField>
                 </div>
               )}
             </>
