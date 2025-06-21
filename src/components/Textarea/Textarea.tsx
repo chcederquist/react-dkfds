@@ -1,19 +1,26 @@
-import { ComponentProps, useEffect, useState } from "react";
+import { ComponentProps, ReactNode, useEffect, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputSize } from "../../types/input-widths";
 import { HTMLTextAreaPropsWithRequiredFields } from "../../types/html-props";
 
 export type TextAreaProps = {
-  labelProps: ComponentProps<"label">;
   textareaProps: HTMLTextAreaPropsWithRequiredFields<"id" | "name">;
   formGroupProps?: ComponentProps<"div">;
   error?: string;
   hint?: string;
   characterLimit?: number;
 } & ({ prefix?: string } | { suffix?: string }) &
-  Partial<InputSize>;
+  Partial<InputSize> &
+  (
+    | {
+        label?: ReactNode;
+        labelProps: ComponentProps<"label">;
+      }
+    | { label: ReactNode; labelProps?: ComponentProps<"label"> }
+  );
 export function TextArea({
   labelProps,
+  label,
   textareaProps: inputProps,
   formGroupProps,
   hint,
@@ -93,11 +100,9 @@ export function TextArea({
       )}
       {...formGroupProps}
     >
-      <label
-        className="form-label"
-        htmlFor={inputProps.id}
-        {...labelProps}
-      ></label>
+      <label className="form-label" htmlFor={inputProps.id} {...labelProps}>
+        {label ?? labelProps?.children}
+      </label>
       {hint && (
         <span className="form-hint" id={inputProps.id + "-hint"}>
           {hint}

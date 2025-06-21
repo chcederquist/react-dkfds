@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputField, InputFieldProps } from "../InputField/InputField";
 
@@ -10,7 +10,7 @@ export type CheckboxProps = {
     id: string;
     inputProps?: ComponentProps<"input">;
     checked?: boolean;
-    label: string;
+    label: ReactNode;
     hint?: string;
     hiddenInputField?: InputFieldProps;
   }[];

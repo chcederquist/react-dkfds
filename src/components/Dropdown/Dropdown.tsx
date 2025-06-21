@@ -1,19 +1,25 @@
-import { ComponentProps } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { HTMLSelectPropsWithRequiredFields } from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
 
 export type DropdownProps = {
-  labelProps: ComponentProps<"label">;
   selectProps: HTMLSelectPropsWithRequiredFields<"id" | "name">;
   options: { value: string; key: string; text: string }[];
   formGroupProps?: ComponentProps<"div">;
   error?: string;
   hint?: string;
-};
+} & (
+  | {
+      label?: ReactNode;
+      labelProps: ComponentProps<"label">;
+    }
+  | { label: ReactNode; labelProps?: ComponentProps<"label"> }
+);
 export function Dropdown({
   formGroupProps,
   selectProps,
   labelProps,
+  label,
   error,
   hint,
   options,
@@ -23,11 +29,9 @@ export function Dropdown({
       className={mergeStrings("form-group", error && "form-error")}
       {...formGroupProps}
     >
-      <label
-        className="form-label"
-        htmlFor={selectProps.id}
-        {...labelProps}
-      ></label>
+      <label className="form-label" htmlFor={selectProps.id} {...labelProps}>
+        {label ?? labelProps?.children}
+      </label>
       {hint && (
         <span className="form-hint" id={selectProps.id + "-hint"}>
           {hint}

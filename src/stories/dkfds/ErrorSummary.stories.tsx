@@ -4,6 +4,7 @@ import { InputField } from "../../components/InputField/InputField";
 import { RadioButtons } from "../../components/RadioButtons/RadioButtons";
 import { DateFields } from "../../components/DateFields/DateFields";
 import { Alert } from "../../components/Alert/Alert";
+import { FunctionalLink } from "../../components/FunctionalLink/FunctionalLink";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -32,20 +33,20 @@ export const InputFieldError: Story = {
         >
           <ul className="alert-text nobullet-list">
             <li>
-              <a className="function-link" href="#example-name-error">
+              <FunctionalLink as="a" href="#example-name-error">
                 Skriv dit fulde navn, og adskil for- og efternavne med
                 mellemrum, fx Anders Andersen
-              </a>
+              </FunctionalLink>
             </li>
             <li>
-              <a className="function-link" href="#option1">
+              <FunctionalLink as="a" href="#option1">
                 Angiv om du er dansk, svensk eller anden nationalitet
-              </a>
+              </FunctionalLink>
             </li>
             <li>
-              <a className="function-link" href="#dag-story-error">
+              <FunctionalLink as="a" href="#dag-story-error">
                 Datoen kan ikke være i fremtiden
-              </a>
+              </FunctionalLink>
             </li>
           </ul>
         </Alert>

@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputFieldProps, InputField } from "../InputField/InputField";
 
@@ -10,7 +10,7 @@ export type RadioButtonsProps = {
     id: string;
     inputProps?: ComponentProps<"input">;
     checked?: boolean;
-    label: string;
+    label: ReactNode;
     hiddenInputField?: InputFieldProps;
   }[];
   id: string;

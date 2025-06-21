@@ -1,8 +1,14 @@
-export type SkipLinkProps = { mainId: string; children: React.ReactNode };
+import { ComponentProps } from "react";
 
-export function SkipLink({ children, mainId }: Readonly<SkipLinkProps>) {
+export type SkipLinkProps = ComponentProps<"a"> & { mainId: string };
+
+export function SkipLink({
+  children,
+  mainId,
+  ...props
+}: Readonly<SkipLinkProps>) {
   return (
-    <a href={`#${mainId}`} className="skip-link">
+    <a href={`#${mainId}`} className="skip-link" {...props}>
       {children}
     </a>
   );

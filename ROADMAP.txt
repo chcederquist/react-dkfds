@@ -9,5 +9,6 @@
 8. JSDoc
 11. TODO's
 9. i18n / custom aria-labels support
-10. Tooltip-component when Popover API and anchor positioning is widely supported
-11. Datepicker-component (not sure how to do this yet)
+10. Footer
+11. Tooltip-component when Popover API and anchor positioning is widely supported
+12. Datepicker-component (not sure how to do this yet)
