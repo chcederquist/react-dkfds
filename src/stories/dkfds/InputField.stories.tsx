@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { InputField } from "../../components/InputField/InputField";
+import {
+  InputField,
+  InputFieldProps,
+} from "../../components/InputField/InputField";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -35,5 +38,104 @@ export const ErrorMessageInputField: Story = {
     error:
       "Skriv dit fulde navn, og adskil for- og efternavne med mellemrum, fx Anders Andersen",
     label: "Hvad er dit fulde navn?",
+  },
+};
+
+export const MostFieldsMandatory: Story = {
+  args: {} as InputFieldProps,
+  render: () => (
+    <form>
+      <InputField
+        label="Label"
+        inputProps={{
+          id: "mandatory-input",
+          name: "mandatory-input",
+          required: true,
+        }}
+      ></InputField>
+      <InputField
+        label={
+          <>
+            Label <span style={{ fontWeight: "normal" }}>(frivilligt)</span>
+          </>
+        }
+        inputProps={{
+          id: "non-mandatory-input",
+          name: "non-mandatory-input",
+        }}
+      ></InputField>
+      <InputField
+        label="Label"
+        inputProps={{
+          id: "mandatory-input2",
+          name: "mandatory-input2",
+          required: true,
+        }}
+      ></InputField>
+      <InputField
+        label="Label"
+        inputProps={{
+          id: "mandatory-input3",
+          name: "mandatory-input3",
+          required: true,
+        }}
+      ></InputField>
+    </form>
+  ),
+};
+
+export const MostFieldsNonMandatory: Story = {
+  args: {} as InputFieldProps,
+  render: () => (
+    <form>
+      <InputField
+        label="Label"
+        inputProps={{
+          id: "mandatory-input",
+          name: "mandatory-input",
+          required: false,
+        }}
+      ></InputField>
+      <InputField
+        label={
+          <>
+            Label <span style={{ fontWeight: "normal" }}>(*skal udfyldes)</span>
+          </>
+        }
+        inputProps={{
+          id: "non-mandatory-input",
+          name: "non-mandatory-input",
+          required: true,
+        }}
+      ></InputField>
+      <InputField
+        label="Label"
+        inputProps={{
+          id: "mandatory-input2",
+          name: "mandatory-input2",
+          required: false,
+        }}
+      ></InputField>
+      <InputField
+        label="Label"
+        inputProps={{
+          id: "mandatory-input3",
+          name: "mandatory-input3",
+          required: false,
+        }}
+      ></InputField>
+    </form>
+  ),
+};
+
+export const ReadonlyInputField: Story = {
+  args: {
+    inputProps: {
+      id: "example-input-readonly",
+      name: "example-input-readonly",
+      readOnly: true,
+      value: "012345-6789",
+    },
+    label: "Inputfelt som er readonly",
   },
 };

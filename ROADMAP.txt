@@ -7,8 +7,9 @@
 6. Ensure consistency between components
 7. NPM release
 8. JSDoc
-11. TODO's
-9. i18n / custom aria-labels support
-10. Footer
-11. Tooltip-component when Popover API and anchor positioning is widely supported
-12. Datepicker-component (not sure how to do this yet)
+9. Automated testing
+10. TODO's
+11. i18n / custom aria-labels support
+12. Footer
+13. Tooltip-component when Popover API and anchor positioning is widely supported
+14. Datepicker-component (not sure how to do this yet)

@@ -59,6 +59,7 @@ export function InputField({
         error ? `${inputProps.id}-error` : undefined,
         hint ? `${inputProps.id}-hint` : undefined,
       )}
+      type="text"
       {...inputProps}
       onChange={
         characterLimit !== undefined
