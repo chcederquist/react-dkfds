@@ -8,6 +8,7 @@ Issue: Radioknap legend bruger aria-labelledby med reference til legend, men det
 Issue: switchTabOnKeyPress kode er forvirrende, da der blot kan bruges modulo-operator
 Issue: Anchor-tag i cookiemeddelelse
 Issue: Tabelpaginering bruger knapper, paginering bruger links
+Issue: Kønnet sprog i Inputfelter-komponent-eksempler (nederst, ved input-bredder)
 Consider: Refactoring select in TablePagination to expose more props
 TODO: Path alias for components
 
@@ -19,6 +20,7 @@ Modal focus on opening
 Overflow menu on Header
 All cards in Storybook
 
+
 Components:
 ====
 LoadingSpinner
@@ -26,6 +28,6 @@ StepIndicator
 Anchorlinks
 Datepicker
 tooltip
-Overflow menu sorting
 Left menu (Venstremenu)
 Structured lists (Tables)
+Modal manager + backdrop

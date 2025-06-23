@@ -139,3 +139,144 @@ export const ReadonlyInputField: Story = {
     label: "Inputfelt som er readonly",
   },
 };
+
+export const DisabledInputField: Story = {
+  args: {
+    inputProps: {
+      id: "example-input-readonly",
+      name: "example-input-readonly",
+      disabled: true,
+      value: "012345-6789",
+    },
+    label: "Inputfelt som er readonly",
+  },
+};
+
+export const InputFieldWithPrefix: Story = {
+  args: {
+    inputProps: {
+      id: "example-input-prefix",
+      name: "example-input-prefix",
+    },
+    label: "Beløb i €",
+    prefix: "€",
+  },
+};
+
+export const InputFieldWithSuffix: Story = {
+  args: {
+    inputProps: {
+      id: "example-input-suffix",
+      name: "example-input-suffix",
+    },
+    label: "Antal styk",
+    suffix: "stk.",
+  },
+};
+
+export const InputFieldWithCharacterLimit: Story = {
+  args: {
+    inputProps: {
+      id: "example-input-character-limit",
+      name: "example-input-character-limit",
+    },
+    label: "Inputfelt med tegnbegrænsning",
+    characterLimit: 20,
+  },
+};
+
+export const InputFieldWidths: Story = {
+  args: {} as InputFieldProps,
+  render: () => {
+    return (
+      <>
+        <fieldset>
+          <legend className="h4">Input bredde med rem</legend>
+          <InputField
+            inputWidth="xxs"
+            label={"Inputfelt med klassen input-width-xxs (8rem)"}
+            inputProps={{
+              id: "input-width-1",
+              name: "input-width-1",
+            }}
+          ></InputField>
+          <InputField
+            inputWidth="xs"
+            label={"Inputfelt med klassen input-width-xs (16rem)"}
+            inputProps={{
+              id: "input-width-2",
+              name: "input-width-2",
+            }}
+          ></InputField>
+          <InputField
+            inputWidth="s"
+            label={"Inputfelt med klassen input-width-s (24rem)"}
+            inputProps={{
+              id: "input-width-3",
+              name: "input-width-3",
+            }}
+          ></InputField>
+          <InputField
+            inputWidth="m"
+            label={"Inputfelt med klassen input-width-m (32rem)"}
+            inputProps={{
+              id: "input-width-4",
+              name: "input-width-4",
+            }}
+          ></InputField>
+          <InputField
+            inputWidth="l"
+            label={"Inputfelt med klassen input-width-l (40rem)"}
+            inputProps={{
+              id: "input-width-5",
+              name: "input-width-5",
+            }}
+          ></InputField>
+          <InputField
+            inputWidth="xl"
+            label={"Inputfelt med klassen input-width-xl (48rem)"}
+            inputProps={{
+              id: "input-width-6",
+              name: "input-width-6",
+            }}
+          ></InputField>
+        </fieldset>
+        <fieldset>
+          <legend className="h4">Input bredde med tegn</legend>
+          <InputField
+            inputCharWidth="4"
+            label={"Inputfelt med klassen input-char-width-4 (4 tegn)"}
+            inputProps={{
+              id: "input-char-width-1",
+              name: "input-char-width-1",
+            }}
+          ></InputField>
+          <InputField
+            inputCharWidth="8"
+            label={"Inputfelt med klassen input-char-width-8 (8 tegn)"}
+            inputProps={{
+              id: "input-char-width-2",
+              name: "input-char-width-2",
+            }}
+          ></InputField>
+          <InputField
+            inputCharWidth="11"
+            label={"Inputfelt med klassen input-char-width-11 (11 tegn)"}
+            inputProps={{
+              id: "input-char-width-3",
+              name: "input-char-width-3",
+            }}
+          ></InputField>
+          <InputField
+            inputCharWidth="27"
+            label={"Inputfelt med klassen input-char-width-27 (27 tegn)"}
+            inputProps={{
+              id: "input-char-width-4",
+              name: "input-char-width-4",
+            }}
+          ></InputField>
+        </fieldset>
+      </>
+    );
+  },
+};
