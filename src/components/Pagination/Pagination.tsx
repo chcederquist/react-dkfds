@@ -26,15 +26,17 @@ export function PaginationButton({
   );
 }
 
+export type PaginationProps = {
+  pageCount: number;
+  currentPageNumber: number;
+  onPageSelected?: (pageNumber: number) => void;
+};
+
 export function Pagination({
   pageCount,
   currentPageNumber,
   onPageSelected,
-}: Readonly<{
-  pageCount: number;
-  currentPageNumber: number;
-  onPageSelected: (pageNumber: number) => void;
-}>) {
+}: Readonly<PaginationProps>) {
   return (
     <nav
       className="pagination"
@@ -45,7 +47,7 @@ export function Pagination({
         <>
           <a
             href="#"
-            onClick={() => onPageSelected(1)}
+            onClick={() => onPageSelected?.(1)}
             className="button button-arrow button-first"
           >
             <svg className="icon-svg" focusable="false" aria-hidden="true">
@@ -58,7 +60,7 @@ export function Pagination({
             href="#"
             className="button button-arrow button-previous"
             aria-label="Forrige side"
-            onClick={() => onPageSelected(currentPageNumber - 1)}
+            onClick={() => onPageSelected?.(currentPageNumber - 1)}
           >
             <svg className="icon-svg" focusable="false" aria-hidden="true">
               <use href="#chevron-left"></use>
@@ -77,7 +79,7 @@ export function Pagination({
               key={c}
               number={c}
               isCurrentPage={c === currentPageNumber}
-              onClick={() => onPageSelected(c)}
+              onClick={() => onPageSelected?.(c)}
             ></PaginationButton>
           ))}
 
@@ -86,7 +88,7 @@ export function Pagination({
             <PaginationButton
               number={1}
               isCurrentPage={1 === currentPageNumber}
-              onClick={() => onPageSelected(1)}
+              onClick={() => onPageSelected?.(1)}
             ></PaginationButton>
             {currentPageNumber > 4 ? (
               <li className="pagination-item pagination-overflow">
@@ -101,7 +103,7 @@ export function Pagination({
                   isCurrentPage={c === currentPageNumber}
                   number={c}
                   key={c}
-                  onClick={() => onPageSelected(c)}
+                  onClick={() => onPageSelected?.(c)}
                 ></PaginationButton>
               ))
             )}
@@ -109,18 +111,18 @@ export function Pagination({
               <>
                 <PaginationButton
                   number={currentPageNumber - 1}
-                  isCurrentPage={true}
-                  onClick={() => onPageSelected(currentPageNumber - 1)}
+                  isCurrentPage={false}
+                  onClick={() => onPageSelected?.(currentPageNumber - 1)}
                 ></PaginationButton>
                 <PaginationButton
                   number={currentPageNumber}
                   isCurrentPage={true}
-                  onClick={() => onPageSelected(currentPageNumber)}
+                  onClick={() => onPageSelected?.(currentPageNumber)}
                 ></PaginationButton>
                 <PaginationButton
                   number={currentPageNumber + 1}
-                  isCurrentPage={true}
-                  onClick={() => onPageSelected(currentPageNumber + 1)}
+                  isCurrentPage={false}
+                  onClick={() => onPageSelected?.(currentPageNumber + 1)}
                 ></PaginationButton>
               </>
             )}
@@ -138,7 +140,7 @@ export function Pagination({
                     isCurrentPage={c === currentPageNumber}
                     number={c}
                     key={c}
-                    onClick={() => onPageSelected(c)}
+                    onClick={() => onPageSelected?.(c)}
                   ></PaginationButton>
                 ),
               )
@@ -146,7 +148,7 @@ export function Pagination({
             <PaginationButton
               number={pageCount}
               isCurrentPage={pageCount === currentPageNumber}
-              onClick={() => onPageSelected(pageCount)}
+              onClick={() => onPageSelected?.(pageCount)}
             ></PaginationButton>
           </>
         )}
@@ -157,13 +159,18 @@ export function Pagination({
             href="#"
             className="button button-arrow button-next"
             aria-label="Næste side"
+            onClick={() => onPageSelected?.(currentPageNumber + 1)}
           >
             <span className="pagination-nav-link">Næste</span>
             <svg className="icon-svg" focusable="false" aria-hidden="true">
               <use href="#chevron-right"></use>
             </svg>
           </a>
-          <a href="#" className="button button-arrow button-last">
+          <a
+            href="#"
+            className="button button-arrow button-last"
+            onClick={() => onPageSelected?.(pageCount)}
+          >
             <svg className="icon-svg" focusable="false" aria-hidden="true">
               <use href="#last-page"></use>
             </svg>

@@ -1,10 +1,9 @@
 import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
-import { InputField, InputFieldProps } from "../InputField/InputField";
 
 export type CheckboxProps = {
-  legendProps: ComponentProps<"legend">;
   fieldsetProps?: ComponentProps<"fieldset">;
+  onChange?: (value: string, checked: boolean) => void;
   options: {
     value: string;
     id: string;
@@ -12,20 +11,24 @@ export type CheckboxProps = {
     checked?: boolean;
     label: ReactNode;
     hint?: string;
-    hiddenInputField?: InputFieldProps;
+    hiddenContent?: ReactNode;
   }[];
   id: string;
   hint?: string;
   error?: string;
   name: string;
+  legendProps?: ComponentProps<"legend">;
+  label?: ReactNode;
 };
 
 export function Checkbox({
   fieldsetProps,
   hint,
   id,
+  label,
   legendProps,
   error,
+  onChange,
   options,
   name,
 }: Readonly<CheckboxProps>) {
@@ -38,7 +41,9 @@ export function Checkbox({
         )}
         {...fieldsetProps}
       >
-        <legend className="form-label" {...legendProps}></legend>
+        <legend className="form-label" {...legendProps}>
+          {legendProps?.children ?? label}
+        </legend>
         {hint && (
           <span className="form-hint" id={id + "-hint"}>
             {hint}
@@ -51,33 +56,58 @@ export function Checkbox({
           </span>
         )}
         {options &&
-          options.map((value) => (
-            <>
-              <div className="form-group-checkbox" key={value.id}>
-                <input
-                  type="checkbox"
-                  name={name}
-                  className="form-checkbox"
-                  checked={value.checked}
-                  aria-describedby={value.hint ? value.id + "-hint" : undefined}
-                  {...value.inputProps}
-                />
-                <label className="form-label" htmlFor={value.id}>
-                  {value.label}
-                </label>
-                {value.hint && (
-                  <span className="form-hint" id={value.id + "-hint"}>
-                    {value.hint}
-                  </span>
-                )}
-              </div>
-              {value.hiddenInputField && value.checked && (
-                <div id={value.id + "-collapse"} className="checkbox-content">
-                  <InputField {...value.hiddenInputField}></InputField>
+          options.map((option) => {
+            const CheckboxContainer = () => (
+              <>
+                <div className="form-group-checkbox" key={option.id}>
+                  <input
+                    type="checkbox"
+                    name={name}
+                    className="form-checkbox"
+                    id={option.id}
+                    checked={option.checked}
+                    aria-describedby={
+                      option.hint ? option.id + "-hint" : undefined
+                    }
+                    {...option.inputProps}
+                    onChange={(ev) => {
+                      onChange?.(option.value, ev.target.checked);
+                      option.inputProps?.onChange?.(ev);
+                    }}
+                  />
+                  <label className="form-label" htmlFor={option.id}>
+                    {option.label}
+                  </label>
+                  {option.hint && (
+                    <span className="form-hint" id={option.id + "-hint"}>
+                      {option.hint}
+                    </span>
+                  )}
                 </div>
-              )}
-            </>
-          ))}
+                {option.hiddenContent && option.checked && (
+                  <div
+                    id={option.id + "-collapse"}
+                    className="checkbox-content"
+                  >
+                    {option.hiddenContent}
+                  </div>
+                )}
+              </>
+            );
+
+            return option.hiddenContent ? (
+              <div
+                className={mergeStrings(
+                  "hidden-content-wrapper",
+                  option.checked && "show-content",
+                )}
+              >
+                <CheckboxContainer />
+              </div>
+            ) : (
+              <CheckboxContainer />
+            );
+          })}
       </fieldset>
     </div>
   );

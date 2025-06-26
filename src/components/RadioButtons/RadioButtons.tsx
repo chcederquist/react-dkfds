@@ -1,23 +1,32 @@
 import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
-import { InputFieldProps, InputField } from "../InputField/InputField";
 
 export type RadioButtonsProps = {
-  legendProps: ComponentProps<"legend">;
   fieldsetProps?: ComponentProps<"fieldset">;
+  onChange?: (value: string) => void;
   options: {
     value: string;
     id: string;
     inputProps?: ComponentProps<"input">;
     checked?: boolean;
     label: ReactNode;
-    hiddenInputField?: InputFieldProps;
+    hint?: string;
+    hiddenContent?: ReactNode;
   }[];
   id: string;
   hint?: string;
   error?: string;
   name: string;
-};
+} & (
+  | {
+      legendProps: ComponentProps<"legend">;
+      label?: undefined;
+    }
+  | {
+      legendProps?: undefined;
+      label: ReactNode;
+    }
+);
 
 export function RadioButtons({
   fieldsetProps,
@@ -25,8 +34,10 @@ export function RadioButtons({
   id,
   legendProps,
   error,
+  onChange,
   options,
   name,
+  label,
 }: Readonly<RadioButtonsProps>) {
   return (
     <div className={mergeStrings("form-group", error && "form-error")}>
@@ -37,7 +48,9 @@ export function RadioButtons({
         )}
         {...fieldsetProps}
       >
-        <legend className="form-label" {...legendProps}></legend>
+        <legend className="form-label" {...legendProps}>
+          {legendProps?.children ?? label}
+        </legend>
         {hint && (
           <span className="form-hint" id={id + "-hint"}>
             {hint}
@@ -50,28 +63,55 @@ export function RadioButtons({
           </span>
         )}
         {options &&
-          options.map((option) => (
-            <>
-              <div className="form-group-radio" key={option.id}>
-                <input
-                  type="radio"
-                  name={name}
-                  className="form-radio"
-                  id={option.id}
-                  checked={option.checked}
-                  {...option.inputProps}
-                />
-                <label className="form-label" htmlFor={option.id}>
-                  {option.label}
-                </label>
-              </div>
-              {option.hiddenInputField && option.checked && (
-                <div id={option.id + "-collapse"} className="radio-content">
-                  <InputField {...option.hiddenInputField}></InputField>
+          options.map((option) => {
+            const RadioContainer = () => (
+              <>
+                <div className="form-group-radio" key={option.id}>
+                  <input
+                    type="radio"
+                    name={name}
+                    className="form-radio"
+                    id={option.id}
+                    checked={option.checked}
+                    aria-describedby={
+                      option.hint ? option.id + "-hint" : undefined
+                    }
+                    {...option.inputProps}
+                    onChange={(ev) => {
+                      onChange?.(option.value);
+                      option.inputProps?.onChange?.(ev);
+                    }}
+                  />
+                  <label className="form-label" htmlFor={option.id}>
+                    {option.label}
+                  </label>
+                  {option.hint && (
+                    <span className="form-hint" id={option.id + "-hint"}>
+                      {option.hint}
+                    </span>
+                  )}
                 </div>
-              )}
-            </>
-          ))}
+                {option.hiddenContent && option.checked && (
+                  <div id={option.id + "-collapse"} className="radio-content">
+                    {option.hiddenContent}
+                  </div>
+                )}
+              </>
+            );
+
+            return option.hiddenContent ? (
+              <div
+                className={mergeStrings(
+                  "hidden-content-wrapper",
+                  option.checked && "show-content",
+                )}
+              >
+                <RadioContainer />
+              </div>
+            ) : (
+              <RadioContainer />
+            );
+          })}
       </fieldset>
     </div>
   );
