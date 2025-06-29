@@ -5,7 +5,7 @@ import { IconName } from "../../types/icon-names";
 export type TagProps = {
   children: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  icon: IconName;
+  icon?: IconName;
 };
 
 export function Tag({ children, onClick, icon }: Readonly<TagProps>) {
@@ -15,7 +15,7 @@ export function Tag({ children, onClick, icon }: Readonly<TagProps>) {
       className={mergeStrings("tag", icon && "tag-icon")}
     >
       {children}
-      <Icon icon={icon}></Icon>
+      {icon && <Icon icon={icon}></Icon>}
     </button>
   );
 }
