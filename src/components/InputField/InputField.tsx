@@ -48,12 +48,6 @@ export function InputField({
       ? inputProps.value
       : (inputProps.value?.length ?? 0),
   );
-  let _error = error;
-  if (_error === undefined) {
-    if (characterLimit !== undefined && inputCount > characterLimit) {
-      _error = `Du kan maks. taste ${characterLimit} tegn`;
-    }
-  }
   const [lastInputEventMs, setLastInputEventMs] = useState<number | undefined>(
     undefined,
   );
@@ -67,6 +61,7 @@ export function InputField({
           "form-input",
           "inputCharWidth" in props && `input-char-${props.inputCharWidth}`,
           "inputWidth" in props && `input-width-${props.inputWidth}`,
+          charactersLeft < 0 && "form-limit-error",
         )}
         aria-describedby={mergeStrings(
           characterLimit !== undefined
@@ -128,7 +123,7 @@ export function InputField({
     <div
       className={mergeStrings(
         "form-group",
-        _error && "form-error",
+        error && "form-error",
         !!characterLimit && "form-limit",
         searchButtonProps && "search",
       )}
@@ -142,10 +137,10 @@ export function InputField({
           {hint}
         </span>
       )}
-      {_error && (
+      {error && (
         <span className="form-error-message" id={inputProps.id + "-error"}>
           <span className="sr-only">Fejl: </span>
-          {_error}
+          {error}
         </span>
       )}
       {"prefix" in props && (
