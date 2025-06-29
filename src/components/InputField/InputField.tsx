@@ -2,10 +2,13 @@ import { ComponentProps, ReactNode, useEffect, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputSize } from "../../types/input-widths";
 import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
+import { IconName } from "../../types/icon-names";
+import { Icon } from "../Shared/Icon";
 
 export type InputFieldProps = {
   inputProps: HTMLInputPropsWithRequiredFields<"id" | "name">;
   formGroupProps?: ComponentProps<"div">;
+
   error?: string;
   hint?: string;
   characterLimit?: number;
@@ -15,8 +18,19 @@ export type InputFieldProps = {
     | {
         label?: ReactNode;
         labelProps: ComponentProps<"label">;
+        searchButtonProps?: undefined;
       }
-    | { label: ReactNode; labelProps?: ComponentProps<"label"> }
+    | {
+        label: ReactNode;
+        labelProps?: ComponentProps<"label">;
+        searchButtonProps?: undefined;
+      }
+    | {
+        searchButtonProps?: ComponentProps<"button"> &
+          ({ srLabel: string; icon: IconName } | { label: string });
+        label?: ReactNode;
+        labelProps?: ComponentProps<"label">;
+      }
   );
 export function InputField({
   label,
@@ -25,6 +39,7 @@ export function InputField({
   formGroupProps,
   hint,
   characterLimit,
+  searchButtonProps,
   error,
   ...props
 }: Readonly<InputFieldProps>) {
@@ -46,33 +61,52 @@ export function InputField({
     useState<number>(inputCount);
   const charactersLeft = (characterLimit ?? 0) - (visibleInputCount ?? 0);
   const input = (
-    <input
-      className={mergeStrings(
-        "form-input",
-        "inputCharWidth" in props && `input-char-${props.inputCharWidth}`,
-        "inputWidth" in props && `input-width-${props.inputWidth}`,
-      )}
-      aria-describedby={mergeStrings(
-        characterLimit !== undefined
-          ? `${inputProps.id}-limit-message`
-          : undefined,
-        error ? `${inputProps.id}-error` : undefined,
-        hint ? `${inputProps.id}-hint` : undefined,
-      )}
-      type="text"
-      {...inputProps}
-      onChange={
-        characterLimit !== undefined
-          ? (ev) => {
-              setInputCount(ev.target.value.length);
-              if (lastInputEventMs === undefined) {
-                setLastInputEventMs(Date.now());
+    <>
+      <input
+        className={mergeStrings(
+          "form-input",
+          "inputCharWidth" in props && `input-char-${props.inputCharWidth}`,
+          "inputWidth" in props && `input-width-${props.inputWidth}`,
+        )}
+        aria-describedby={mergeStrings(
+          characterLimit !== undefined
+            ? `${inputProps.id}-limit-message`
+            : undefined,
+          error ? `${inputProps.id}-error` : undefined,
+          hint ? `${inputProps.id}-hint` : undefined,
+        )}
+        type="text"
+        {...inputProps}
+        onChange={
+          characterLimit !== undefined
+            ? (ev) => {
+                setInputCount(ev.target.value.length);
+                if (lastInputEventMs === undefined) {
+                  setLastInputEventMs(Date.now());
+                }
+                inputProps.onChange?.(ev);
               }
-              inputProps.onChange?.(ev);
-            }
-          : inputProps.onChange
-      }
-    />
+            : inputProps.onChange
+        }
+      />
+      {searchButtonProps && (
+        <button
+          {...searchButtonProps}
+          className={mergeStrings(
+            "button button-search",
+            searchButtonProps.className,
+          )}
+        >
+          {"label" in searchButtonProps && searchButtonProps.label}
+          {"srLabel" in searchButtonProps && "icon" in searchButtonProps && (
+            <>
+              <Icon icon={searchButtonProps.icon}></Icon>
+              <span className="sr-only">{searchButtonProps.srLabel}</span>
+            </>
+          )}
+        </button>
+      )}
+    </>
   );
   useEffect(() => {
     const interval = setInterval(() => {
@@ -96,6 +130,7 @@ export function InputField({
         "form-group",
         _error && "form-error",
         !!characterLimit && "form-limit",
+        searchButtonProps && "search",
       )}
       {...formGroupProps}
     >

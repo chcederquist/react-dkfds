@@ -2,6 +2,24 @@ import { ComponentProps } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { TablePagination, TablePaginationProps } from "./TablePagination";
 
+export function Tr({
+  children,
+  selected,
+  ...props
+}: ComponentProps<"tr"> & { selected?: boolean }) {
+  return (
+    <tr
+      {...props}
+      className={mergeStrings(
+        props.className,
+        selected && "table-row-selected",
+      )}
+    >
+      {children}
+    </tr>
+  );
+}
+
 export type TdProps = {
   children?: React.ReactNode;
   verticalAlign?: "top" | "middle" | "bottom";
@@ -58,6 +76,7 @@ export type TableProps = {
   children?: React.ReactNode;
   borderless?: boolean;
   zebra?: boolean;
+  selectable?: boolean;
   compact?: "compact" | "extra-compact";
   tablePaginationProps?: TablePaginationProps;
   responsiveHeaders?: "sm" | "md" | "lg";
@@ -70,16 +89,19 @@ function InnerTable({
   borderless,
   compact,
   responsiveHeaders,
+  selectable, // TODO: Finish selectable implementation
   ...props
 }: TableProps) {
   return (
     <table
       {...props}
       className={mergeStrings(
+        "table",
         zebra && "table--zebra",
         borderless && "table--borderless",
         compact === "compact" && "table--compact",
         compact === "extra-compact" && "table--extracompact",
+        selectable && "table--selectable",
         props.className,
         responsiveHeaders && `table-${responsiveHeaders}-responsive-headers`, // TODO: do the data-title thing
       )}
@@ -102,7 +124,7 @@ export function Table(props: TableProps) {
   }
   return (
     <>
-      <InnerTable {...props} />;
+      <InnerTable {...props} />
       {props.tablePaginationProps && (
         <TablePagination {...props.tablePaginationProps} />
       )}

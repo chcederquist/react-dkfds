@@ -11,6 +11,7 @@ Issue: Tabelpaginering bruger knapper, paginering bruger links
 Issue: Kønnet sprog i Inputfelter-komponent-eksempler (nederst, ved input-bredder)
 Consider: Refactoring select in TablePagination to expose more props
 TODO: Path alias for components
+Issue: Sortering i tabeller opdaterer ikke SR Labels
 
 Medium-big:
 TODO in Header.tsx
@@ -19,6 +20,7 @@ Modal backdrop
 Modal focus on opening
 Overflow menu on Header
 All cards in Storybook
+TODOs in Table.tsx
 
 
 Components:
@@ -31,3 +33,4 @@ tooltip
 Left menu (Venstremenu)
 Structured lists (Tables)
 Modal manager + backdrop
+SrLabel-component
