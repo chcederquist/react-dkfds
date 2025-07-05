@@ -1,26 +1,44 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 
 export type ToastProps = {
   type: "error" | "info" | "warning" | "success";
   heading: string;
-  children: ReactNode;
+  children?: ReactNode;
+  onClose?: () => void;
 };
 
-export function Toast({ type, children, heading }: Readonly<ToastProps>) {
-  const [isVisible, setIsVisible] = useState(true); // TODO: Add timeout to hide toast according to DKFDS js
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => {
-        setIsVisible(false);
-      }, 5000); // Hide toast after 5 seconds
-      return () => clearTimeout(timer); // Cleanup timer on unmount
-    }
-    // If the toast is not visible, we can do any cleanup if needed
-  }, [isVisible, setIsVisible]);
+export function ToastContainer({
+  children,
+}: {
+  children: ReactElement<ToastProps>[];
+}) {
   return (
     <div
-      className={mergeStrings("toast", `toast-${type}`, isVisible && "show")}
+      className="toast-container"
+      aria-live="assertive"
+      aria-atomic="false"
+      aria-relevant="additions"
+    >
+      {children}
+    </div>
+  );
+}
+
+export function Toast({
+  type,
+  children,
+  heading,
+  onClose,
+}: Readonly<ToastProps>) {
+  const [isVisible, setIsVisible] = useState(true);
+  return (
+    <div
+      className={mergeStrings(
+        "toast",
+        `toast-${type}`,
+        (onClose || isVisible) && "show",
+      )}
       aria-atomic="true"
     >
       <div className="toast-icon"></div>
@@ -29,7 +47,11 @@ export function Toast({ type, children, heading }: Readonly<ToastProps>) {
           <strong id="notification-heading">{heading}</strong>
         </p>
         {children}
-        <button className="toast-close" aria-describedby="notification-heading">
+        <button
+          className="toast-close"
+          aria-describedby="notification-heading"
+          onClick={() => (onClose ? onClose() : setIsVisible(false))}
+        >
           Luk
         </button>
       </div>

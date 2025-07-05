@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
+import { Icon } from "../Shared/Icon";
 
 function getViewportHeight() {
   return Math.max(
@@ -122,9 +123,7 @@ export function BackToTop() {
       )}
       href="#top"
     >
-      <svg className="icon-svg" focusable="false" aria-hidden="true">
-        <use href="#arrow-upward"></use>
-      </svg>
+      <Icon icon="arrow-upward" />
       <span className="sr-only">Til toppen af siden</span>
       <span className="d-none d-md-inline-block" aria-hidden="true">
         Til toppen
