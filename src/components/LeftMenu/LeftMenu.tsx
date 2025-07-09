@@ -1,49 +1,59 @@
-import { ReactNode } from "react";
-
-export type LeftMenuItem = {
-  id: string;
-  url: string;
-  title: ReactNode;
-  information: ReactNode;
-  current?: boolean;
-  childItems?: LeftMenuItem[];
-};
+import { ReactElement, ReactNode } from "react";
+import { mergeStrings } from "../../util/merge-classnames";
 
 export type LeftMenuProps = {
-  menuItems: LeftMenuItem[];
-  ariaLabel: string;
+  ariaLabel?: string;
+  children: ReactElement<LeftMenuItemProps> | ReactElement<LeftMenuItemProps>[];
 };
 
-export function LeftMenu({ ariaLabel, menuItems }: Readonly<LeftMenuProps>) {
+export function LeftMenu({ ariaLabel, children }: Readonly<LeftMenuProps>) {
   return (
     <nav aria-label={ariaLabel}>
-      <LeftMenuItemList menuItems={menuItems} />
+      <LeftMenuItemList>{children}</LeftMenuItemList>
     </nav>
   );
 }
 
-function LeftMenuItemList({ menuItems }: { menuItems: LeftMenuItem[] }) {
-  return (
-    <ul className="sidemenu">
-      {menuItems.map((item) => (
-        <LeftMenuItem item={item} key={item.id}></LeftMenuItem>
-      ))}
-    </ul>
-  );
+function LeftMenuItemList({
+  children,
+}: {
+  children: LeftMenuProps["children"];
+}) {
+  return <ul className="sidemenu">{children}</ul>;
 }
-
-function LeftMenuItem({ item }: { item: LeftMenuItem }) {
+export type LeftMenuItemProps = {
+  url: string;
+  title: ReactNode;
+  information?: ReactNode;
+  current?: boolean;
+  active?: boolean;
+  children?:
+    | ReactElement<LeftMenuItemProps>
+    | ReactElement<LeftMenuItemProps>[];
+};
+export function LeftMenuItem({
+  information,
+  url,
+  title,
+  children,
+  current,
+  active,
+}: LeftMenuItemProps) {
   return (
-    <li>
-      <a href={item.url} className="nav-link">
-        {item.title}
-        {item.information && (
-          <span className="sidenav-information">{item.information}</span>
-        )}
-        {item.childItems?.length && (
-          <LeftMenuItemList menuItems={item.childItems}></LeftMenuItemList>
-        )}
+    <li className={mergeStrings(active && "active", current && "current")}>
+      <a
+        href={url}
+        className="nav-link"
+        aria-current={current ? "page" : undefined}
+      >
+        <div>
+          <span>{title}</span>
+          {information && (
+            <span className="sidenav-information">{information}</span>
+          )}
+        </div>
       </a>
+      {children && <LeftMenuItemList>{children}</LeftMenuItemList>}
     </li>
   );
 }

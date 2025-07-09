@@ -1,40 +1,30 @@
-import { Heading, HeadingProps } from "../Shared/Heading";
+import { ReactNode } from "react";
 
 export type ToggleSwitchProps = {
-  headingProps: HeadingProps;
+  label: ReactNode;
   id: string;
-  switches: {
-    label: string;
-    id: string;
-    checked: boolean;
-    onClick: React.MouseEventHandler<HTMLButtonElement>;
-  }[];
+  checked: boolean;
+  onSwitch: () => void;
 };
 
 export function ToggleSwitch({
+  label,
   id,
-  switches,
-  headingProps,
+  checked,
+  onSwitch,
 }: Readonly<ToggleSwitchProps>) {
   return (
-    <div
-      role="group"
-      aria-labelledby={id + "-heading"}
-      className="w-percent-100 w-percent-sm-60 w-percent-md-40"
+    <button
+      key={id}
+      className="toggle-switch w-percent-100"
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      onClick={() => {
+        onSwitch();
+      }}
     >
-      <Heading {...headingProps}></Heading>
-      {...switches.map((s) => (
-        <button
-          key={s.id}
-          className="toggle-switch w-percent-100"
-          type="button"
-          role="switch"
-          aria-checked={s.checked}
-          onClick={s.onClick}
-        >
-          {s.label}
-        </button>
-      ))}
-    </div>
+      {label}
+    </button>
   );
 }
