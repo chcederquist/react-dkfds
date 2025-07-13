@@ -25,12 +25,10 @@ TODOs in Table.tsx
 
 Components:
 ====
-StepIndicator
 Anchorlinks
+StepIndicator
 Datepicker
 tooltip
-Left menu (Venstremenu)
 Structured lists (Tables)
 Header
 Modal manager + backdrop
-SrLabel-component
