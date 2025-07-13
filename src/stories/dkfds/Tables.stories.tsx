@@ -3,6 +3,7 @@ import { Table, Td, Th } from "../../components/Table/Table";
 import { Button } from "../../components/Button/Button";
 import { useState } from "react";
 import { Icon } from "../../components/Shared/Icon";
+import { ScreenReaderLabel } from "../../components/ScreenReaderLabel/ScreenReaderLabel";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -150,14 +151,14 @@ export const SortingTable: Story = {
                     }}
                   >
                     {column.name}
-                    <span className="sr-only">
+                    <ScreenReaderLabel className="sr-only">
                       Klik for at sortere{" "}
                       {column.name === sortColumn?.columnName
                         ? sortColumn.direction === "asc"
                           ? "faldende"
                           : "stigende"
                         : "efter denne kolonne"}
-                    </span>
+                    </ScreenReaderLabel>
                     {column.name === sortColumn?.columnName && (
                       <Icon
                         icon={

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
-import { SearchField, SearchFieldProps } from "../SearchField/SearchField";
 import { Icon } from "../Shared/Icon";
+import { InputField, InputFieldProps } from "../InputField/InputField";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 export type NavLinkProps = {
   label: string;
@@ -24,7 +25,7 @@ export type HeaderProps = {
     logOffButton: string;
     goToPortalsFrontpage: string;
   };
-  navigationMenu?: { items: NavigationItem[]; search?: SearchFieldProps };
+  navigationMenu?: { items: NavigationItem[]; search?: InputFieldProps };
 };
 
 function NavLink({ label, url }: Readonly<NavLinkProps>) {
@@ -100,7 +101,7 @@ function NavigationMenu({
           </ul>
         </nav>
 
-        {search && <SearchField {...search}></SearchField>}
+        {search && <InputField {...search}></InputField>}
       </div>
     </div>
   );
@@ -259,7 +260,7 @@ export function Header({ texts, navigationMenu }: Readonly<HeaderProps>) {
         </div>
         {navigationMenu && <NavigationMenuMobile {...navigationMenu} />}
         <div className="solution-info-mobile">
-          <h3 className="sr-only">Myndighed</h3>
+          <ScreenReaderLabel as="h3">Myndighed</ScreenReaderLabel>
 
           <p className="mb-2">
             <strong className="authority-name">{texts.authorityName}</strong>
@@ -268,7 +269,7 @@ export function Header({ texts, navigationMenu }: Readonly<HeaderProps>) {
           <p>{texts.authorityContactInfo}</p>
         </div>
         <div className="portal-info-mobile">
-          <h3 className="sr-only">Bruger</h3>
+          <ScreenReaderLabel as={"h3"}>Bruger</ScreenReaderLabel>
 
           <p className="user">
             <span className="mb-3">{texts.userName}</span>

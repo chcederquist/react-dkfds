@@ -1,6 +1,7 @@
 import { ComponentProps } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputField, InputFieldProps } from "../InputField/InputField";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 export type DateFieldsProps = {
   legendProps: ComponentProps<"legend">;
@@ -40,7 +41,7 @@ export function DateFields({
         )}
         {error && (
           <span className="form-error-message" id={id + "-error"}>
-            <span className="sr-only">Fejl: </span>
+            <ScreenReaderLabel>Fejl: </ScreenReaderLabel>
             {error}
           </span>
         )}

@@ -4,6 +4,7 @@ import { InputSize } from "../../types/input-widths";
 import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
 import { IconName } from "../../types/icon-names";
 import { Icon } from "../Shared/Icon";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 export type InputFieldProps = {
   inputProps: HTMLInputPropsWithRequiredFields<"id" | "name">;
@@ -96,7 +97,7 @@ export function InputField({
           {"srLabel" in searchButtonProps && "icon" in searchButtonProps && (
             <>
               <Icon icon={searchButtonProps.icon}></Icon>
-              <span className="sr-only">{searchButtonProps.srLabel}</span>
+              <ScreenReaderLabel>{searchButtonProps.srLabel}</ScreenReaderLabel>
             </>
           )}
         </button>
@@ -139,7 +140,7 @@ export function InputField({
       )}
       {error && (
         <span className="form-error-message" id={inputProps.id + "-error"}>
-          <span className="sr-only">Fejl: </span>
+          <ScreenReaderLabel>Fejl: </ScreenReaderLabel>
           {error}
         </span>
       )}
@@ -162,10 +163,10 @@ export function InputField({
       {!("suffix" in props) && !("prefix" in props) && input}
       {characterLimit && (
         <>
-          <span id={inputProps.id + "-limit-message"} className="sr-only">
+          <ScreenReaderLabel id={inputProps.id + "-limit-message"}>
             Du kan indtaste op til {charactersLeft}
             tegn
-          </span>
+          </ScreenReaderLabel>
           <span
             className={mergeStrings(
               "form-hint character-limit",
@@ -176,10 +177,13 @@ export function InputField({
             Du har {Math.abs(charactersLeft)} tegn{" "}
             {charactersLeft < 0 ? "for meget" : "tilbage"}
           </span>
-          <span className="character-limit-sr-only sr-only" aria-live="polite">
+          <ScreenReaderLabel
+            className="character-limit-sr-only"
+            aria-live="polite"
+          >
             Du har {Math.abs(charactersLeft)} tegn{" "}
             {charactersLeft < 0 ? "for meget" : "tilbage"}
-          </span>
+          </ScreenReaderLabel>
         </>
       )}
     </div>

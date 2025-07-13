@@ -1,5 +1,6 @@
 import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 export type RadioButtonsProps = {
   fieldsetProps?: ComponentProps<"fieldset">;
@@ -58,7 +59,7 @@ export function RadioButtons({
         )}
         {error && (
           <span className="form-error-message" id={id + "-error"}>
-            <span className="sr-only">Fejl: </span>
+            <ScreenReaderLabel>Fejl: </ScreenReaderLabel>
             {error}
           </span>
         )}

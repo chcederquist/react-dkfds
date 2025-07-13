@@ -2,6 +2,7 @@ import { ComponentProps, ReactNode, useEffect, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputSize } from "../../types/input-widths";
 import { HTMLTextAreaPropsWithRequiredFields } from "../../types/html-props";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 export type TextAreaProps = {
   textareaProps: HTMLTextAreaPropsWithRequiredFields<"id" | "name">;
@@ -104,7 +105,7 @@ export function TextArea({
       )}
       {error && (
         <span className="form-error-message" id={inputProps.id + "-error"}>
-          <span className="sr-only">Fejl: </span>
+          <ScreenReaderLabel>Fejl: </ScreenReaderLabel>
           {error}
         </span>
       )}
@@ -123,10 +124,10 @@ export function TextArea({
       {!("suffix" in props) && !("prefix" in props) && input}
       {characterLimit && (
         <>
-          <span id={inputProps.id + "-limit-message"} className="sr-only">
+          <ScreenReaderLabel id={inputProps.id + "-limit-message"}>
             Du kan indtaste op til {charactersLeft}
             tegn
-          </span>
+          </ScreenReaderLabel>
           <span
             className={mergeStrings(
               "form-hint character-limit",
@@ -137,10 +138,13 @@ export function TextArea({
             Du har {Math.abs(charactersLeft)} tegn{" "}
             {charactersLeft < 0 ? "for meget" : "tilbage"}
           </span>
-          <span className="character-limit-sr-only sr-only" aria-live="polite">
+          <ScreenReaderLabel
+            className="character-limit-sr-only"
+            aria-live="polite"
+          >
             Du har {Math.abs(charactersLeft)} tegn{" "}
             {charactersLeft < 0 ? "for meget" : "tilbage"}
-          </span>
+          </ScreenReaderLabel>
         </>
       )}
     </div>

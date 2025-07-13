@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { Icon } from "../Shared/Icon";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 function getViewportHeight() {
   return Math.max(
@@ -124,7 +125,7 @@ export function BackToTop() {
       href="#top"
     >
       <Icon icon="arrow-upward" />
-      <span className="sr-only">Til toppen af siden</span>
+      <ScreenReaderLabel>Til toppen af siden</ScreenReaderLabel>
       <span className="d-none d-md-inline-block" aria-hidden="true">
         Til toppen
       </span>

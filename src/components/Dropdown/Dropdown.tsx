@@ -1,6 +1,7 @@
 import { ComponentProps, ReactNode } from "react";
 import { HTMLSelectPropsWithRequiredFields } from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 export type DropdownProps = {
   selectProps: HTMLSelectPropsWithRequiredFields<"id" | "name">;
@@ -39,7 +40,7 @@ export function Dropdown({
       )}
       {error && (
         <span className="form-error-message" id={selectProps.id + "-error"}>
-          <span className="sr-only">Fejl:</span>
+          <ScreenReaderLabel>Fejl:</ScreenReaderLabel>
           {error}
         </span>
       )}

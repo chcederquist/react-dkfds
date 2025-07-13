@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button, ButtonProps } from "../../components/Button/Button";
+import { useState } from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -68,5 +69,32 @@ export const ClickableIcon: Story = {
     icon: "delete",
     buttonType: "icon-only",
     srLabel: "Slet",
+  },
+};
+
+export const LoadingButton: Story = {
+  args: {
+    children: "Gem",
+    buttonType: "primary",
+  },
+  render: (args) => {
+    const [loading, setLoading] = useState(false);
+    return (
+      <Button
+        {...args}
+        loading={loading}
+        onClick={() => {
+          if (loading) {
+            return;
+          }
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+          }, 6000);
+        }}
+      >
+        Gem
+      </Button>
+    );
   },
 };

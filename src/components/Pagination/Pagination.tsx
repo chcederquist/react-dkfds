@@ -1,4 +1,5 @@
 import { mergeStrings } from "../../util/merge-classnames";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 export function PaginationButton({
   number,
@@ -53,7 +54,7 @@ export function Pagination({
             <svg className="icon-svg" focusable="false" aria-hidden="true">
               <use href="#first-page"></use>
             </svg>
-            <span className="sr-only">Første side</span>
+            <ScreenReaderLabel>Første side</ScreenReaderLabel>
           </a>
 
           <a
@@ -92,9 +93,9 @@ export function Pagination({
             ></PaginationButton>
             {currentPageNumber > 4 ? (
               <li className="pagination-item pagination-overflow">
-                <span className="sr-only">
+                <ScreenReaderLabel>
                   Prikker som indikerer skjulte sider
-                </span>
+                </ScreenReaderLabel>
                 <span>...</span>
               </li>
             ) : (
@@ -128,9 +129,9 @@ export function Pagination({
             )}
             {currentPageNumber < pageCount - 3 ? (
               <li className="pagination-item pagination-overflow">
-                <span className="sr-only">
+                <ScreenReaderLabel>
                   Prikker som indikerer skjulte sider
-                </span>
+                </ScreenReaderLabel>
                 <span>...</span>
               </li>
             ) : (
@@ -174,7 +175,7 @@ export function Pagination({
             <svg className="icon-svg" focusable="false" aria-hidden="true">
               <use href="#last-page"></use>
             </svg>
-            <span className="sr-only">Sidste side</span>
+            <ScreenReaderLabel>Sidste side</ScreenReaderLabel>
           </a>
         </>
       )}

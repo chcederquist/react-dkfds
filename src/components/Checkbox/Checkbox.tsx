@@ -1,5 +1,6 @@
 import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 export type CheckboxProps = {
   fieldsetProps?: ComponentProps<"fieldset">;
@@ -51,7 +52,7 @@ export function Checkbox({
         )}
         {error && (
           <span className="form-error-message" id={id + "-error"}>
-            <span className="sr-only">Fejl: </span>
+            <ScreenReaderLabel>Fejl: </ScreenReaderLabel>
             {error}
           </span>
         )}
