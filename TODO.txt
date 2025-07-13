@@ -25,10 +25,9 @@ TODOs in Table.tsx
 
 Components:
 ====
-Anchorlinks
 StepIndicator
-Datepicker
-tooltip
 Structured lists (Tables)
-Header
 Modal manager + backdrop
+tooltip
+Header
+Datepicker
