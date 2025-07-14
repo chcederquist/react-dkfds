@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Table, Td, Th } from "../../components/Table/Table";
+import {
+  SelectAllRowsCheckbox,
+  SelectRowCheckbox,
+  Table,
+  Td,
+  Th,
+  Tr,
+} from "../../components/Table/Table";
 import { Button } from "../../components/Button/Button";
 import { useState } from "react";
 import { Icon } from "../../components/Shared/Icon";
@@ -60,21 +67,21 @@ export const MainTable: Story = {
     children: (
       <>
         <thead>
-          <tr>
+          <Tr>
             {tableData.columns.map((column) => (
               <Th scope="col" key={column.name}>
                 {column.name}
               </Th>
             ))}
-          </tr>
+          </Tr>
         </thead>
         <tbody>
           {tableData.rows.map((row) => (
-            <tr key={row.join(",")}>
+            <Tr key={row.join(",")}>
               {row.map((cell) => (
                 <Td key={cell}>{cell}</Td>
               ))}
-            </tr>
+            </Tr>
           ))}
         </tbody>
       </>
@@ -136,7 +143,7 @@ export const SortingTable: Story = {
     return (
       <Table>
         <thead>
-          <tr>
+          <Tr>
             {tableData.columns.map((column) => (
               <Th noWrap scope="col" key={column.name}>
                 {column.sortable && (
@@ -176,15 +183,104 @@ export const SortingTable: Story = {
                 {!column.sortable && column.name}
               </Th>
             ))}
-          </tr>
+          </Tr>
         </thead>
         <tbody>
           {sortedTableData.map((row) => (
-            <tr key={row.join(",")}>
+            <Tr key={row.join(",")}>
               {row.map((cell) => (
                 <Td key={cell}>{cell}</Td>
               ))}
-            </tr>
+            </Tr>
+          ))}
+        </tbody>
+      </Table>
+    );
+  },
+};
+
+export const ResponsiveTable: Story = {
+  render: () => (
+    <Table responsiveHeaders="sm">
+      <thead>
+        <Tr>
+          {tableData.columns.map((column) => (
+            <Th scope="col" key={column.name}>
+              {column.name}
+            </Th>
+          ))}
+        </Tr>
+      </thead>
+      <tbody>
+        {tableData.rows.map((row) => (
+          <Tr key={row.join(",")}>
+            {row.map((cell, i) => (
+              <Td
+                thResponsiveTitle={tableData.columns[i].name}
+                responsiveHeadersSize={"sm"}
+                key={cell}
+              >
+                {cell}
+              </Td>
+            ))}
+          </Tr>
+        ))}
+      </tbody>
+    </Table>
+  ),
+};
+
+export const SelectableTable: Story = {
+  render: () => {
+    const [selectedRows, setSelectedRows] = useState<number[]>([]);
+    return (
+      <Table selectable>
+        <thead>
+          <Tr>
+            <Th>
+              <SelectAllRowsCheckbox
+                onDeselectedAll={() => setSelectedRows([])}
+                onSelectedAll={() =>
+                  setSelectedRows(
+                    Array(tableData.rows.length)
+                      .fill(0)
+                      .map((_, i) => i),
+                  )
+                }
+                rowIds={Array(tableData.rows.length)
+                  .fill(0)
+                  .map((_, i) => `selectable-row-${i}`)}
+                totalRowsCount={tableData.rows.length}
+                selectedRowsCount={selectedRows.length}
+              ></SelectAllRowsCheckbox>
+            </Th>
+            {tableData.columns.map((column) => (
+              <Th scope="col" key={column.name}>
+                {column.name}
+              </Th>
+            ))}
+          </Tr>
+        </thead>
+        <tbody>
+          {tableData.rows.map((row, i) => (
+            <Tr key={row.join(",")} selected={selectedRows.includes(i)}>
+              <Td>
+                <SelectRowCheckbox
+                  checked={selectedRows.includes(i)}
+                  onRowSelected={(checked) => {
+                    setSelectedRows((prev) =>
+                      checked
+                        ? [...prev, i]
+                        : prev.filter((rowIndex) => rowIndex !== i),
+                    );
+                  }}
+                  id={`selectable-row-${i}`}
+                ></SelectRowCheckbox>
+              </Td>
+              {row.map((cell) => (
+                <Td key={cell}>{cell}</Td>
+              ))}
+            </Tr>
           ))}
         </tbody>
       </Table>

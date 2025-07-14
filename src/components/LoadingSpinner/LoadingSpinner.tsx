@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 
-export type LoadingSpinner = {
+export type LoadingSpinnerProps = {
   size?: "small" | "large";
   light?: boolean;
   boxed?: boolean;
@@ -14,7 +14,7 @@ export function LoadingSpinner({
   boxed = false,
   children,
   spinnerStatus,
-}: Readonly<LoadingSpinner>) {
+}: Readonly<LoadingSpinnerProps>) {
   const content = (
     <>
       <div

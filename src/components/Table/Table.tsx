@@ -1,6 +1,7 @@
 import { ComponentProps } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { TablePagination, TablePaginationProps } from "./TablePagination";
+import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
 export function Tr({
   children,
@@ -43,18 +44,25 @@ export function Td({
       )}
     >
       {thResponsiveTitle && responsiveHeadersSize && (
-        <div
-          className={`d-${responsiveHeadersSize === "sm" ? "md" : responsiveHeadersSize === "md" ? "lg" : "xl"}-none`} // Hide on sizes above the selected breakpoint
-        >
-          {thResponsiveTitle}
-        </div>
+        <>
+          <b
+            className={`d-${responsiveHeadersSize === "sm" ? "md" : responsiveHeadersSize === "md" ? "lg" : "xl"}-none`} // Hide on sizes above the selected breakpoint
+          >
+            {thResponsiveTitle}
+          </b>
+          <br />
+        </>
       )}
       {children}
     </td>
   );
 }
 
-export type ThProps = TdProps & { noWrap?: boolean };
+export type ThProps = {
+  children?: React.ReactNode;
+  verticalAlign?: "top" | "middle" | "bottom";
+  noWrap?: boolean;
+} & ComponentProps<"th">;
 
 export function Th({ children, noWrap, verticalAlign, ...props }: ThProps) {
   return (
@@ -80,7 +88,6 @@ export type TableProps = {
   compact?: "compact" | "extra-compact";
   tablePaginationProps?: TablePaginationProps;
   responsiveHeaders?: "sm" | "md" | "lg";
-  // TODO: DKFDS.ResponsiveTable
 } & ComponentProps<"table">;
 
 function InnerTable({
@@ -103,7 +110,7 @@ function InnerTable({
         compact === "extra-compact" && "table--extracompact",
         selectable && "table--selectable",
         props.className,
-        responsiveHeaders && `table-${responsiveHeaders}-responsive-headers`, // TODO: do the data-title thing
+        responsiveHeaders && `table-${responsiveHeaders}-responsive-headers`,
       )}
     >
       {children}
@@ -129,5 +136,70 @@ export function Table(props: TableProps) {
         <TablePagination {...props.tablePaginationProps} />
       )}
     </>
+  );
+}
+
+export function SelectRowCheckbox({
+  checked,
+  onRowSelected,
+  id,
+}: {
+  checked: boolean;
+  onRowSelected: (checked: boolean) => void;
+  id: string;
+}) {
+  return (
+    <div className="form-group-checkbox">
+      <input
+        type="checkbox"
+        className="form-checkbox"
+        checked={checked}
+        onChange={() => {
+          onRowSelected(!checked);
+        }}
+        id={id}
+      />
+      <label htmlFor="select-all" className="form-label">
+        <ScreenReaderLabel>Vælg række</ScreenReaderLabel>
+      </label>
+    </div>
+  );
+}
+
+export function SelectAllRowsCheckbox({
+  totalRowsCount,
+  rowIds,
+  selectedRowsCount,
+  onSelectedAll,
+  onDeselectedAll,
+}: {
+  totalRowsCount: number;
+  selectedRowsCount: number;
+  rowIds: string[];
+  onSelectedAll: () => void;
+  onDeselectedAll: () => void;
+}) {
+  return (
+    <div className="form-group-checkbox">
+      <input
+        type="checkbox"
+        className={mergeStrings(
+          "form-checkbox",
+          selectedRowsCount > 0 &&
+            selectedRowsCount < totalRowsCount &&
+            "mixed",
+        )}
+        onChange={() => {
+          if (selectedRowsCount === totalRowsCount) onDeselectedAll();
+          else onSelectedAll();
+        }}
+        checked={selectedRowsCount === totalRowsCount}
+        id="select-all"
+        aria-controls={rowIds.join(" ")}
+      />
+      <label htmlFor="select-all" className="form-label">
+        <ScreenReaderLabel>Vælg alle rækker</ScreenReaderLabel>
+      </label>
+    </div>
   );
 }

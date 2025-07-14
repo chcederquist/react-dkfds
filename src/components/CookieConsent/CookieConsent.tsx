@@ -1,17 +1,19 @@
 import { ComponentProps, ReactNode } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
 
+export type CookieConsentProps = {
+  headingProps: HeadingProps;
+  children: ReactNode;
+  acceptButtonProps: ComponentProps<"a">;
+  declineButtonProps: ComponentProps<"a">;
+};
+
 export function CookieConsent({
   headingProps,
   children,
   acceptButtonProps,
   declineButtonProps,
-}: Readonly<{
-  headingProps: HeadingProps;
-  children: ReactNode;
-  acceptButtonProps: ComponentProps<"a">;
-  declineButtonProps: ComponentProps<"a">;
-}>) {
+}: Readonly<CookieConsentProps>) {
   return (
     <div
       className="cookie-container"
