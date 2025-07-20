@@ -1,4 +1,4 @@
-# react-dkfds
+# React DKFDS
 A React component library based on [Det Fælles Designsystem](https://designsystem.dk) (DKFDS)
 This library provides React components implemented by following the guidelines for each component.
 Components currently have hard-coded danish labels, which may be customisable in the future
@@ -41,7 +41,6 @@ If you notice any other components missing, please create an issue or submit a p
 
 ## Roadmap
 The following is a prioritised list of features to be implemented in this library. 
-- JSDoc documentation of components and props
 - Automated testing of component functionality
 - Modal manager handling DOM insertion, backdrops and focus
 - Un-hardcoding danish-language labels

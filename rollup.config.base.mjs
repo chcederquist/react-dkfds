@@ -16,11 +16,12 @@ export default {
     commonjs(),
     babel({
       babelHelpers: "bundled",
-      exclude: /node_modules/,
+      exclude: /node_modules|stories/,
       presets: ["@babel/preset-react", "@babel/preset-typescript"],
     }),
     typescript({
       tsconfig: "./tsconfig.json",
+      exclude: ["**/*.stories.tsx", "**/*.test.tsx"],
       outputToFilesystem: true,
     }),
     postcss(),

@@ -5,12 +5,33 @@ import { Link, LinkProps } from "../Link/Link";
 import { Button } from "../Button/Button";
 import { Icon } from "../Shared/Icon";
 
+/**
+ * Props for the `Card` component.
+ *
+ * @property image - Optional React element representing the card image. Should be of type `CardImageProps`.
+ * @property children - Optional React element representing the card content. Should be of type `CardContentProps`.
+ * @property navigationProps - Optional props for the anchor element used for navigation. Extends `ComponentProps<"a">` and includes an optional `isExternal` flag to indicate external links.
+ */
 export type CardProps = {
   image?: ReactElement<CardImageProps>;
   children?: ReactElement<CardContentProps>;
   navigationProps?: ComponentProps<"a"> & { isExternal?: boolean };
 };
 
+/**
+ * Renders a card component that can optionally act as a navigational link.
+ *
+ * - If `navigationProps` is provided, the card is rendered as an anchor (`<a>`) element.
+ *   - Displays an external link icon if `navigationProps.isExternal` is true.
+ *   - Displays a forward arrow icon if `navigationProps.isExternal` is false.
+ *   - Merges the "card" class with any additional classes from `navigationProps.className`.
+ * - If `navigationProps` is not provided, the card is rendered as a `<section>` element.
+ * https://designsystem.dk/komponenter/cards/
+ *
+ * @param image - Optional image or visual element to display at the top of the card.
+ * @param children - Content to be displayed within the card.
+ * @param navigationProps - Optional props for navigation, including link attributes and external indication.
+ */
 export function Card({
   image,
   children,

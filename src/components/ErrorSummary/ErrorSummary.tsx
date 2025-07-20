@@ -42,11 +42,27 @@ function getScrollTarget(inputElement: HTMLInputElement | HTMLSelectElement) {
   );
 }
 
+/**
+ * Props for the ErrorSummary component.
+ *
+ * @property errorHeading - Heading properties for the error summary, including a required `id`.
+ * @property errors - An array of error objects, each containing an `inputId` referencing the input with an error, and an `errorMessage` describing the error.
+ */
 export type ErrorSummaryProps = {
   errorHeading: HeadingProps & Required<Pick<HeadingProps, "id">>;
   errors: { inputId: string; errorMessage: string }[];
 };
 
+/**
+ * Displays a summary of form validation errors in an accessible alert box.
+ * Each error is listed with a link that scrolls to and focuses the corresponding input field.
+ * https://designsystem.dk/komponenter/fejlopsummering/
+ *
+ * @param errors - An array of error objects, each containing an `inputId` and `errorMessage`.
+ * @param errorHeading - Props for the heading element, including an `id` used for accessibility.
+ *
+ * @returns A navigation element containing an error alert with a summary of errors.
+ */
 export function ErrorSummary({
   errors,
   errorHeading,

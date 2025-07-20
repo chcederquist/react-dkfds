@@ -30,6 +30,19 @@ export function Tab(_: Readonly<TabProps>) {
   return <></>;
 }
 
+/**
+ * Props for the `TabContainer` component.
+ *
+ * @remarks
+ * Supports both controlled and uncontrolled modes:
+ * - **Uncontrolled mode:** Provide `defaultActiveKey` to set the initially active tab.
+ * - **Controlled mode:** Provide `activeKey` and `onSelect` to control the active tab externally.
+ *
+ * @property children - An array of `Tab` elements, each with all `TabProps` except `active`.
+ * @property defaultActiveKey - (Uncontrolled) The key of the tab that should be active by default.
+ * @property activeKey - (Controlled) The key of the currently active tab.
+ * @property onSelect - (Controlled) Callback invoked when a tab is selected, receives the tab's key.
+ */
 export type TabContainerProps = {
   children: ReactElement<Omit<TabProps, "active">, typeof Tab>[];
 } & (
@@ -45,6 +58,22 @@ export type TabContainerProps = {
     }
 );
 
+/**
+ * A container component for managing tabbed navigation and content display.
+ *
+ * Renders a list of tab buttons and their associated content panels. Handles keyboard navigation
+ * (ArrowLeft, ArrowRight, Home, End) and selection logic. Supports both controlled and uncontrolled
+ * tab selection via `activeKey`, `defaultActiveKey`, and `onSelect` props.
+ * https://designsystem.dk/komponenter/faneblade/
+ *
+ * @param children - Tab components to be rendered within the container.
+ * @param props - Additional props including:
+ *   - `activeKey`: (optional) The currently active tab key (controlled mode).
+ *   - `defaultActiveKey`: (optional) The default active tab key (uncontrolled mode).
+ *   - `onSelect`: (optional) Callback invoked when a tab is selected.
+ *
+ * @returns A tab container with navigation and content panels.
+ */
 export function TabContainer({
   children,
   ...props

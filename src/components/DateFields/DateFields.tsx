@@ -3,6 +3,18 @@ import { mergeStrings } from "../../util/merge-classnames";
 import { InputField, InputFieldProps } from "../InputField/InputField";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
+/**
+ * Props for the `DateFields` component, which renders a set of input fields for day, month, and year.
+ *
+ * @property legendProps - Props to be passed to the `<legend>` element.
+ * @property fieldsetProps - Optional props to be passed to the `<fieldset>` element.
+ * @property dayInputProps - Props for the day input field.
+ * @property monthInputProps - Props for the month input field.
+ * @property yearInputProps - Props for the year input field.
+ * @property id - Unique identifier for the date fields group.
+ * @property hint - Optional hint text to display below the fields.
+ * @property error - Optional error message to display below the fields.
+ */
 export type DateFieldsProps = {
   legendProps: ComponentProps<"legend">;
   fieldsetProps?: ComponentProps<"fieldset">;
@@ -14,6 +26,21 @@ export type DateFieldsProps = {
   error?: string;
 };
 
+/**
+ * Renders a group of input fields for entering a date (day, month, year) with optional legend, hint, and error messages.
+ * https://designsystem.dk/komponenter/datofelter/
+ *
+ * @param legendProps - Props to be passed to the legend element.
+ * @param fieldsetProps - Props to be passed to the fieldset element.
+ * @param id - Unique identifier used for hint and error message elements.
+ * @param hint - Optional hint text displayed below the legend.
+ * @param dayInputProps - Props for the day input field.
+ * @param monthInputProps - Props for the month input field.
+ * @param yearInputProps - Props for the year input field.
+ * @param error - Optional error message displayed below the inputs.
+ *
+ * @returns A JSX element containing the date input fields, legend, hint, and error message.
+ */
 export function DateFields({
   legendProps,
   fieldsetProps,

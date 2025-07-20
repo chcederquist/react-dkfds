@@ -35,6 +35,21 @@ function isFooterVisible() {
     : false;
 }
 
+/**
+ * Renders a "Back to Top" button that appears based on scroll position and page layout.
+ * The button becomes sticky to the footer or is conditionally shown depending on the presence and visibility of a sidenav.
+ * It observes DOM mutations and listens to scroll, resize, and load events to update its visibility and position.
+ * https://designsystem.dk/komponenter/tilbage-til-top/
+ * @returns {JSX.Element} The "Back to Top" anchor button.
+ *
+ * @remarks
+ * - The button is hidden if the page height is less than twice the viewport height.
+ * - If a responsive sidenav is present and visible, the button placement adapts accordingly.
+ * - Uses a MutationObserver to react to dynamic changes in the DOM.
+ *
+ * @internal
+ * This component relies on utility functions: `getViewportHeight`, `getPageHeight`, `isFooterVisible`, and `mergeStrings`.
+ */
 export function BackToTop() {
   const [heightOfViewport, setHeightOfViewport] = useState(getViewportHeight());
   const [pageHeight, setPageHeight] = useState(getPageHeight());

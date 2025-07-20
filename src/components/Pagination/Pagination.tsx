@@ -1,6 +1,15 @@
 import { mergeStrings } from "../../util/merge-classnames";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
+/**
+ * Renders a pagination button for navigating between pages.
+ *
+ * @param number - The page number to display.
+ * @param isCurrentPage - Indicates if this button represents the current page.
+ * @param onClick - Callback function invoked when the button is clicked.
+ *
+ * @returns A list item containing a styled anchor element for pagination.
+ */
 export function PaginationButton({
   number,
   isCurrentPage,
@@ -27,12 +36,36 @@ export function PaginationButton({
   );
 }
 
+/**
+ * Props for the Pagination component.
+ *
+ * @property {number} pageCount - The total number of pages available.
+ * @property {number} currentPageNumber - The currently selected page number (1-based index).
+ * @property {(pageNumber: number) => void} [onPageSelected] - Optional callback invoked when a page is selected. Receives the selected page number as an argument.
+ */
 export type PaginationProps = {
   pageCount: number;
   currentPageNumber: number;
   onPageSelected?: (pageNumber: number) => void;
 };
 
+/**
+ * Renders a pagination navigation component for selecting pages.
+ *
+ * Displays page navigation buttons, including first, previous, next, and last page controls,
+ * as well as individual page number buttons. Handles cases where the total number of pages
+ * is small (≤ 7) or large (> 7) by showing ellipsis for hidden pages.
+ * https://designsystem.dk/komponenter/paginering/
+ *
+ * @param pageCount - The total number of pages available.
+ * @param currentPageNumber - The currently selected page number (1-based).
+ * @param onPageSelected - Callback invoked when a page is selected, receiving the new page number.
+ *
+ * @remarks
+ * - The component is accessible, with appropriate ARIA labels and screen reader text.
+ * - Page navigation buttons are conditionally rendered based on the current page.
+ * - Designed for use with the DKFDS design system.
+ */
 export function Pagination({
   pageCount,
   currentPageNumber,

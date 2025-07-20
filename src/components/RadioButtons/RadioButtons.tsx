@@ -2,6 +2,26 @@ import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
+/**
+ * Props for the `RadioButtons` component.
+ *
+ * @property {ComponentProps<"fieldset">} [fieldsetProps] - Additional props for the fieldset element.
+ * @property {(value: string) => void} [onChange] - Callback invoked when the selected radio button changes.
+ * @property {Array} options - Array of radio button options.
+ * @property {string} options.value - Value of the radio button.
+ * @property {string} options.id - Unique ID for the radio button.
+ * @property {ComponentProps<"input">} [options.inputProps] - Additional props for the input element.
+ * @property {boolean} [options.checked] - Whether the radio button is checked.
+ * @property {ReactNode} options.label - Label for the radio button.
+ * @property {string} [options.hint] - Optional hint text for the radio button.
+ * @property {ReactNode} [options.hiddenContent] - Optional content shown when the radio button is selected.
+ * @property {string} id - Unique ID for the radio button group.
+ * @property {string} [hint] - Optional hint text for the radio button group.
+ * @property {string} [error] - Optional error message for the radio button group.
+ * @property {string} name - Name attribute for the radio button group.
+ * @property {ComponentProps<"legend">} legendProps - Props for the legend element (required if `label` is not provided).
+ * @property {ReactNode} [label] - Label for the radio button group (required if `legendProps` is not provided).
+ */
 export type RadioButtonsProps = {
   fieldsetProps?: ComponentProps<"fieldset">;
   onChange?: (value: string) => void;
@@ -29,6 +49,25 @@ export type RadioButtonsProps = {
     }
 );
 
+/**
+ * Renders a group of radio buttons with optional hint, error message, and collapsible hidden content.
+ * https://designsystem.dk/komponenter/radioknap/
+ *
+ * @param fieldsetProps - Additional props to spread onto the `<fieldset>` element.
+ * @param hint - Optional hint text displayed above the radio buttons.
+ * @param id - Unique identifier used for accessibility attributes.
+ * @param legendProps - Additional props to spread onto the `<legend>` element.
+ * @param error - Optional error message displayed below the radio buttons.
+ * @param onChange - Callback invoked when a radio button is selected, receiving the selected value.
+ * @param options - Array of radio button options, each containing label, value, checked state, and optional hint, inputProps, and hiddenContent.
+ * @param name - Name attribute for the radio button group.
+ * @param label - Label text for the radio button group, used as a fallback if `legendProps.children` is not provided.
+ *
+ * @remarks
+ * - Displays hint and error messages with appropriate ARIA attributes for accessibility.
+ * - Supports rendering additional content when a radio option with `hiddenContent` is selected.
+ * - Uses `mergeStrings` utility to conditionally apply CSS classes.
+ */
 export function RadioButtons({
   fieldsetProps,
   hint,

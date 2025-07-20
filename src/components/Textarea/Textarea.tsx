@@ -4,6 +4,20 @@ import { InputSize } from "../../types/input-widths";
 import { HTMLTextAreaPropsWithRequiredFields } from "../../types/html-props";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 
+/**
+ * Props for the `Textarea` component.
+ *
+ * @property textareaProps - Props for the underlying `<textarea>` element. Must include required fields `"id"` and `"name"`.
+ * @property formGroupProps - Optional props for the wrapping `<div>` element.
+ * @property error - Optional error message to display.
+ * @property hint - Optional hint text to display below the textarea.
+ * @property characterLimit - Optional maximum character count for the textarea.
+ * @property prefix - Optional prefix to display before the textarea (mutually exclusive with `suffix`).
+ * @property suffix - Optional suffix to display after the textarea (mutually exclusive with `prefix`).
+ * @property label - Optional label for the textarea.
+ * @property labelProps - Props for the `<label>` element. Required if `label` is optional, otherwise optional.
+ * @property size - Optional size of the textarea input (from `InputSize`).
+ */
 export type TextAreaProps = {
   textareaProps: HTMLTextAreaPropsWithRequiredFields<"id" | "name">;
   formGroupProps?: ComponentProps<"div">;
@@ -19,6 +33,25 @@ export type TextAreaProps = {
       }
     | { label: ReactNode; labelProps?: ComponentProps<"label"> }
   );
+
+/**
+ * Renders a styled textarea input with label, hint, error message, and optional character limit.
+ * https://designsystem.dk/komponenter/tekstomraade/
+ *
+ * @param labelProps - Props for the label element.
+ * @param label - The label text for the textarea.
+ * @param textareaProps - Props for the textarea element.
+ * @param formGroupProps - Props for the form group container.
+ * @param hint - Optional hint text displayed below the label.
+ * @param characterLimit - Optional maximum number of characters allowed in the textarea.
+ * @param error - Optional error message displayed below the textarea.
+ * @param props - Additional props, including optional prefix/suffix and input width settings.
+ *
+ * @remarks
+ * - Displays character count and limit feedback if `characterLimit` is provided.
+ * - Handles prefix and suffix decorations for the textarea input.
+ * - Provides accessible labels and error messages for screen readers.
+ */
 export function TextArea({
   labelProps,
   label,

@@ -26,6 +26,16 @@ export function TablePaginationButton({
   );
 }
 
+/**
+ * Props for the TablePagination component.
+ *
+ * @property {number} pageCount - The total number of pages available.
+ * @property {number} currentPageNumber - The currently selected page number (1-based).
+ * @property {(pageNumber: number) => void} onPageSelected - Callback invoked when a page is selected.
+ * @property {Object} [pageSizeProps] - Optional props for page size selection.
+ * @property {number[]} pageSizeProps.pageSizes - Array of available page sizes.
+ * @property {(pageSize: number) => void} pageSizeProps.onPageSelected - Callback invoked when a page size is selected.
+ */
 export type TablePaginationProps = {
   pageCount: number;
   currentPageNumber: number;
@@ -36,6 +46,19 @@ export type TablePaginationProps = {
   };
 };
 
+/**
+ * Renders a table pagination component with page navigation and page size selection.
+ * https://designsystem.dk/komponenter/tables/
+ *
+ * @param pageCount - The total number of pages available.
+ * @param currentPageNumber - The currently selected page number (1-based).
+ * @param onPageSelected - Callback invoked when a page or page size is selected.
+ * @param pageSizeProps - Optional props for page size selection, including available page sizes.
+ *
+ * Displays navigation buttons for first, previous, next, and last pages, as well as direct page selection.
+ * Handles both small and large page counts, showing ellipsis for hidden pages when necessary.
+ * Includes accessibility features such as ARIA labels and screen reader text.
+ */
 export function TablePagination({
   pageCount,
   currentPageNumber,
