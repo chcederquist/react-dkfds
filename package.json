@@ -10,6 +10,7 @@
     "build": "rollup -c",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "test-storybook": "vitest --project=storybook",
     "gen-icon-types": "node icon-name-type-gen.js"
   },
   "repository": {
@@ -37,17 +38,16 @@
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.1",
-    "@storybook/addon-essentials": "^8.5.0",
-    "@storybook/addon-interactions": "^8.5.0",
-    "@storybook/addon-onboarding": "^8.5.0",
-    "@storybook/addon-webpack5-compiler-swc": "^1.0.5",
-    "@storybook/blocks": "^8.5.0",
-    "@storybook/react": "^8.5.0",
-    "@storybook/react-webpack5": "^8.5.0",
-    "@storybook/test": "^8.5.0",
+    "@storybook/addon-a11y": "^9.0.18",
+    "@storybook/addon-docs": "^9.0.18",
+    "@storybook/addon-onboarding": "^9.0.18",
+    "@storybook/addon-vitest": "^9.0.18",
+    "@storybook/react-vite": "^9.0.18",
     "@svgr/webpack": "^6.5.1",
     "@typescript-eslint/eslint-plugin": "^8.32.0",
     "@typescript-eslint/parser": "^8.32.0",
+    "@vitest/browser": "^3.2.4",
+    "@vitest/coverage-v8": "^3.2.4",
     "dkfds": "^11.0.1",
     "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
@@ -56,6 +56,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-storybook": "^0.11.0",
     "globals": "^16.1.0",
+    "playwright": "^1.54.1",
     "prettier": "^3.3.3",
     "rollup": "^4.25.0",
     "rollup-plugin-dts": "^6.1.1",
@@ -63,7 +64,9 @@
     "rollup-plugin-import-css": "^3.5.8",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "storybook": "^8.6.12",
-    "typescript": "^5.8.3"
+    "storybook": "^9.0.18",
+    "typescript": "^5.8.3",
+    "vite-plugin-svgr": "^4.3.0",
+    "vitest": "^3.2.4"
   }
 }
