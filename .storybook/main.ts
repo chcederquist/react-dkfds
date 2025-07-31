@@ -22,6 +22,11 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
   viteFinal: async (config) => {
+    config.optimizeDeps = {
+      ...config.optimizeDeps,
+      include: ["react/jsx-dev-runtime"],
+    };
+
     return mergeConfig(config, {
       plugins: [
         svgr({
