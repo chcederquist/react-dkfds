@@ -1,7 +1,6 @@
-import React from "react";
-import type { Preview } from "@storybook/react";
+import type { Decorator, Preview } from "@storybook/react-vite";
 import BaseSVG from "/node_modules/dkfds/dist/img/all-svg-icons.svg?svgr";
-const withSVGHeader = (Story) => {
+const withSVGHeader: Decorator = (Story) => {
   return (
     <>
       <div style={{ display: "none" }}>

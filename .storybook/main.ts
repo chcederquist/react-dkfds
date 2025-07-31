@@ -1,4 +1,6 @@
-import type { StorybookConfig } from "@storybook/react-webpack5";
+import type { StorybookConfig } from "@storybook/react-vite";
+import { mergeConfig } from "vite";
+import svgr from "vite-plugin-svgr";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -7,43 +9,20 @@ const config: StorybookConfig = {
     <link rel="stylesheet" href="/css/dkfds.css" />
     `,
   addons: [
-    "@storybook/addon-webpack5-compiler-swc",
-    "@storybook/addon-essentials",
+    "@storybook/addon-docs",
     "@storybook/addon-onboarding",
-    "@storybook/addon-interactions",
+    "@storybook/addon-vitest",
+    "@storybook/addon-a11y",
   ],
   framework: {
-    name: "@storybook/react-webpack5",
-    options: {
-      builder: {
-        useSWC: true,
-      },
-    },
+    name: "@storybook/react-vite",
+    options: {},
   },
-  swc: () => ({
-    jsc: {
-      transform: {
-        react: {
-          runtime: "automatic",
-        },
-      },
-    },
-  }),
-  webpackFinal: async (config) => {
-    const rule = config.module?.rules?.find(
-      (r) => typeof r === "object" && r?.test?.toString().includes("svg"),
-    );
-    if (rule) {
-      rule.resourceQuery = { not: [/svgr/] };
-    }
-    // Add SVGR loader
-    config.module?.rules?.push({
-      test: /\.svg$/,
-      resourceQuery: /svgr/,
-      use: [
-        {
-          loader: "@svgr/webpack",
-          options: {
+  viteFinal: async (config) => {
+    return mergeConfig(config, {
+      plugins: [
+        svgr({
+          svgrOptions: {
             svgo: true,
             titleProp: true,
             ref: true,
@@ -53,7 +32,6 @@ const config: StorybookConfig = {
                   name: "preset-default",
                   params: {
                     overrides: {
-                      // Prevent stripping content
                       removeViewBox: false,
                       cleanupIDs: false,
                     },
@@ -62,12 +40,13 @@ const config: StorybookConfig = {
               ],
             },
           },
-        },
+          // Only apply SVGR when importing like ?svgr
+          include: "**/*.svg?svgr",
+        }),
       ],
-      issuer: /\.[jt]sx?$/, // Apply only for JS/TS
+      // optional: fallback to default asset handling for other SVGs
+      assetsInclude: ["**/*.svg"],
     });
-
-    return config;
   },
 };
 export default config;
