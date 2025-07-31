@@ -49,14 +49,7 @@ export function Alert({
         : type === "warning"
           ? "Advarsel"
           : "Fejl");
-  const iconName: IconName =
-    type === "info"
-      ? "info"
-      : type === "success"
-        ? "success"
-        : type === "warning"
-          ? "warning"
-          : "error";
+  const iconName = type satisfies IconName;
   return (
     <div className={`alert alert-${type}`} id={id}>
       <Icon
