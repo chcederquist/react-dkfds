@@ -18,6 +18,9 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
+  core: {
+    disableTelemetry: true,
+  },
   viteFinal: async (config) => {
     return mergeConfig(config, {
       plugins: [
