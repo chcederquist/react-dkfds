@@ -3,6 +3,20 @@ import { Heading, HeadingProps } from "../Shared/Heading";
 import { Icon } from "../Shared/Icon";
 import { ModalBackdrop } from "./ModalBackdrop";
 import { mergeStrings } from "../../util/merge-classnames";
+import { createPortal } from "react-dom";
+
+function setInert(inert: boolean, exceptId?: string) {
+  const elements = document.body.children;
+  for (const element of elements) {
+    if (element.id !== exceptId || inert === false) {
+      if (!inert) {
+        element.removeAttribute("inert");
+      } else {
+        element.setAttribute("inert", "true");
+      }
+    }
+  }
+}
 
 /**
  * Props for the Modal component.
@@ -52,21 +66,23 @@ export function Modal({
   useEffect(() => {
     if (typeof show === "boolean") {
       setVisible(show);
+      setInert(show, id);
     }
-  }, [show]);
+  }, [id, show]);
 
   // Listen for global close event
   useEffect(() => {
     const handleCloseAll: EventListener = (e: Event | CustomEvent) => {
       if (e instanceof CustomEvent && e.detail?.except !== id) {
         setVisible(false);
+        onClose?.();
       }
     };
     window.addEventListener("closeAllModals", handleCloseAll);
     return () => {
       window.removeEventListener("closeAllModals", handleCloseAll);
     };
-  }, [id]);
+  }, [id, onClose]);
 
   // When opening, dispatch event to close others
   useEffect(() => {
@@ -78,7 +94,7 @@ export function Modal({
     }
   }, [visible, id]);
 
-  return (
+  return createPortal(
     <>
       {visible && <ModalBackdrop></ModalBackdrop>}
       <div
@@ -116,6 +132,7 @@ export function Modal({
           {footer && <div className="modal-footer">{footer}</div>}
         </div>
       </div>
-    </>
+    </>,
+    document.body,
   );
 }
