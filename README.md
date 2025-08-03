@@ -42,5 +42,4 @@ If you notice any other components missing, please create an issue or submit a p
 ## Roadmap
 The following is a prioritised list of features to be implemented in this library. 
 - Automated testing of component functionality
-- Modal manager handling DOM insertion, backdrops and focus
 - Un-hardcoding danish-language labels
