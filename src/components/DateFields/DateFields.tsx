@@ -2,6 +2,7 @@ import { ComponentProps } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { InputField, InputFieldProps } from "../InputField/InputField";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
+import { useT } from "../../hooks/useT";
 
 /**
  * Props for the `DateFields` component, which renders a set of input fields for day, month, and year.
@@ -51,6 +52,7 @@ export function DateFields({
   yearInputProps,
   error,
 }: Readonly<DateFieldsProps>) {
+  const t = useT();
   return (
     <div className={mergeStrings("form-group", error && "form-error")}>
       <fieldset
@@ -68,7 +70,13 @@ export function DateFields({
         )}
         {error && (
           <span className="form-error-message" id={id + "-error"}>
-            <ScreenReaderLabel>Fejl: </ScreenReaderLabel>
+            <ScreenReaderLabel>
+              {" "}
+              {t("form_element_error_message_prefix_sr_label", {
+                error,
+                inputType: "date",
+              }) ?? "Fejl: "}
+            </ScreenReaderLabel>
             {error}
           </span>
         )}
@@ -76,17 +84,23 @@ export function DateFields({
           <InputField
             formGroupProps={{ className: "form-group form-group-day" }}
             inputProps={{ type: "number", ...dayInputProps }}
-            labelProps={{ children: "Dag" }}
+            labelProps={{
+              children: t("date_fields_day_label", undefined) ?? "Dag",
+            }}
           ></InputField>
           <InputField
             formGroupProps={{ className: "form-group form-group-month" }}
             inputProps={{ type: "number", ...monthInputProps }}
-            labelProps={{ children: "Måned" }}
+            labelProps={{
+              children: t("date_fields_month_label", undefined) ?? "Måned",
+            }}
           ></InputField>
           <InputField
             formGroupProps={{ className: "form-group form-group-year" }}
             inputProps={{ type: "number", ...yearInputProps }}
-            labelProps={{ children: "Dag" }}
+            labelProps={{
+              children: t("date_fields_year_label", undefined) ?? "År",
+            }}
           ></InputField>
         </div>
       </fieldset>

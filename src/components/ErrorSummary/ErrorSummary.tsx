@@ -1,3 +1,4 @@
+import { useT } from "../../hooks/useT";
 import { Heading, HeadingProps } from "../Shared/Heading";
 import { Icon } from "../Shared/Icon";
 
@@ -67,6 +68,7 @@ export function ErrorSummary({
   errors,
   errorHeading,
 }: Readonly<ErrorSummaryProps>) {
+  const t = useT();
   return (
     <nav aria-labelledby={errorHeading.id}>
       <div
@@ -77,7 +79,10 @@ export function ErrorSummary({
         <Icon
           icon={"error"}
           isAlertIcon
-          svgProps={{ "aria-label": "Fejl" }}
+          svgProps={{
+            "aria-label":
+              t("error_summary_icon_aria_label", undefined) ?? "Fejl",
+          }}
         ></Icon>
         <div className="alert-body">
           <Heading className="alert-heading" {...errorHeading}></Heading>

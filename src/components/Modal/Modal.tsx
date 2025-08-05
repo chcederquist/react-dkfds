@@ -4,6 +4,7 @@ import { Icon } from "../Shared/Icon";
 import { ModalBackdrop } from "./ModalBackdrop";
 import { mergeStrings } from "../../util/merge-classnames";
 import { createPortal } from "react-dom";
+import { useT } from "../../hooks/useT";
 
 function setInert(inert: boolean, exceptId?: string) {
   const elements = document.body.children;
@@ -94,6 +95,8 @@ export function Modal({
     }
   }, [visible, id]);
 
+  const t = useT();
+
   return createPortal(
     <>
       {visible && <ModalBackdrop></ModalBackdrop>}
@@ -122,7 +125,8 @@ export function Modal({
                   }}
                   data-modal-close
                 >
-                  <Icon icon="close"></Icon>Luk
+                  <Icon icon="close"></Icon>
+                  {t("modal_close_button_label", undefined) ?? "Luk"}
                 </button>
               )}
             </div>

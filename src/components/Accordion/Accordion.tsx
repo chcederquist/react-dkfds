@@ -3,6 +3,7 @@ import { Heading, HeadingProps } from "../Shared/Heading";
 import { Icon } from "../Shared/Icon";
 import { IconName } from "../../types/icon-names";
 import { mergeStrings } from "../../util/merge-classnames";
+import { useT } from "../../hooks/useT";
 
 /**
  * Props for an individual element within the Accordion component.
@@ -89,10 +90,14 @@ export function AccordionElement({
  *
  * @property accordionElements - An array of elements to be rendered inside the accordion.
  * @property hasOpenCloseAllButton - Optional flag to display a button for opening or closing all accordion items.
+ * @property closeAllButtonLabel - Optional label for the close all button.
+ * @property openAllButtonLabel - Optional label for the open all button.
  */
 export type AccordionProps = {
   accordionElements: Array<AccordionElementProps>;
   hasOpenCloseAllButton?: boolean;
+  closeAllButtonLabel?: string;
+  openAllButtonLabel?: string;
 };
 
 /**
@@ -109,10 +114,13 @@ export type AccordionProps = {
 export function Accordion({
   accordionElements,
   hasOpenCloseAllButton,
+  closeAllButtonLabel,
+  openAllButtonLabel,
 }: Readonly<AccordionProps>) {
   const [openElements, setOpenElements] = useState<
     Record<AccordionElementProps["id"], boolean>
   >({});
+  const t = useT();
   const allOpen = accordionElements.every(
     (element) => openElements[element.id],
   );
@@ -130,7 +138,13 @@ export function Accordion({
             )
           }
         >
-          {allOpen ? "Luk alle" : "Åbn alle"}
+          {allOpen
+            ? (closeAllButtonLabel ??
+              t("accordion_close_all", undefined) ??
+              "Luk alle")
+            : (openAllButtonLabel ??
+              t("accordion_open_all", undefined) ??
+              "Åbn alle")}
         </button>
       )}
       <ul className="accordion">

@@ -4,6 +4,7 @@ import { mergeStrings } from "../../util/merge-classnames";
 import { Link, LinkProps } from "../Link/Link";
 import { Button } from "../Button/Button";
 import { Icon } from "../Shared/Icon";
+import { useT } from "../../hooks/useT";
 
 /**
  * Props for the `Card` component.
@@ -37,6 +38,7 @@ export function Card({
   children,
   navigationProps,
 }: Readonly<CardProps>) {
+  const t = useT();
   if (navigationProps) {
     return (
       <a
@@ -48,7 +50,9 @@ export function Card({
         {navigationProps.isExternal && (
           <Icon
             svgProps={{
-              "aria-label": "(åbner i nyt vindue)",
+              "aria-label":
+                t("card_navigation_external_icon_aria_label", undefined) ??
+                "(åbner i nyt vindue)",
               className: "card-icon",
             }}
             icon="open-in-new"

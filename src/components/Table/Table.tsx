@@ -2,6 +2,7 @@ import { ComponentProps } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { TablePagination, TablePaginationProps } from "./TablePagination";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
+import { useT } from "../../hooks/useT";
 
 /**
  * Renders a table row (`<tr>`) element with optional selection styling.
@@ -259,6 +260,7 @@ export function SelectAllRowsCheckbox({
   onSelectedAll: () => void;
   onDeselectedAll: () => void;
 }) {
+  const t = useT();
   return (
     <div className="form-group-checkbox">
       <input
@@ -278,7 +280,10 @@ export function SelectAllRowsCheckbox({
         aria-controls={rowIds.join(" ")}
       />
       <label htmlFor="select-all" className="form-label">
-        <ScreenReaderLabel>Vælg alle rækker</ScreenReaderLabel>
+        <ScreenReaderLabel>
+          {t("select_all_rows_checkbox_sr_label", undefined) ??
+            "Vælg alle rækker"}
+        </ScreenReaderLabel>
       </label>
     </div>
   );
