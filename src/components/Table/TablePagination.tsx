@@ -1,5 +1,7 @@
+import { useT } from "../../hooks/useT";
 import { mergeStrings } from "../../util/merge-classnames";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
+import { Icon } from "../Shared/Icon";
 
 export function TablePaginationButton({
   number,
@@ -65,6 +67,8 @@ export function TablePagination({
   onPageSelected,
   pageSizeProps,
 }: Readonly<TablePaginationProps>) {
+  const t = useT();
+
   return (
     <div className="table-pagination-options">
       {pageSizeProps && (
@@ -98,10 +102,11 @@ export function TablePagination({
               onClick={() => onPageSelected(1)}
               className="button button-arrow button-first"
             >
-              <svg className="icon-svg" focusable="false" aria-hidden="true">
-                <use href="#first-page"></use>
-              </svg>
-              <ScreenReaderLabel>Første side</ScreenReaderLabel>
+              <Icon icon="first-page"></Icon>
+              <ScreenReaderLabel>
+                {t("table_pagination_first_page_sr_label", undefined) ??
+                  "Første side"}
+              </ScreenReaderLabel>
             </button>
 
             <button
@@ -109,15 +114,19 @@ export function TablePagination({
               aria-label="Forrige side"
               onClick={() => onPageSelected(currentPageNumber - 1)}
             >
-              <svg className="icon-svg" focusable="false" aria-hidden="true">
-                <use href="#chevron-left"></use>
-              </svg>
-              <span className="pagination-nav-link">Forrige</span>
+              <Icon icon="chevron-left"></Icon>
+              <span className="pagination-nav-link">
+                {t("table_pagination_page_selection_previous", undefined) ??
+                  "Forrige"}
+              </span>
             </button>
           </>
         )}
         <span className="pagination-mobile">
-          Side {currentPageNumber} af {pageCount}
+          {t("table_pagination_current_page", {
+            currentPage: currentPageNumber,
+            pageCount: pageCount,
+          }) ?? `Side ${currentPageNumber} af ${pageCount}`}
         </span>
         <ul className="pagination__items">
           {pageCount <= 7 &&
@@ -140,7 +149,8 @@ export function TablePagination({
               {currentPageNumber > 4 ? (
                 <li className="pagination-item pagination-overflow">
                   <ScreenReaderLabel>
-                    Prikker som indikerer skjulte sider
+                    {t("table_pagination_ellipsis_sr_label", undefined) ??
+                      "Prikker som indikerer skjulte sider"}
                   </ScreenReaderLabel>
                   <span>...</span>
                 </li>
@@ -176,7 +186,8 @@ export function TablePagination({
               {currentPageNumber < pageCount - 3 ? (
                 <li className="pagination-item pagination-overflow">
                   <ScreenReaderLabel>
-                    Prikker som indikerer skjulte sider
+                    {t("table_pagination_ellipsis_sr_label", undefined) ??
+                      "Prikker som indikerer skjulte sider"}
                   </ScreenReaderLabel>
                   <span>...</span>
                 </li>
@@ -207,16 +218,20 @@ export function TablePagination({
               className="button button-arrow button-next"
               aria-label="Næste side"
             >
-              <span className="pagination-nav-link">Næste</span>
-              <svg className="icon-svg" focusable="false" aria-hidden="true">
-                <use href="#chevron-right"></use>
-              </svg>
+              <span className="pagination-nav-link">
+                {t("table_pagination_page_selection_next", undefined) ??
+                  "Næste"}
+              </span>
+              <Icon icon="chevron-right"></Icon>
             </a>
             <a href="#" className="button button-arrow button-last">
-              <svg className="icon-svg" focusable="false" aria-hidden="true">
-                <use href="#last-page"></use>
-              </svg>
-              <ScreenReaderLabel>Sidste side</ScreenReaderLabel>
+              <Icon icon="last-page"></Icon>
+              <ScreenReaderLabel>
+                {t(
+                  "table_pagination_page_selection_last_sr_label",
+                  undefined,
+                ) ?? "Sidste side"}
+              </ScreenReaderLabel>
             </a>
           </>
         )}

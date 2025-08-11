@@ -1,3 +1,3 @@
 export function ModalBackdrop() {
-  return <div className="modal-backdrop" id="modal-backdrop"></div>;
+  return <div className="modal-backdrop show" id="modal-backdrop"></div>;
 }

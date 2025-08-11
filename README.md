@@ -17,6 +17,35 @@ This library assumes the DKFDS styling is present in the document. Add the DKFDS
 ### Icons
 This library assumes the DKFDS SVG sprite sheet is available in the document. Insert the SVG-code into the DOM from ``node_modules/dkfds/dist/img/all-svg-icons.svg``.
 
+### Translations
+Labels are Danish by default, in accordance with the official exaples. To add custom label translations, create your own translation-function and pass it to the ``TranslationProvider``
+```typescript
+// myTranslations.ts
+import type { TranslationMap } from 'react-dkfds';
+
+export const translations: TranslationMap = {
+  accordion_open_all: "Open all",
+  accordion_close_all: "Close all",
+  input_field_characters_left: ({charactersLeft}) => `You have ${charactersLeft} characters remaining`
+};
+```
+
+```tsx
+// App.tsx
+import { DkfdsTranslationProvider } from 'react-dkfds';
+import { translations } from './myTranslations';
+
+export default function App() {
+  return (
+    <DkfdsTranslationProvider translations={translations}>
+      <App />
+    </DkfdsTranslationProvider>
+  );
+}
+```
+Any translation not provided, or any function returning undefined, will make the component fall back to the original text. To render no text, return an empty string.
+You may also wrap individual components in a DkfdsTranslationProvider to change specific elements' default texts.
+
 ## Components
 The library contains almost every component listed on [Det Fælles Designsystem](https://designsystem.dk).
 Every component has been tested by implementing each code example for every component, which can be seen in the storybook project.
@@ -42,5 +71,3 @@ If you notice any other components missing, please create an issue or submit a p
 ## Roadmap
 The following is a prioritised list of features to be implemented in this library. 
 - Automated testing of component functionality
-- Modal manager handling DOM insertion, backdrops and focus
-- Un-hardcoding danish-language labels

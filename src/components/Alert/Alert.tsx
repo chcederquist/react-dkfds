@@ -3,6 +3,7 @@ import { Heading, HeadingProps } from "../Shared/Heading";
 import { Icon } from "../Shared/Icon";
 import { IconName } from "../../types/icon-names";
 import { ReactNode } from "react";
+import { useT } from "../../hooks/useT";
 
 /**
  * Props for the Alert component.
@@ -40,15 +41,16 @@ export function Alert({
   heading,
   id,
 }: Readonly<AlertProps>) {
+  const t = useT();
   const _iconAriaLabel =
     iconAriaLabel ??
     (type === "info"
-      ? "Information"
+      ? (t("alert_icon_aria_label_info", undefined) ?? "Information")
       : type === "success"
-        ? "Succes"
+        ? (t("alert_icon_aria_label_success", undefined) ?? "Succes")
         : type === "warning"
-          ? "Advarsel"
-          : "Fejl");
+          ? (t("alert_icon_aria_label_warning", undefined) ?? "Advarsel")
+          : (t("alert_icon_aria_label_error", undefined) ?? "Fejl"));
   const iconName = type satisfies IconName;
   return (
     <div className={`alert alert-${type}`} id={id}>

@@ -1,12 +1,20 @@
-import type { Decorator, Preview } from "@storybook/react-vite";
+import type { Preview } from "@storybook/react";
 import BaseSVG from "/node_modules/dkfds/dist/img/all-svg-icons.svg?svgr";
-const withSVGHeader: Decorator = (Story) => {
+import { DkfdsTranslationProvider } from "../src/contexts/translation-context";
+import { loadTranslations } from "../src/stories/translations/translations";
+
+const withSVGHeader = (Story) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const translations = loadTranslations();
+
   return (
     <>
       <div style={{ display: "none" }}>
         <BaseSVG />
       </div>
-      <Story />
+      <DkfdsTranslationProvider translations={translations}>
+        <Story />
+      </DkfdsTranslationProvider>
     </>
   );
 };

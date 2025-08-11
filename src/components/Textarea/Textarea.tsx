@@ -76,12 +76,6 @@ export function TextArea({
   const charactersLeft = (characterLimit ?? 0) - (visibleInputCount ?? 0);
   const input = (
     <textarea
-      className={mergeStrings(
-        "form-input",
-        "inputCharWidth" in props && `input-char-${props.inputCharWidth}`,
-        "inputWidth" in props && `input-width-${props.inputWidth}`,
-        charactersLeft < 0 && "form-limit-error",
-      )}
       aria-describedby={mergeStrings(
         characterLimit !== undefined
           ? `${inputProps.id}-limit-message`
@@ -90,6 +84,13 @@ export function TextArea({
         hint ? `${inputProps.id}-hint` : undefined,
       )}
       {...inputProps}
+      className={mergeStrings(
+        inputProps.className,
+        "form-input",
+        "inputCharWidth" in props && `input-char-${props.inputCharWidth}`,
+        "inputWidth" in props && `input-width-${props.inputWidth}`,
+        charactersLeft < 0 && "form-limit-error",
+      )}
       onChange={
         characterLimit !== undefined
           ? (ev) => {

@@ -1,6 +1,7 @@
 import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
+import { useT } from "../../hooks/useT";
 
 /**
  * Props for the `RadioButtons` component.
@@ -79,6 +80,7 @@ export function RadioButtons({
   name,
   label,
 }: Readonly<RadioButtonsProps>) {
+  const t = useT();
   return (
     <div className={mergeStrings("form-group", error && "form-error")}>
       <fieldset
@@ -98,7 +100,12 @@ export function RadioButtons({
         )}
         {error && (
           <span className="form-error-message" id={id + "-error"}>
-            <ScreenReaderLabel>Fejl: </ScreenReaderLabel>
+            <ScreenReaderLabel>
+              {t("form_element_error_message_prefix_sr_label", {
+                error,
+                inputType: "radio",
+              }) ?? "Fejl: "}
+            </ScreenReaderLabel>
             {error}
           </span>
         )}

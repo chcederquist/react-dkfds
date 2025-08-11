@@ -5,6 +5,7 @@ import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
 import { IconName } from "../../types/icon-names";
 import { Icon } from "../Shared/Icon";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
+import { useT } from "../../hooks/useT";
 
 /**
  * Props for the `InputField` component.
@@ -94,18 +95,12 @@ export function InputField({
   const [lastInputEventMs, setLastInputEventMs] = useState<number | undefined>(
     undefined,
   );
-  const [visibleInputCount, setVisibleInputCount] =
-    useState<number>(inputCount);
-  const charactersLeft = (characterLimit ?? 0) - (visibleInputCount ?? 0);
+  const [srInputCount, setSrInputCount] = useState<number>(inputCount);
+  const charactersLeft = (characterLimit ?? 0) - (inputCount ?? 0);
+  const srCharactersLeft = (characterLimit ?? 0) - (srInputCount ?? 0);
   const input = (
     <>
       <input
-        className={mergeStrings(
-          "form-input",
-          "inputCharWidth" in props && `input-char-${props.inputCharWidth}`,
-          "inputWidth" in props && `input-width-${props.inputWidth}`,
-          charactersLeft < 0 && "form-limit-error",
-        )}
         aria-describedby={mergeStrings(
           characterLimit !== undefined
             ? `${inputProps.id}-limit-message`
@@ -115,6 +110,13 @@ export function InputField({
         )}
         type="text"
         {...inputProps}
+        className={mergeStrings(
+          inputProps.className,
+          "form-input",
+          "inputCharWidth" in props && `input-char-${props.inputCharWidth}`,
+          "inputWidth" in props && `input-width-${props.inputWidth}`,
+          charactersLeft < 0 && "form-limit-error",
+        )}
         onChange={
           characterLimit !== undefined
             ? (ev) => {
@@ -150,18 +152,21 @@ export function InputField({
     const interval = setInterval(() => {
       if (
         lastInputEventMs === undefined ||
-        lastInputEventMs < Date.now() - 300
+        lastInputEventMs < Date.now() - 500
       ) {
-        setVisibleInputCount(inputCount);
+        setSrInputCount(inputCount);
         if (lastInputEventMs !== undefined) {
           setLastInputEventMs(undefined);
         }
       }
-    }, 100);
+    }, 1000);
     return () => {
       clearInterval(interval);
     };
   }, [inputCount, lastInputEventMs]);
+
+  const t = useT();
+
   return (
     <div
       className={mergeStrings(
@@ -182,7 +187,12 @@ export function InputField({
       )}
       {error && (
         <span className="form-error-message" id={inputProps.id + "-error"}>
-          <ScreenReaderLabel>Fejl: </ScreenReaderLabel>
+          <ScreenReaderLabel>
+            {t("form_element_error_message_prefix_sr_label", {
+              error,
+              inputType: "text",
+            }) ?? "Fejl: "}
+          </ScreenReaderLabel>
           {error}
         </span>
       )}
@@ -206,8 +216,11 @@ export function InputField({
       {characterLimit && (
         <>
           <ScreenReaderLabel id={inputProps.id + "-limit-message"}>
-            Du kan indtaste op til {charactersLeft}
-            tegn
+            {t("input_field_character_limit_sr_label", {
+              characterLimit,
+            }) ??
+              `Du kan indtaste op til ${characterLimit}
+            tegn`}
           </ScreenReaderLabel>
           <span
             className={mergeStrings(
@@ -216,15 +229,19 @@ export function InputField({
             )}
             aria-hidden="true"
           >
-            Du har {Math.abs(charactersLeft)} tegn{" "}
-            {charactersLeft < 0 ? "for meget" : "tilbage"}
+            {t("input_field_characters_left", { charactersLeft }) ??
+              `Du har ${Math.abs(charactersLeft)} tegn{" "}
+            ${charactersLeft < 0 ? "for meget" : "tilbage"}`}
           </span>
           <ScreenReaderLabel
             className="character-limit-sr-only"
             aria-live="polite"
           >
-            Du har {Math.abs(charactersLeft)} tegn{" "}
-            {charactersLeft < 0 ? "for meget" : "tilbage"}
+            {t("input_field_characters_left", {
+              charactersLeft: srCharactersLeft,
+            }) ??
+              `Du har ${Math.abs(srCharactersLeft)} tegn{" "}
+            ${srCharactersLeft < 0 ? "for meget" : "tilbage"}`}
           </ScreenReaderLabel>
         </>
       )}

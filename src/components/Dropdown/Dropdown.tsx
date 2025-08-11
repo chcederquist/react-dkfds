@@ -2,6 +2,7 @@ import { ComponentProps, ReactNode } from "react";
 import { HTMLSelectPropsWithRequiredFields } from "../../types/html-props";
 import { mergeStrings } from "../../util/merge-classnames";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
+import { useT } from "../../hooks/useT";
 
 /**
  * Props for the `Dropdown` component.
@@ -52,6 +53,7 @@ export function Dropdown({
   hint,
   options,
 }: Readonly<DropdownProps>) {
+  const t = useT();
   return (
     <div
       className={mergeStrings("form-group", error && "form-error")}
@@ -67,7 +69,12 @@ export function Dropdown({
       )}
       {error && (
         <span className="form-error-message" id={selectProps.id + "-error"}>
-          <ScreenReaderLabel>Fejl:</ScreenReaderLabel>
+          <ScreenReaderLabel>
+            {t("form_element_error_message_prefix_sr_label", {
+              error,
+              inputType: "select",
+            }) ?? "Fejl: "}
+          </ScreenReaderLabel>
           {error}
         </span>
       )}
