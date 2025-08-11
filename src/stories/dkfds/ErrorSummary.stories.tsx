@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "storybook/test";
 import { Heading } from "../../components/Shared/Heading";
 import { InputField } from "../../components/InputField/InputField";
 import { RadioButtons } from "../../components/RadioButtons/RadioButtons";
@@ -74,16 +75,19 @@ export const InputFieldError: Story = {
             id: "dag-story-error",
             name: "day",
             value: "01",
+            onChange: fn(),
           }}
           monthInputProps={{
             id: "måned-story-error",
             name: "month",
             value: "12",
+            onChange: fn(),
           }}
           yearInputProps={{
             id: "år-story-error",
             name: "year",
             value: "2076",
+            onChange: fn(),
           }}
           id="date-fields-story-error"
           legendProps={{

@@ -113,7 +113,7 @@ export function RadioButtons({
           options.map((option) => {
             const RadioContainer = () => (
               <>
-                <div className="form-group-radio" key={option.id}>
+                <div className="form-group-radio">
                   <input
                     type="radio"
                     name={name}
@@ -148,6 +148,7 @@ export function RadioButtons({
 
             return option.hiddenContent ? (
               <div
+                key={option.id}
                 className={mergeStrings(
                   "hidden-content-wrapper",
                   option.checked && "show-content",
@@ -156,7 +157,7 @@ export function RadioButtons({
                 <RadioContainer />
               </div>
             ) : (
-              <RadioContainer />
+              <RadioContainer key={option.id} />
             );
           })}
       </fieldset>
