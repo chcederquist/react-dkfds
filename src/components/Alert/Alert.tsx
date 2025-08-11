@@ -66,7 +66,7 @@ export function Alert({
             className={mergeStrings("alert-heading", heading?.className)}
           />
         )}
-        <p className="alert-text">{children}</p>
+        <div className="alert-text">{children}</div>
       </div>
     </div>
   );

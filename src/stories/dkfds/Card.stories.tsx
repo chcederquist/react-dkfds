@@ -31,10 +31,8 @@ export const MainCard: Story = {
       <CardContent
         text={
           <CardText>
-            <p>
-              Dette er et <em>tekstområde</em>, hvor du kan skrive hvad du har
-              lyst til
-            </p>
+            Dette er et <em>tekstområde</em>, hvor du kan skrive hvad du har
+            lyst til
           </CardText>
         }
         heading={<CardHeading level="h2">Header</CardHeading>}
