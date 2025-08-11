@@ -66,7 +66,11 @@ export function Alert({
             className={mergeStrings("alert-heading", heading?.className)}
           />
         )}
-        <div className="alert-text">{children}</div>
+        {typeof children === "string" ? (
+          <p className="alert-text">{children}</p>
+        ) : (
+          <div className="alert-text">{children}</div>
+        )}
       </div>
     </div>
   );

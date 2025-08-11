@@ -1,7 +1,7 @@
-import { ComponentProps, Fragment, ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
+import { useT } from "../../hooks/useT";
 import { mergeStrings } from "../../util/merge-classnames";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
-import { useT } from "../../hooks/useT";
 
 /**
  * Props for the Checkbox component.
