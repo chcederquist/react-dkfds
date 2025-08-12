@@ -30,6 +30,7 @@ export const InputFieldError: Story = {
           id="error-summary"
           iconAriaLabel="Fejl"
           type="error"
+          alertTextAs="div"
           heading={{ level: "h2", children: "Der er problemer" }}
         >
           <ul className="alert-text nobullet-list">

@@ -1,4 +1,4 @@
-import { ComponentProps, Fragment, ReactElement } from "react";
+import { ComponentProps, Fragment, ReactElement, ReactNode } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
 import { mergeStrings } from "../../util/merge-classnames";
 import { Link, LinkProps } from "../Link/Link";
@@ -96,21 +96,16 @@ export function CardHeading(props: CardHeadingProps) {
   );
 }
 
-export type CardSubHeadingProps = ComponentProps<"p">;
+export type CardSubHeadingProps = ComponentProps<"span">;
 export function CardSubHeading({ ...props }: CardSubHeadingProps) {
-  return <p className="card-subheading" {...props}></p>;
-}
-
-export type CardTextProps = ComponentProps<"p">;
-export function CardText(props: CardTextProps) {
-  return <p {...props} className="card-text"></p>;
+  return <span className="card-subheading" {...props}></span>;
 }
 
 export type CardContentProps = {
   contentProps?: Omit<ComponentProps<"div">, "children">;
   heading?: ReactElement<CardHeadingProps>;
   subHeading?: ReactElement<CardSubHeadingProps>;
-  text?: ReactElement<CardTextProps>;
+  children?: ReactNode;
   cardActions?: ReactElement<CardActionLinks> | ReactElement<CardActionButtons>;
 };
 export function CardContent({
@@ -118,13 +113,13 @@ export function CardContent({
   heading,
   cardActions,
   subHeading,
-  text,
+  children,
 }: CardContentProps) {
   return (
     <div {...contentProps} className="card-content">
       {subHeading}
       {heading}
-      {text}
+      {children}
       {cardActions}
     </div>
   );
@@ -145,17 +140,15 @@ export function CardActionButtons({ buttons, ...props }: CardActionButtons) {
 
 export type CardActionLinks = {
   links: LinkProps[];
-} & ComponentProps<"div">;
+} & ComponentProps<"ul">;
 export function CardActionLinks({ links, ...props }: CardActionLinks) {
   return (
-    <div className="action-links" {...props}>
-      <ul className="nobullet-list card-actions">
-        {links.map((link, index) => (
-          <li key={link.href || index}>
-            <Link {...link}></Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="nobullet-list card-actions" {...props}>
+      {links.map((link, index) => (
+        <li key={link.href || index}>
+          <Link {...link}></Link>
+        </li>
+      ))}
+    </ul>
   );
 }
