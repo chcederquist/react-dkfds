@@ -6,7 +6,7 @@ const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   staticDirs: ["../node_modules/dkfds/dist"],
   previewHead: (head) => `${head}
-    <link rel="stylesheet" href="/css/dkfds.css" />
+    <link rel="stylesheet" href="./css/dkfds.css" />
     `,
   addons: [
     "@storybook/addon-docs",
