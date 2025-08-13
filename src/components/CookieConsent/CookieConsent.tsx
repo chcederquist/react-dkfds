@@ -30,16 +30,6 @@ export type CookieConsentProps = {
  * - The component uses semantic HTML and ARIA attributes for accessibility.
  * - Action buttons are rendered as anchor elements with customizable props.
  *
- * @example
- * ```tsx
- * <CookieConsent
- *   headingProps={{ id: "custom-heading", children: "Cookies" }}
- *   acceptButtonProps={{ onClick: handleAccept, children: "Accept" }}
- *   declineButtonProps={{ onClick: handleDecline, children: "Decline" }}
- * >
- *   We use cookies to improve your experience.
- * </CookieConsent>
- * ```
  */
 export function CookieConsent({
   headingProps,
