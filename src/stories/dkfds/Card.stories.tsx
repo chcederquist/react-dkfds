@@ -12,6 +12,9 @@ import { Button } from "../../components/Button/Button";
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "DKFDS/Card",
+  argTypes: {
+    children: { type: "function" },
+  },
   component: Card,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -70,7 +73,7 @@ export const NavigationCard: Story = {
 
 export const MultipleLinkCards: Story = {
   args: {
-    children: <></>,
+    children: undefined,
   },
   render: () => (
     <ul className="row card-row">

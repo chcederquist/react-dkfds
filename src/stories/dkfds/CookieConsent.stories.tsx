@@ -5,6 +5,9 @@ import { CookieConsent } from "../../components/CookieConsent/CookieConsent";
 const meta = {
   title: "DKFDS/CookieConsent",
   component: CookieConsent,
+  argTypes: {
+    children: { type: "function" },
+  },
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
