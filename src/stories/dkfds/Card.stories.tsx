@@ -6,7 +6,6 @@ import {
   CardContent,
   CardHeading,
   CardSubHeading,
-  CardText,
 } from "../../components/Card/Card";
 import { Button } from "../../components/Button/Button";
 
@@ -29,12 +28,6 @@ export const MainCard: Story = {
   args: {
     children: (
       <CardContent
-        text={
-          <CardText>
-            Dette er et <em>tekstområde</em>, hvor du kan skrive hvad du har
-            lyst til
-          </CardText>
-        }
         heading={<CardHeading level="h2">Header</CardHeading>}
         subHeading={<CardSubHeading>Understøttende tekst</CardSubHeading>}
         cardActions={
@@ -49,7 +42,12 @@ export const MainCard: Story = {
             ]}
           ></CardActionButtons>
         }
-      ></CardContent>
+      >
+        <p>
+          Dette er et <em>tekstområde</em>, hvor du kan skrive hvad du har lyst
+          til
+        </p>
+      </CardContent>
     ),
   },
 };
@@ -63,14 +61,9 @@ export const NavigationCard: Story = {
       rel: "noopener noreferrer",
     },
     children: (
-      <CardContent
-        text={
-          <CardText>
-            Dette card linker til en side, der åbner i en ny fane
-          </CardText>
-        }
-        heading={<CardHeading level="h2">Header</CardHeading>}
-      ></CardContent>
+      <CardContent heading={<CardHeading level="h2">Header</CardHeading>}>
+        <p>Dette card linker til en side, der åbner i en ny fane</p>
+      </CardContent>
     ),
   },
 };
@@ -88,10 +81,9 @@ export const MultipleLinkCards: Story = {
           }}
           image={<img src="static/media/src/stories/assets/docs.png"></img>}
         >
-          <CardContent
-            text={<CardText>Dette card linker til en anden side</CardText>}
-            heading={<CardHeading level="h2">Lorem</CardHeading>}
-          ></CardContent>
+          <CardContent heading={<CardHeading level="h2">Lorem</CardHeading>}>
+            <p>Dette card linker til en anden side</p>
+          </CardContent>
         </Card>
       </li>
       <li className="col-12 col-sm-6 col-md-4">
@@ -103,14 +95,9 @@ export const MultipleLinkCards: Story = {
             <img src="static/media/src/stories/assets/accessibility.png"></img>
           }
         >
-          <CardContent
-            text={
-              <CardText>
-                Dette card linker til en side, der åbner i en ny fane
-              </CardText>
-            }
-            heading={<CardHeading level="h2">Sit amet</CardHeading>}
-          ></CardContent>
+          <CardContent heading={<CardHeading level="h2">Sit amet</CardHeading>}>
+            <p>Dette card linker til en side, der åbner i en ny fane</p>
+          </CardContent>
         </Card>
       </li>
       <li className="col-12 col-sm-6 col-md-4">
@@ -120,16 +107,14 @@ export const MultipleLinkCards: Story = {
           }}
         >
           <CardContent
-            text={
-              <CardText>
-                Dette card linker til en anden side. <br />
-                <br />
-                Der er ikke noget billede på dette eksempelcard. Normalt vil
-                enten alle eller ingen cards i samme liste have billede
-              </CardText>
-            }
             heading={<CardHeading level="h2">Ipsum dolor</CardHeading>}
-          ></CardContent>
+          >
+            <p>Dette card linker til en anden side.</p>
+            <p>
+              Der er ikke noget billede på dette eksempelcard. Normalt vil enten
+              alle eller ingen cards i samme liste have billede
+            </p>
+          </CardContent>
         </Card>
       </li>
     </ul>

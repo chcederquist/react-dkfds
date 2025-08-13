@@ -1,4 +1,4 @@
-import { ComponentProps, ReactNode } from "react";
+import { ComponentProps, HTMLElementType, ReactNode } from "react";
 import { Heading, HeadingProps } from "../Shared/Heading";
 
 /**
@@ -12,6 +12,7 @@ import { Heading, HeadingProps } from "../Shared/Heading";
 export type CookieConsentProps = {
   headingProps: HeadingProps;
   children: ReactNode;
+  contentAs?: HTMLElementType;
   acceptButtonProps: ComponentProps<"a">;
   declineButtonProps: ComponentProps<"a">;
 };
@@ -44,6 +45,7 @@ export function CookieConsent({
   headingProps,
   children,
   acceptButtonProps,
+  contentAs: ContentAs = "p",
   declineButtonProps,
 }: Readonly<CookieConsentProps>) {
   return (
@@ -60,9 +62,9 @@ export function CookieConsent({
             id="cookie-message-heading"
             {...headingProps}
           ></Heading>
-          <p className="mt-0" id="cookie-message-text">
+          <ContentAs className="mt-0" id="cookie-message-text">
             {children}
-          </p>
+          </ContentAs>
         </div>
         <div className="cookie-actions">
           <ul className="inline-list">

@@ -2,7 +2,7 @@ import { mergeStrings } from "../../util/merge-classnames";
 import { Heading, HeadingProps } from "../Shared/Heading";
 import { Icon } from "../Shared/Icon";
 import { IconName } from "../../types/icon-names";
-import { ReactNode } from "react";
+import { HTMLElementType, ReactNode } from "react";
 import { useT } from "../../hooks/useT";
 
 /**
@@ -20,6 +20,7 @@ export type AlertProps = {
   iconAriaLabel?: string;
   children?: ReactNode;
   heading?: HeadingProps;
+  alertTextAs?: HTMLElementType;
 };
 
 /**
@@ -40,6 +41,7 @@ export function Alert({
   children,
   heading,
   id,
+  alertTextAs: AlertTextAs = "p",
 }: Readonly<AlertProps>) {
   const t = useT();
   const _iconAriaLabel =
@@ -66,11 +68,7 @@ export function Alert({
             className={mergeStrings("alert-heading", heading?.className)}
           />
         )}
-        {typeof children === "string" ? (
-          <p className="alert-text">{children}</p>
-        ) : (
-          <div className="alert-text">{children}</div>
-        )}
+        <AlertTextAs className="alert-text">{children}</AlertTextAs>
       </div>
     </div>
   );
