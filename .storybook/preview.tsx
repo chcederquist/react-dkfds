@@ -27,8 +27,20 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    layout: "centered",
+    backgrounds: {
+      grid: {
+        opacity: 0.1,
+      },
+    },
   },
   decorators: [withSVGHeader],
+  tags: ["autodocs"],
+  initialGlobals: {
+    backgrounds: {
+      grid: true,
+    },
+  },
 };
 
 export default preview;
