@@ -8,15 +8,8 @@ import { RadioButtons } from "../../components/RadioButtons/RadioButtons";
 import { TextArea } from "../../components/Textarea/Textarea";
 import { Checkbox } from "../../components/Checkbox/Checkbox";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "DKFDS/ErrorMessage",
-  parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
-    layout: "fullscreen",
-  },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ["autodocs"],
 } satisfies Meta;
 
 export default meta;

@@ -2,16 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { LoadingSpinner } from "../../components/LoadingSpinner/LoadingSpinner";
 import { ScreenReaderLabel } from "../../components/ScreenReaderLabel/ScreenReaderLabel";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "DKFDS/LoadingSpinner",
   component: LoadingSpinner,
-  parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
-    layout: "fullscreen",
-  },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ["autodocs"],
 } satisfies Meta<typeof LoadingSpinner>;
 
 export default meta;

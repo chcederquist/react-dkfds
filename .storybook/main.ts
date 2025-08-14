@@ -21,6 +21,9 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
+  },
   viteFinal: async (config) => {
     config.optimizeDeps = {
       ...config.optimizeDeps,
