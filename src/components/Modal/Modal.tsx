@@ -30,13 +30,13 @@ function setInert(inert: boolean, exceptId?: string) {
 export type ModalProps = {
   id: string;
   header: HeadingProps;
+  modalType?: "default" | "step-indicator";
   children: ReactNode;
   show?: boolean;
   onClose?: () => void;
   footer?: ReactNode;
   hasCloseButton?: boolean;
 };
-// TODO: Close all other modals, create backdrop
 
 /**
  * Renders a modal dialog component with optional header and footer sections.
@@ -60,6 +60,7 @@ export function Modal({
   show,
   onClose,
   hasCloseButton = true,
+  modalType = "default",
 }: Readonly<ModalProps>) {
   // Local state to control visibility if 'show' is not provided
   const [visible, setVisible] = useState(show ?? false);
@@ -99,16 +100,25 @@ export function Modal({
 
   return createPortal(
     <>
-      {visible && <ModalBackdrop></ModalBackdrop>}
+      {<ModalBackdrop type={modalType} visible={visible}></ModalBackdrop>}
       <div
-        className="fds-modal"
+        className={mergeStrings(
+          "fds-modal",
+          modalType === "step-indicator" ? "modal-step-indicator" : null,
+        )}
         id={id}
         aria-hidden={visible ? "false" : "true"}
         role="dialog"
         aria-modal="true"
         aria-labelledby={`${id}-header`}
       >
-        <div className="modal-content">
+        <div
+          className={mergeStrings(
+            "modal-content",
+            modalType === "step-indicator" && "has-transition-effect",
+            show && modalType === "step-indicator" && "show-modal-content",
+          )}
+        >
           {header && (
             <div className="modal-header">
               <Heading

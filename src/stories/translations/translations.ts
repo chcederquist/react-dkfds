@@ -31,6 +31,11 @@ export const defaultTranslationMap: Partial<TranslationMap> = {
   table_pagination_ellipsis_sr_label: undefined,
   table_pagination_page_selection_next: undefined,
   table_pagination_page_selection_last_sr_label: undefined,
+  simple_step_indicator_current_step_sr_label: undefined,
+  step_indicator_error_icon_sr_label: undefined,
+  step_indicator_step_completed_sr_label: undefined,
+  step_indicator_mobile_indicator_button: undefined,
+  step_indicator_mobile_modal_heading: undefined,
 };
 
 const STORAGE_KEY = "storybook-translations";
