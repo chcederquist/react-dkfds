@@ -44,6 +44,24 @@ export type TranslationConfig = {
   table_pagination_ellipsis_sr_label: void;
   table_pagination_page_selection_next: void;
   table_pagination_page_selection_last_sr_label: void;
+  step_indicator_step_completed_sr_label: {
+    stepNumber: number;
+  };
+  step_indicator_error_icon_sr_label: {
+    stepNumber: number;
+  };
+  simple_step_indicator_current_step_sr_label: {
+    stepNumber: number;
+    totalSteps: number;
+  };
+  step_indicator_mobile_indicator_button: {
+    stepNumber: number;
+    totalSteps: number;
+  };
+  step_indicator_mobile_modal_heading: {
+    stepNumber: number;
+    totalSteps: number;
+  };
 };
 
 export type TranslateFn = <K extends keyof TranslationConfig>(
