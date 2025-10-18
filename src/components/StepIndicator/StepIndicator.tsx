@@ -4,11 +4,7 @@ import { mergeStrings } from "../../util/merge-classnames";
 import { Modal } from "../Modal/Modal";
 import { Icon } from "../Shared/Icon";
 
-export function StepIndicator({
-  steps,
-  stepIndicatorId,
-  onStepClick,
-}: {
+export type StepIndicatorProps = {
   onStepClick?: (stepIndex: number, disabled?: boolean) => void;
   stepIndicatorId: string;
   steps: {
@@ -18,7 +14,13 @@ export function StepIndicator({
     disabled?: boolean;
     current?: boolean;
   }[];
-}) {
+};
+
+export function StepIndicator({
+  steps,
+  stepIndicatorId,
+  onStepClick,
+}: StepIndicatorProps) {
   const t = useT();
   const [showMobileDialog, setShowMobileDialog] = useState(false);
   const stepList = (

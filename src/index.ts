@@ -38,7 +38,6 @@ export {
   CardHeader,
   CardHeading,
   CardSubHeading,
-  CardText,
   CardContent,
   CardActionButtons,
   CardActionLinks,
@@ -49,7 +48,6 @@ export type {
   CardHeaderProps,
   CardHeadingProps,
   CardSubHeadingProps,
-  CardTextProps,
   CardContentProps,
 } from "./components/Card/Card";
 
@@ -182,3 +180,7 @@ export type {
   StructuredListProps,
   StructuredListItem,
 } from "./components/Table/StructuredList";
+
+// StepIndicator
+export { StepIndicator } from "./components/StepIndicator/StepIndicator";
+export type { StepIndicatorProps } from "./components/StepIndicator/StepIndicator";
