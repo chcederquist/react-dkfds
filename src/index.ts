@@ -182,3 +182,7 @@ export type {
 // StepIndicator
 export { StepIndicator } from "./components/StepIndicator/StepIndicator";
 export type { StepIndicatorProps } from "./components/StepIndicator/StepIndicator";
+
+// DatePicker
+export { DatePicker } from "./components/DatePicker/DatePicker";
+export type { DatePickerProps } from "./components/DatePicker/DatePicker";
