@@ -28,7 +28,7 @@ This library assumes the DKFDS SVG sprite sheet is available in the document. In
 
 ### Translations
 
-Labels are Danish by default, in accordance with the official exaples. To add custom label translations, create your own translation-function and pass it to the `TranslationProvider`
+Labels are Danish by default, in accordance with the official examples. To add custom label translations, create your own translation-function and pass it to the `TranslationProvider`
 
 ```typescript
 // myTranslations.ts
@@ -80,7 +80,6 @@ These can also be used for reference when implementing your own features with th
 The following components are not implemented yet, but may become available in the future:
 
 - Tooltip using Popover API and CSS anchor positioning
-- Header
 - Datepicker
 - Footer
 

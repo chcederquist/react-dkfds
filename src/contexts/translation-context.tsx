@@ -62,6 +62,13 @@ export type TranslationConfig = {
     stepNumber: number;
     totalSteps: number;
   };
+  header_portal_info_mobile_screen_reader_label_user: void;
+  header_solution_info_mobile_authority_screen_reader_label: void;
+  header_mobile_drawer_menu_close_button_label: void;
+  header_mobile_drawer_menu_close_button_aria_label: void;
+  header_navigation_menu_nav_aria_label: void;
+  header_overflow_menu_button_label: void;
+  header_language_switcher_selected_language_heading: void;
 };
 
 export type TranslateFn = <K extends keyof TranslationConfig>(
