@@ -79,14 +79,12 @@ export type { ErrorSummaryProps } from "./components/ErrorSummary/ErrorSummary";
 export { FunctionalLink } from "./components/FunctionalLink/FunctionalLink";
 export type { FunctionalLinkProps } from "./components/FunctionalLink/FunctionalLink";
 
-// Header
-// Not implemented yet, but will be available in the future
-// export { Header } from "./components/Header/Header";
-// export type {
-//   HeaderProps,
-//   NavigationItem,
-//   NavLinkProps,
-// } from "./components/Header/Header";
+export { Header } from "./components/Header/Header";
+export type {
+  HeaderProps,
+  NavigationItem,
+  NavLinkProps,
+} from "./components/Header/Header";
 
 // InputField
 export { InputField } from "./components/InputField/InputField";
