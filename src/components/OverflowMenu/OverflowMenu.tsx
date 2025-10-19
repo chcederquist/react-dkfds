@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ComponentProps, ReactNode, useState } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { Icon } from "../Shared/Icon";
 
@@ -19,12 +19,10 @@ import { Icon } from "../Shared/Icon";
  */
 export type OverflowMenuProps = {
   id: string;
-  menuItems: {
-    id: string;
-    label: string;
-    href?: string;
-    action?: React.MouseEventHandler<HTMLButtonElement>;
-  }[];
+  buttonProps?: ComponentProps<"button">;
+  overflowMenuProps?: ComponentProps<"div">;
+  isLanguageList?: boolean;
+  menuItems: OverflowMenuItem[];
   side: "right" | "left";
 } & (
   | {
@@ -33,6 +31,14 @@ export type OverflowMenuProps = {
     }
   | { children: ReactNode; label?: undefined }
 );
+
+export type OverflowMenuItem = {
+  id: string;
+  label: string;
+  href?: string;
+  action?: React.MouseEventHandler<HTMLButtonElement>;
+  ariaLabel?: string;
+};
 
 /**
  * Renders an overflow menu component with a toggle button and a list of menu items.
@@ -53,6 +59,7 @@ export function OverflowMenu({
   id,
   menuItems,
   side,
+  isLanguageList,
   ...props
 }: Readonly<OverflowMenuProps>) {
   const [expanded, setExpanded] = useState(false); // TODO: Close on click outside
@@ -61,11 +68,15 @@ export function OverflowMenu({
       className={mergeStrings("overflow-menu", `overflow-menu--open-${side}`)}
     >
       <button
-        className="button-overflow-menu js-dropdown"
         data-js-target={id}
         aria-expanded={expanded}
         aria-controls={id}
         onClick={() => setExpanded(!expanded)}
+        {...props.buttonProps}
+        className={mergeStrings(
+          "button-overflow-menu js-dropdown",
+          isLanguageList ? "select-language-button" : "",
+        )}
       >
         {"label" in props ? (
           <>
@@ -77,19 +88,26 @@ export function OverflowMenu({
         )}
       </button>
       <div
+        id={id}
+        {...props.overflowMenuProps}
         className={mergeStrings(
           "overflow-menu-inner",
           expanded ? "" : "collapsed",
+          isLanguageList && "select-language-list",
+          props.overflowMenuProps?.className,
         )}
-        id={id}
       >
         <ul className="overflow-list">
           {menuItems.map((item) => (
             <li key={item.id}>
               {item.action ? (
-                <button onClick={item.action}>{item.label}</button>
+                <button onClick={item.action} aria-label={item.ariaLabel}>
+                  {item.label}
+                </button>
               ) : (
-                <a href={item.href}>{item.label}</a>
+                <a href={item.href} aria-label={item.ariaLabel}>
+                  {item.label}
+                </a>
               )}
             </li>
           ))}
