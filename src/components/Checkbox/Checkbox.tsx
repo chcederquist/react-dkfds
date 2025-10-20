@@ -2,6 +2,7 @@ import { ComponentProps, ReactNode } from "react";
 import { useT } from "../../hooks/useT";
 import { mergeStrings } from "../../util/merge-classnames";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
+import { Tooltip, TooltipProps } from "../Tooltip/Tooltip";
 
 /**
  * Props for the Checkbox component.
@@ -32,6 +33,7 @@ export type CheckboxProps = {
     inputProps?: ComponentProps<"input">;
     checked?: boolean;
     label: ReactNode;
+    tooltip?: TooltipProps;
     hint?: string;
     hiddenContent?: ReactNode;
   }[];
@@ -121,6 +123,7 @@ export function Checkbox({
                 <label className="form-label" htmlFor={option.id}>
                   {option.label}
                 </label>
+                {option.tooltip && <Tooltip {...option.tooltip} />}
                 {option.hint && (
                   <span className="form-hint" id={option.id + "-hint"}>
                     {option.hint}

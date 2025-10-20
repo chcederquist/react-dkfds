@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentProps, ReactNode, useEffect, useId, useRef } from "react";
 import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
+import { Tooltip, TooltipProps } from "../Tooltip/Tooltip";
 export type DatePickerProps = {
+  tooltip: TooltipProps;
   inputProps: HTMLInputPropsWithRequiredFields<"id" | "name">;
 } & (
   | {
@@ -14,11 +16,17 @@ export type DatePickerProps = {
     }
 );
 
-export function DatePicker({ inputProps, labelProps, label }: DatePickerProps) {
+export function DatePicker({
+  inputProps,
+  labelProps,
+  label,
+  tooltip,
+}: DatePickerProps) {
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (ref.current === null) return;
+    const currentRef = ref.current;
     if (!(window as any).DKFDS) {
       const dkfds = import("dkfds");
       dkfds.then((dkfds) => {
@@ -29,8 +37,8 @@ export function DatePicker({ inputProps, labelProps, label }: DatePickerProps) {
       (window as any).DKFDS.datePicker.on(ref.current!);
     }
     return () => {
-      if ((window as any).DKFDS.datePicker && ref.current) {
-        (window as any).DKFDS.datePicker.off(ref.current);
+      if ((window as any).DKFDS.datePicker && currentRef) {
+        (window as any).DKFDS.datePicker.off(currentRef);
       }
     };
   }, [ref]);
@@ -39,7 +47,7 @@ export function DatePicker({ inputProps, labelProps, label }: DatePickerProps) {
       <label className="form-label" htmlFor={inputProps.id}>
         {label ?? labelProps?.children}
       </label>
-
+      {tooltip && <Tooltip {...tooltip} />}
       <div className="date-picker">
         <input type="text" className="form-input" {...inputProps} />
       </div>

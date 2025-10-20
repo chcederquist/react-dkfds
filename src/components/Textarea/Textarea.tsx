@@ -3,6 +3,7 @@ import { mergeStrings } from "../../util/merge-classnames";
 import { InputSize } from "../../types/input-widths";
 import { HTMLTextAreaPropsWithRequiredFields } from "../../types/html-props";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
+import { Tooltip, TooltipProps } from "../Tooltip/Tooltip";
 
 /**
  * Props for the `Textarea` component.
@@ -22,6 +23,7 @@ export type TextAreaProps = {
   textareaProps: HTMLTextAreaPropsWithRequiredFields<"id" | "name">;
   formGroupProps?: ComponentProps<"div">;
   error?: string;
+  tooltip?: TooltipProps;
   hint?: string;
   characterLimit?: number;
 } & ({ prefix?: string } | { suffix?: string }) &
@@ -60,6 +62,7 @@ export function TextArea({
   hint,
   characterLimit,
   error,
+  tooltip,
   ...props
 }: Readonly<TextAreaProps>) {
   const [inputCount, setInputCount] = useState<number>(
@@ -132,6 +135,7 @@ export function TextArea({
       <label className="form-label" htmlFor={inputProps.id} {...labelProps}>
         {label ?? labelProps?.children}
       </label>
+      {tooltip && <Tooltip {...tooltip} />}
       {hint && (
         <span className="form-hint" id={inputProps.id + "-hint"}>
           {hint}

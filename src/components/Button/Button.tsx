@@ -54,12 +54,13 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
+      {...props}
       className={mergeStrings(
         `button button-${buttonType}`,
         xsFullWidth && "xs-full-width",
         loading && "spinner-active",
+        props.className,
       )}
-      {...props}
     >
       {loading ? (
         <>
