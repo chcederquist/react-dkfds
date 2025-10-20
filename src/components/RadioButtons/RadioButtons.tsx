@@ -2,6 +2,7 @@ import { ComponentProps, ReactNode } from "react";
 import { mergeStrings } from "../../util/merge-classnames";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 import { useT } from "../../hooks/useT";
+import { Tooltip, TooltipProps } from "../Tooltip/Tooltip";
 
 /**
  * Props for the `RadioButtons` component.
@@ -26,11 +27,13 @@ import { useT } from "../../hooks/useT";
 export type RadioButtonsProps = {
   fieldsetProps?: ComponentProps<"fieldset">;
   onChange?: (value: string) => void;
+  tooltip?: TooltipProps;
   options: {
     value: string;
     id: string;
     inputProps?: ComponentProps<"input">;
     checked?: boolean;
+    tooltip?: TooltipProps;
     label: ReactNode;
     hint?: string;
     hiddenContent?: ReactNode;
@@ -78,6 +81,7 @@ export function RadioButtons({
   onChange,
   options,
   name,
+  tooltip,
   label,
 }: Readonly<RadioButtonsProps>) {
   const t = useT();
@@ -92,6 +96,7 @@ export function RadioButtons({
       >
         <legend className="form-label" {...legendProps}>
           {legendProps?.children ?? label}
+          {tooltip && <Tooltip {...tooltip} />}
         </legend>
         {hint && (
           <span className="form-hint" id={id + "-hint"}>
@@ -132,6 +137,7 @@ export function RadioButtons({
                   <label className="form-label" htmlFor={option.id}>
                     {option.label}
                   </label>
+                  {option.tooltip && <Tooltip {...option.tooltip} />}
                   {option.hint && (
                     <span className="form-hint" id={option.id + "-hint"}>
                       {option.hint}

@@ -186,3 +186,10 @@ export type { StepIndicatorProps } from "./components/StepIndicator/StepIndicato
 // DatePicker
 export { DatePicker } from "./components/DatePicker/DatePicker";
 export type { DatePickerProps } from "./components/DatePicker/DatePicker";
+
+// Footer
+export { Footer, FooterGrid, FooterColumn } from "./components/Footer/Footer";
+
+// Tooltip
+export { Tooltip } from "./components/Tooltip/Tooltip";
+export type { TooltipProps } from "./components/Tooltip/Tooltip";

@@ -6,6 +6,7 @@ import { IconName } from "../../types/icon-names";
 import { Icon } from "../Shared/Icon";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 import { useT } from "../../hooks/useT";
+import { Tooltip, TooltipProps } from "../Tooltip/Tooltip";
 
 /**
  * Props for the `InputField` component.
@@ -36,7 +37,7 @@ import { useT } from "../../hooks/useT";
 export type InputFieldProps = {
   inputProps: HTMLInputPropsWithRequiredFields<"id" | "name">;
   formGroupProps?: ComponentProps<"div">;
-
+  tooltip?: TooltipProps;
   error?: string;
   hint?: string;
   characterLimit?: number;
@@ -80,6 +81,7 @@ export function InputField({
   label,
   labelProps,
   inputProps,
+  tooltip,
   formGroupProps,
   hint,
   characterLimit,
@@ -180,6 +182,7 @@ export function InputField({
       <label className="form-label" htmlFor={inputProps.id} {...labelProps}>
         {label ?? labelProps?.children}
       </label>
+      {tooltip && <Tooltip {...tooltip} />}
       {hint && (
         <span className="form-hint" id={inputProps.id + "-hint"}>
           {hint}
