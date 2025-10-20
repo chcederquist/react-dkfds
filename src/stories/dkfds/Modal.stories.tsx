@@ -6,6 +6,7 @@ import { useState } from "react";
 const meta = {
   title: "DKFDS/Modal",
   component: Modal,
+  subcomponents: { Button },
 } satisfies Meta<typeof Modal>;
 
 export default meta;

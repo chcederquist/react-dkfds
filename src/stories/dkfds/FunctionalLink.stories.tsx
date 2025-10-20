@@ -5,6 +5,7 @@ import { Icon } from "../../components/Shared/Icon";
 const meta = {
   title: "DKFDS/FunctionalLink",
   component: FunctionalLink,
+  subcomponents: { Icon },
 } satisfies Meta<typeof FunctionalLink>;
 
 export default meta;

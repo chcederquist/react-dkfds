@@ -1,4 +1,5 @@
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
+import { mergeStrings } from "../../util/merge-classnames";
 
 export type FunctionalLinkProps = { children: React.ReactNode } & (
   | ({ as: "a" } & ComponentProps<"a">)
@@ -16,8 +17,8 @@ export function FunctionalLink({
     return (
       <a
         href="#"
-        className="functional-link"
         {...(props as ComponentProps<"a">)}
+        className={mergeStrings("function-link", props.className)}
       >
         {children}
       </a>
@@ -26,8 +27,8 @@ export function FunctionalLink({
   return (
     <button
       type={"button"}
-      className="functional-link"
       {...(props as ComponentProps<"button">)}
+      className={mergeStrings("function-link", props.className)}
     >
       {children}
     </button>

@@ -4,6 +4,7 @@ import { LeftMenu, LeftMenuItem } from "../../components/LeftMenu/LeftMenu";
 const meta = {
   title: "DKFDS/LeftMenu",
   component: LeftMenu,
+  subcomponents: { LeftMenuItem },
 } satisfies Meta<typeof LeftMenu>;
 
 export default meta;
