@@ -5,6 +5,7 @@ import { InputField, InputFieldProps } from "../InputField/InputField";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 import { OverflowMenu, OverflowMenuItem } from "../OverflowMenu/OverflowMenu";
 import { useT } from "../../hooks/useT";
+import { FunctionalLink } from "../FunctionalLink/FunctionalLink";
 
 export type NavLinkProps = {
   label: string;
@@ -42,6 +43,7 @@ export type HeaderProps = {
       languageTag: string;
     })[];
   };
+  onLogOffClicked?: () => void;
 };
 
 function NavLink({ label, url, current }: Readonly<NavLinkProps>) {
@@ -452,6 +454,7 @@ export function Header({
   texts,
   navigationMenu,
   languagePickerProps,
+  onLogOffClicked,
   mobileMenuHeading,
   mobileMenuButtonLabel,
 }: Readonly<HeaderProps>) {
@@ -499,26 +502,29 @@ export function Header({
           >
             <span>{texts.portalName}</span>
           </a>
-          <button
-            className="function-link button-menu-open js-menu-open ml-auto d-print-none"
-            onClick={() => {
-              setIsMobileMenuOpen(!isMobileMenuOpen);
-            }}
+          <FunctionalLink
+            as="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-haspopup="dialog"
+            className="button-menu-open js-menu-open ml-auto d-print-none"
           >
             <Icon icon="menu"></Icon>
             {mobileMenuButtonLabel}
-          </button>
+          </FunctionalLink>
 
           <div className="portal-user">
             <p className="user">
               {texts.userName}
               {texts.organisationName ? `, ${texts.organisationName}` : ""}
             </p>
-            <button className="function-link d-print-none log-off">
+            <FunctionalLink
+              as="button"
+              className="d-print-none log-off"
+              onClick={() => onLogOffClicked?.()}
+            >
               <Icon icon="lock"></Icon>
               {texts.logOffButton}
-            </button>
+            </FunctionalLink>
           </div>
         </div>
       </div>
@@ -601,10 +607,14 @@ export function Header({
           </p>
 
           <p>
-            <button className="function-link d-print-none log-off">
+            <FunctionalLink
+              as="button"
+              onClick={() => onLogOffClicked?.()}
+              className="d-print-none log-off"
+            >
               <Icon icon="lock"></Icon>
               {texts.logOffButton}
-            </button>
+            </FunctionalLink>
           </p>
         </div>
       </div>

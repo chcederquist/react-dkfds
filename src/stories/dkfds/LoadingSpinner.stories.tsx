@@ -5,6 +5,7 @@ import { ScreenReaderLabel } from "../../components/ScreenReaderLabel/ScreenRead
 const meta = {
   title: "DKFDS/LoadingSpinner",
   component: LoadingSpinner,
+  subcomponents: { ScreenReaderLabel },
 } satisfies Meta<typeof LoadingSpinner>;
 
 export default meta;

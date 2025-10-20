@@ -15,6 +15,16 @@ import { ScreenReaderLabel } from "../../components/ScreenReaderLabel/ScreenRead
 const meta = {
   title: "DKFDS/Tables",
   component: Table,
+  subcomponents: {
+    Td,
+    Th,
+    Tr,
+    SelectRowCheckbox,
+    SelectAllRowsCheckbox,
+    Button,
+    Icon,
+    ScreenReaderLabel,
+  },
 } satisfies Meta<typeof Table>;
 
 export default meta;
