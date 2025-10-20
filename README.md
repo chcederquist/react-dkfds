@@ -77,14 +77,11 @@ These can also be used for reference when implementing your own features with th
 
 ### Missing components
 
-The following components are not implemented yet, but may become available in the future:
-
-- Tooltip using Popover API and CSS anchor positioning
-
-If you notice any other components missing, please create an issue or submit a pull request
+If you notice any components missing, please create an issue or submit a pull request
 
 ## Roadmap
 
 The following is a prioritised list of features to be implemented in this library.
 
+- Customising Storybook site with better documentation
 - Automated testing of component functionality
