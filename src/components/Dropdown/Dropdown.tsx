@@ -20,6 +20,7 @@ export type DropdownProps = {
   selectProps: HTMLSelectPropsWithRequiredFields<"id" | "name">;
   options: { value: string; key: string; text: string }[];
   formGroupProps?: ComponentProps<"div">;
+  disabled?: boolean;
   error?: string;
   hint?: string;
 } & (
@@ -51,6 +52,7 @@ export function Dropdown({
   label,
   error,
   hint,
+  disabled,
   options,
 }: Readonly<DropdownProps>) {
   const t = useT();
@@ -59,7 +61,15 @@ export function Dropdown({
       className={mergeStrings("form-group", error && "form-error")}
       {...formGroupProps}
     >
-      <label className="form-label" htmlFor={selectProps.id} {...labelProps}>
+      <label
+        htmlFor={selectProps.id}
+        {...labelProps}
+        className={mergeStrings(
+          "form-label",
+          labelProps?.className,
+          disabled && "disabled",
+        )}
+      >
         {label ?? labelProps?.children}
       </label>
       {hint && (
@@ -84,6 +94,7 @@ export function Dropdown({
           error && selectProps.id + "-error",
           hint && selectProps.id + "-hint",
         )}
+        disabled={disabled}
         {...selectProps}
       >
         {options.map((option) => (
