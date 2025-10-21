@@ -82,9 +82,11 @@ export function Checkbox({
         )}
         {...fieldsetProps}
       >
-        <legend className="form-label" {...legendProps}>
-          {legendProps?.children ?? label}
-        </legend>
+        {(legendProps || label) && (
+          <legend className="form-label" {...legendProps}>
+            {legendProps?.children ?? label}
+          </legend>
+        )}
         {hint && (
           <span className="form-hint" id={id + "-hint"}>
             {hint}
@@ -123,7 +125,7 @@ export function Checkbox({
                 <label className="form-label" htmlFor={option.id}>
                   {option.label}
                 </label>
-                {option.tooltip && <Tooltip {...option.tooltip} />}
+                {option.tooltip && <Tooltip noMargin {...option.tooltip} />}
                 {option.hint && (
                   <span className="form-hint" id={option.id + "-hint"}>
                     {option.hint}

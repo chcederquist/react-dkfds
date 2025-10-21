@@ -27,6 +27,7 @@ export type TooltipProps = {
   position: "above" | "below";
   trigger: "click" | "hover";
   forceVisible?: boolean;
+  noMargin?: boolean;
   children?: React.ReactNode;
   tooltipId?: string;
 };
@@ -38,6 +39,7 @@ export const Tooltip = forwardRef(function Tooltip(
     tooltipId,
     position,
     icon = "help",
+    noMargin = false,
     tooltipIsLabel = false,
     inText = false,
     forceVisible = false,
@@ -79,7 +81,11 @@ export const Tooltip = forwardRef(function Tooltip(
   return (
     <Container
       ref={ref}
-      className={mergeStrings("tooltip-wrapper", inText && "in-text")}
+      className={mergeStrings(
+        "tooltip-wrapper",
+        inText && "in-text",
+        noMargin && "mt-0 mb-0",
+      )}
       data-tooltip={tooltip}
       data-tooltip-id={tooltipId ?? id}
       data-position={position}
