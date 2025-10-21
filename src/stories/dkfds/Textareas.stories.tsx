@@ -57,3 +57,29 @@ export const CharacterLimitTextarea: Story = {
     );
   },
 };
+
+export const DisabledTextarea: Story = {
+  args: {
+    textareaProps: {
+      id: "Textarea-example-character-limit",
+      name: "Textarea-example-character-limit",
+      rows: 5,
+      placeholder: "Låst indhold",
+    },
+    label: "Deaktiveret tekstområde",
+    disabled: true,
+  },
+  render: (args) => {
+    const [input, setInput] = useState("");
+    return (
+      <TextArea
+        {...args}
+        textareaProps={{
+          ...args.textareaProps,
+          onChange: (e) => setInput(e.target.value),
+          value: input,
+        }}
+      ></TextArea>
+    );
+  },
+};

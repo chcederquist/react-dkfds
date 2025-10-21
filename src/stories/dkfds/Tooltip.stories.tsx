@@ -30,6 +30,7 @@ export const MainTooltip: Story = {
     );
   },
   args: {
+    inline: true,
     tooltip: "Dette er et tooltip",
     position: "above",
     trigger: "click",

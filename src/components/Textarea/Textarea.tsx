@@ -23,6 +23,7 @@ export type TextAreaProps = {
   textareaProps: HTMLTextAreaPropsWithRequiredFields<"id" | "name">;
   formGroupProps?: ComponentProps<"div">;
   error?: string;
+  disabled?: boolean;
   tooltip?: TooltipProps;
   hint?: string;
   characterLimit?: number;
@@ -61,6 +62,7 @@ export function TextArea({
   formGroupProps,
   hint,
   characterLimit,
+  disabled,
   error,
   tooltip,
   ...props
@@ -79,6 +81,7 @@ export function TextArea({
   const charactersLeft = (characterLimit ?? 0) - (visibleInputCount ?? 0);
   const input = (
     <textarea
+      disabled={disabled}
       aria-describedby={mergeStrings(
         characterLimit !== undefined
           ? `${inputProps.id}-limit-message`
@@ -132,7 +135,15 @@ export function TextArea({
       )}
       {...formGroupProps}
     >
-      <label className="form-label" htmlFor={inputProps.id} {...labelProps}>
+      <label
+        htmlFor={inputProps.id}
+        {...labelProps}
+        className={mergeStrings(
+          "form-label",
+          labelProps?.className,
+          disabled && "disabled",
+        )}
+      >
         {label ?? labelProps?.children}
       </label>
       {tooltip && <Tooltip {...tooltip} />}

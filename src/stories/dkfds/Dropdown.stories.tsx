@@ -51,3 +51,24 @@ export const ErrorDropdown: Story = {
     error: "Vælg region",
   },
 };
+
+export const DisabledDropdown: Story = {
+  args: {
+    labelProps: {
+      children: "Region",
+    },
+    selectProps: {
+      id: "example-dropdown",
+      name: "example-dropdown",
+    },
+    disabled: true,
+    options: [
+      { value: "", key: "default", text: "Vælg region" },
+      { value: "hovedstaden", key: "hovedstaden", text: "Hovedstaden" },
+      { value: "midtjylland", key: "midtjylland", text: "Midtjylland" },
+      { value: "nordjylland", key: "nordjylland", text: "Nordjylland" },
+      { value: "sjaelland", key: "sjaelland", text: "Sjælland" },
+      { value: "syddanmark", key: "syddanmark", text: "Syddanmark" },
+    ],
+  },
+};

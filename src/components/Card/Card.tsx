@@ -36,7 +36,7 @@ export type CardProps = {
 export function Card({
   image,
   children,
-  navigationProps,
+  navigationProps: { isExternal, ...navigationProps } = {},
 }: Readonly<CardProps>) {
   const t = useT();
   if (navigationProps) {
@@ -47,7 +47,7 @@ export function Card({
       >
         {image}
         {children}
-        {navigationProps.isExternal && (
+        {isExternal && (
           <Icon
             svgProps={{
               "aria-label":
@@ -58,7 +58,7 @@ export function Card({
             icon="open-in-new"
           ></Icon>
         )}
-        {!navigationProps.isExternal && (
+        {!isExternal && (
           <Icon svgProps={{ className: "card-icon" }} icon="arrow-forward" />
         )}
       </a>
