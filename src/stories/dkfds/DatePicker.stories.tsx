@@ -66,7 +66,19 @@ export const DatePickerWithError: Story = {
       name: "example-input3",
       required: true,
     },
-    labelProps: { children: "Datoeksempel med bindestreger" },
+    labelProps: { children: "Datoeksempel for aftale" },
     error: "Vælg en dato",
+  },
+};
+
+export const DatePickerDisabled: Story = {
+  args: {
+    inputProps: {
+      id: "example-input3",
+      name: "example-input3",
+      required: true,
+    },
+    disabled: true,
+    labelProps: { children: "Dato for aftale" },
   },
 };

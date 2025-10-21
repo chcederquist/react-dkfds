@@ -121,6 +121,7 @@ export function DatePicker({
                 ? inputProps.id + "hint"
                 : undefined
           }
+          disabled={disabled}
           {...inputProps}
         />
       </div>
