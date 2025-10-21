@@ -99,7 +99,7 @@ export const Tooltip = forwardRef(function Tooltip(
             "tooltip-target",
             tooltipIsLabel && "tooltip-label",
           )}
-          buttonType="icon-only"
+          buttonType="unstyled"
           type="button"
           aria-label="Læs mere"
           aria-controls={tooltipId ?? id}

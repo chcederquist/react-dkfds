@@ -125,7 +125,7 @@ export function Checkbox({
                 <label className="form-label" htmlFor={option.id}>
                   {option.label}
                 </label>
-                {option.tooltip && <Tooltip noMargin {...option.tooltip} />}
+                {option.tooltip && <Tooltip inline {...option.tooltip} />}
                 {option.hint && (
                   <span className="form-hint" id={option.id + "-hint"}>
                     {option.hint}
