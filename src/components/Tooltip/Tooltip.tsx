@@ -21,6 +21,7 @@ export type TooltipRef = {
 export type TooltipProps = {
   tooltip?: string;
   inText?: boolean;
+  inline?: boolean;
   tooltipIsLabel?: boolean;
   icon?: IconName;
   position: "above" | "below";
@@ -40,6 +41,7 @@ export const Tooltip = forwardRef(function Tooltip(
     tooltipIsLabel = false,
     inText = false,
     forceVisible = false,
+    inline = false,
     children,
   }: TooltipProps,
   forwardedRef: React.Ref<TooltipRef>,
@@ -72,8 +74,10 @@ export const Tooltip = forwardRef(function Tooltip(
       setTooltipRef(tooltipInstance);
     }
   }, [ref]);
+
+  const Container = inText || inline ? "span" : "div";
   return (
-    <div
+    <Container
       ref={ref}
       className={mergeStrings("tooltip-wrapper", inText && "in-text")}
       data-tooltip={tooltip}
@@ -96,6 +100,6 @@ export const Tooltip = forwardRef(function Tooltip(
           aria-expanded={false}
         ></Button>
       )}
-    </div>
+    </Container>
   );
 });

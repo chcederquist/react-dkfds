@@ -14,7 +14,7 @@ const meta = {
   parameters: {
     layout: "fullscreen",
   },
-  subcomponents: { FunctionalLink, Icon, FooterColumn, FooterGrid },
+  subcomponents: { FunctionalLink, Icon, FooterColumn, FooterGrid, Heading },
 } satisfies Meta<typeof Footer>;
 
 export default meta;
@@ -415,13 +415,11 @@ export const IconFooter: Story = {
             </Heading>
             <ul className=" unstyled-list">
               <li>
-                <li>
-                  <img
-                    src="/img/logo-placeholder.png"
-                    className="logo"
-                    alt="Logostyrelsen"
-                  />
-                </li>
+                <img
+                  src="/img/logo-placeholder.png"
+                  className="logo"
+                  alt="Logostyrelsen"
+                />
               </li>
             </ul>
           </div>
