@@ -96,7 +96,7 @@ export function RadioButtons({
       >
         <legend className="form-label" {...legendProps}>
           {legendProps?.children ?? label}
-          {tooltip && <Tooltip {...tooltip} />}
+          {tooltip && <Tooltip inline {...tooltip} />}
         </legend>
         {hint && (
           <span className="form-hint" id={id + "-hint"}>

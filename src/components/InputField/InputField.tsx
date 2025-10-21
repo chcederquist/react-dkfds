@@ -182,7 +182,7 @@ export function InputField({
       <label className="form-label" htmlFor={inputProps.id} {...labelProps}>
         {label ?? labelProps?.children}
       </label>
-      {tooltip && <Tooltip {...tooltip} />}
+      {tooltip && <Tooltip inline {...tooltip} />}
       {hint && (
         <span className="form-hint" id={inputProps.id + "-hint"}>
           {hint}
