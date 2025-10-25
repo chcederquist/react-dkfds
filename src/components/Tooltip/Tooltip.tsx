@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   forwardRef,
   useEffect,
@@ -10,6 +9,8 @@ import {
 import { Button } from "../..";
 import { mergeStrings } from "../../util/merge-classnames";
 import { IconName } from "../../types/icon-names";
+import type { TooltipInstance } from "dkfds";
+import { Tooltip as DkfdsTooltip } from "dkfds";
 
 export type TooltipRef = {
   hideTooltip: () => void;
@@ -49,12 +50,12 @@ export const Tooltip = forwardRef(function Tooltip(
   forwardedRef: React.Ref<TooltipRef>,
 ) {
   const id = useId();
-  const [tooltipRef, setTooltipRef] = useState<any>();
+  const [tooltipRef, setTooltipRef] = useState<TooltipInstance>();
   useImperativeHandle(forwardedRef, (): TooltipRef => {
     return {
       hideTooltip: () => tooltipRef?.hideTooltip(),
       showTooltip: () => tooltipRef?.showTooltip(),
-      isShowing: () => tooltipRef?.isShowing(),
+      isShowing: () => tooltipRef?.isShowing() ?? false,
       updateTooltipPosition: () => tooltipRef?.updateTooltipPosition(),
     };
   }, [tooltipRef]);
@@ -62,19 +63,9 @@ export const Tooltip = forwardRef(function Tooltip(
 
   useEffect(() => {
     if (ref.current === null) return;
-    if (!window.DKFDS) {
-      const dkfds = import("dkfds");
-      dkfds.then((dkfds) => {
-        window.DKFDS = dkfds;
-        const tooltipInstance = new window.DKFDS.Tooltip(ref.current!);
-        tooltipInstance.init();
-        setTooltipRef(tooltipInstance);
-      });
-    } else {
-      const tooltipInstance = new window.DKFDS.Tooltip(ref.current!);
-      tooltipInstance.init();
-      setTooltipRef(tooltipInstance);
-    }
+    const tooltipInstance = new DkfdsTooltip(ref.current!);
+    tooltipInstance.init();
+    setTooltipRef(tooltipInstance);
   }, [ref]);
 
   const Container = inText || inline ? "span" : "div";

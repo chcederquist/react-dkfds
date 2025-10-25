@@ -4,6 +4,7 @@ import { Tooltip, TooltipProps } from "../Tooltip/Tooltip";
 import { mergeStrings } from "../../util/merge-classnames";
 import { ScreenReaderLabel } from "../ScreenReaderLabel/ScreenReaderLabel";
 import { useT } from "../../hooks/useT";
+import { datePicker } from "dkfds";
 export type DatePickerProps = {
   tooltip?: TooltipProps;
   disabled?: boolean;
@@ -52,18 +53,11 @@ export function DatePicker({
   useEffect(() => {
     if (ref.current === null) return;
     const currentRef = ref.current;
-    if (!window.DKFDS) {
-      const dkfds = import("dkfds");
-      dkfds.then((dkfds) => {
-        window.DKFDS = dkfds;
-        window.DKFDS.DatePicker.on(ref.current!);
-      });
-    } else {
-      window.DKFDS.DatePicker.on(ref.current!);
-    }
+    datePicker.on(ref.current!);
+
     return () => {
-      if (window.DKFDS?.DatePicker && currentRef) {
-        window.DKFDS.DatePicker.off(currentRef);
+      if (currentRef) {
+        datePicker.off(currentRef);
       }
     };
   }, [ref]);

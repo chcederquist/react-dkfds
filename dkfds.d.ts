@@ -1,26 +1,7 @@
 declare module "dkfds" {
-  export function init(options: { scope: HTMLElement }): void;
+  declare function init(options: { scope: HTMLElement }): void;
 
-  export interface Accordion {
-    /**
-     * Adds click functionality to accordion list
-     * @param $accordion The accordion <ul> element
-     * @param strings Translated labels: {"open_all": "Åbn alle", "close_all": "Luk alle"}
-     */
-    (
-      $accordion: HTMLElement,
-      strings: { open_all: string; close_all: string },
-    ): Accordion;
-
-    /**
-     * Adds click functionality to accordion list
-     * @param $accordion The accordion <ul> element
-     * @param strings Translated labels: {"open_all": "Åbn alle", "close_all": "Luk alle"}
-     */
-    new (
-      $accordion: HTMLElement,
-      strings: { open_all: string; close_all: string },
-    ): Accordion;
+  declare interface AccordionInstance {
     init(): void;
     bulkEvent(): void;
     eventOnClick($button: HTMLButtonElement, e: PointerEvent): void;
@@ -30,6 +11,28 @@ declare module "dkfds" {
       bulk?: boolean,
     ): void;
   }
+
+  declare const Accordion: {
+    /**
+     * Adds click functionality to accordion list
+     * @param $accordion The accordion <ul> element
+     * @param strings Translated labels: {"open_all": "Åbn alle", "close_all": "Luk alle"}
+     */
+    (
+      $accordion: HTMLElement,
+      strings: { open_all: string; close_all: string },
+    ): AccordionInstance;
+
+    /**
+     * Adds click functionality to accordion list
+     * @param $accordion The accordion <ul> element
+     * @param strings Translated labels: {"open_all": "Åbn alle", "close_all": "Luk alle"}
+     */
+    new (
+      $accordion: HTMLElement,
+      strings: { open_all: string; close_all: string },
+    ): AccordionInstance;
+  };
 
   /**
    * The properties and elements within the date picker.
@@ -49,7 +52,7 @@ declare module "dkfds" {
    * @property {Date} rangeDate
    * @property {Date} defaultDate
    */
-  export type DatePickerContext = {
+  declare type DatePickerContext = {
     calendarEl: HTMLDivElement;
     datePickerEl: HTMLElement;
     dialogEl: HTMLDivElement;
@@ -66,7 +69,7 @@ declare module "dkfds" {
     defaultDate: Date;
   };
 
-  export interface DatePicker {
+  declare interface DatePicker {
     init: (root: HTMLElement) => void;
     add: (typeof DatePicker)["init"];
     on: (typeof DatePicker)["init"];
@@ -135,11 +138,9 @@ declare module "dkfds" {
     getDatePickerContext(element: HTMLElement): DatePickerContext | undefined;
   }
 
-  export const DatePicker: DatePicker;
+  declare const datePicker: DatePicker;
 
-  export interface Tooltip {
-    (wrapper: HTMLElement): Tooltip;
-    new (wrapper: HTMLElement): Tooltip;
+  declare interface TooltipInstance {
     init(): void;
     hideTooltip(): void;
     showTooltip(): void;
@@ -147,5 +148,168 @@ declare module "dkfds" {
     updateTooltipPosition(): void;
   }
 
-  export const Tooltip: Tooltip;
+  declare const Tooltip: {
+    (wrapper: HTMLElement): TooltipInstance;
+    new (wrapper: HTMLElement): TooltipInstance;
+  };
+
+  declare interface AlertInstance {
+    init(): void;
+    hide(): void;
+    show(): void;
+  }
+  declare const Alert: {
+    (element: HTMLElement): AlertInstance;
+    new (element: HTMLElement): AlertInstance;
+  };
+
+  declare interface BackToTopInstance {
+    init(): void;
+  }
+
+  declare const BackToTop: {
+    (element: HTMLElement): BackToTopInstance;
+    new (element: HTMLElement): BackToTopInstance;
+  };
+
+  declare interface CharacterLimitInstance {
+    init(): void;
+  }
+
+  declare const CharacterLimit: {
+    (
+      element: HTMLElement,
+      strings: {
+        character_remaining: string;
+        characters_remaining: string;
+        character_too_many: string;
+        characters_too_many: string;
+      },
+    ): CharacterLimitInstance;
+    new (
+      element: HTMLElement,
+      strings: {
+        character_remaining: string;
+        characters_remaining: string;
+        character_too_many: string;
+        characters_too_many: string;
+      },
+    ): CharacterLimitInstance;
+  };
+
+  declare interface CheckboxToggleContentInstance {
+    init(): void;
+    toggle(): void;
+    expand(
+      checkboxElement: HTMLInputElement,
+      contentElement: HTMLElement,
+    ): void;
+    collapse(triggerEl: HTMLInputElement, targetEl: HTMLElement): void;
+  }
+
+  declare const CheckboxToggleContent: {
+    (element: HTMLInputElement): CheckboxToggleContentInstance;
+    new (element: HTMLInputElement): CheckboxToggleContentInstance;
+  };
+
+  declare interface DropdownInstance {
+    init(): void;
+    hide(): void;
+    show(): void;
+  }
+
+  declare const Dropdown: {
+    (element: HTMLButtonElement): DropdownInstance;
+    new (element: HTMLButtonElement): DropdownInstance;
+  };
+
+  declare interface ErrorSummaryInstance {
+    init(): void;
+    handleClick: (e: MouseEvent) => void;
+    focusTarget: ($target: HTMLElement) => boolean;
+    getFragmentFromUrl: (url: string) => string | false;
+    getAssociatedLegendOrLabel: ($input: HTMLElement) => HTMLElement | null;
+  }
+
+  declare const ErrorSummary: {
+    (element: HTMLElement): ErrorSummaryInstance;
+    new (element: HTMLElement): ErrorSummaryInstance;
+  };
+
+  declare interface ModalInstance {
+    init(): void;
+    hide(): void;
+    show(): void;
+  }
+
+  declare const Modal: {
+    (element: HTMLElement): ModalInstance;
+    new (element: HTMLElement): ModalInstance;
+  };
+
+  declare interface MenuDropdownInstance {
+    init(): void;
+    hide(): void;
+    show(): void;
+  }
+
+  declare const MenuDropdown: {
+    (element: HTMLButtonElement): MenuDropdownInstance;
+    new (element: HTMLButtonElement): MenuDropdownInstance;
+  };
+
+  declare class Navigation {
+    init(): void;
+    teardown(): void;
+  }
+
+  declare interface RadioToggleGroupInstance {
+    init(): void;
+    toggle(radioInputElement: HTMLInputElement): void;
+    expand(
+      checkboxElement: HTMLInputElement,
+      contentElement: HTMLElement,
+    ): void;
+    collapse(triggerEl: HTMLInputElement, targetEl: HTMLElement): void;
+  }
+
+  declare const RadioToggleGroup: {
+    (containerElement: HTMLElement): RadioToggleGroupInstance;
+    new (containerElement: HTMLElement): RadioToggleGroupInstance;
+  };
+
+  declare interface TableSelectableRowsInstance {
+    init(): void;
+    getGroupCheckbox(): HTMLElement | false;
+    getCheckboxList(): HTMLCollection;
+  }
+
+  declare const TableSelectableRows: {
+    (tableElement: HTMLTableElement): TableSelectableRowsInstance;
+    new (tableElement: HTMLTableElement): TableSelectableRowsInstance;
+  };
+
+  declare class ResponsiveTable {
+    constructor(table: HTMLTableElement);
+  }
+
+  declare interface TabsInstance {
+    init(): void;
+    activateTab(tab: HTMLButtonElement, setFocus: boolean): void;
+  }
+
+  declare const Tabs: {
+    (element: HTMLElement): TabsInstance;
+    new (element: HTMLElement): TabsInstance;
+  };
+
+  declare interface ToastInstance {
+    show(): void;
+    hide(): void;
+  }
+
+  declare const Toast: {
+    (element: HTMLElement): ToastInstance;
+    new (element: HTMLElement): ToastInstance;
+  };
 }
