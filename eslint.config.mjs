@@ -44,7 +44,6 @@ export default defineConfig([
     },
 
     rules: {
-      "@typescript-eslint/no-misused-new": "off",
       "react/react-in-jsx-scope": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",
