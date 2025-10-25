@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentProps, ReactNode, useEffect, useId, useRef } from "react";
 import { HTMLInputPropsWithRequiredFields } from "../../types/html-props";
 import { Tooltip, TooltipProps } from "../Tooltip/Tooltip";
@@ -53,18 +52,18 @@ export function DatePicker({
   useEffect(() => {
     if (ref.current === null) return;
     const currentRef = ref.current;
-    if (!(window as any).DKFDS) {
+    if (!window.DKFDS) {
       const dkfds = import("dkfds");
       dkfds.then((dkfds) => {
-        (window as any).DKFDS = dkfds;
-        (window as any).DKFDS.datePicker.on(ref.current!);
+        window.DKFDS = dkfds;
+        window.DKFDS.DatePicker.on(ref.current!);
       });
     } else {
-      (window as any).DKFDS.datePicker.on(ref.current!);
+      window.DKFDS.DatePicker.on(ref.current!);
     }
     return () => {
-      if ((window as any).DKFDS.datePicker && currentRef) {
-        (window as any).DKFDS.datePicker.off(currentRef);
+      if (window.DKFDS?.DatePicker && currentRef) {
+        window.DKFDS.DatePicker.off(currentRef);
       }
     };
   }, [ref]);

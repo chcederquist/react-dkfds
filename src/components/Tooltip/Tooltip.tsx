@@ -62,16 +62,16 @@ export const Tooltip = forwardRef(function Tooltip(
 
   useEffect(() => {
     if (ref.current === null) return;
-    if (!(window as any).DKFDS) {
+    if (!window.DKFDS) {
       const dkfds = import("dkfds");
       dkfds.then((dkfds) => {
-        (window as any).DKFDS = dkfds;
-        const tooltipInstance = new (window as any).DKFDS.Tooltip(ref.current!);
+        window.DKFDS = dkfds;
+        const tooltipInstance = new window.DKFDS.Tooltip(ref.current!);
         tooltipInstance.init();
         setTooltipRef(tooltipInstance);
       });
     } else {
-      const tooltipInstance = new (window as any).DKFDS.Tooltip(ref.current!);
+      const tooltipInstance = new window.DKFDS.Tooltip(ref.current!);
       tooltipInstance.init();
       setTooltipRef(tooltipInstance);
     }
