@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { StepIndicator } from "../../components/StepIndicator/StepIndicator";
 import { SimpleStepIndicator } from "../../components/StepIndicator/SimpleStepIndicator";
 

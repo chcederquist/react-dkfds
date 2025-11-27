@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Card,
@@ -75,7 +75,7 @@ export const MultipleLinkCards: Story = {
           navigationProps={{
             href: "/",
           }}
-          image={<img src="static/media/src/stories/assets/docs.png"></img>}
+          image={<img alt="Autodocs guide" src="docs.png"></img>}
         >
           <CardContent heading={<CardHeading level="h2">Lorem</CardHeading>}>
             <p>Dette card linker til en anden side</p>
@@ -87,9 +87,7 @@ export const MultipleLinkCards: Story = {
           navigationProps={{
             href: "/",
           }}
-          image={
-            <img src="static/media/src/stories/assets/accessibility.png"></img>
-          }
+          image={<img alt="Accessibility guide" src="accessibility.png"></img>}
         >
           <CardContent heading={<CardHeading level="h2">Sit amet</CardHeading>}>
             <p>Dette card linker til en side, der åbner i en ny fane</p>

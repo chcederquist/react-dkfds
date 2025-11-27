@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputField } from "../../components/InputField/InputField";
 
 const meta = {
@@ -15,6 +15,7 @@ export const MainSearchField: Story = {
       id: "search-field",
       name: "search-field",
       type: "search",
+      placeholder: "DFFDS komponent",
     },
     inputCharWidth: "27",
     searchButtonProps: {
@@ -29,6 +30,7 @@ export const MainSearchFieldIcon: Story = {
       id: "search-field",
       name: "search-field",
       type: "search",
+      placeholder: "DFFDS komponent",
     },
     inputCharWidth: "27",
     searchButtonProps: {

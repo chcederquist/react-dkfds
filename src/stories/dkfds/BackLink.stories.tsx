@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BackLink } from "../../components/BackLink/BackLink";
 
 const meta = {

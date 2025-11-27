@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { StructuredList } from "../../components/Table/StructuredList";
 import { ScreenReaderLabel } from "../../components/ScreenReaderLabel/ScreenReaderLabel";
 

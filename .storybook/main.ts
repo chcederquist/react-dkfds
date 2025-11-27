@@ -4,7 +4,7 @@ import svgr from "vite-plugin-svgr";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-  staticDirs: ["../node_modules/dkfds/dist"],
+  staticDirs: ["../node_modules/dkfds/dist", "../src/stories/assets"],
   previewHead: (head) => `${head}
     <link rel="stylesheet" href="./css/dkfds.css" />
     `,
