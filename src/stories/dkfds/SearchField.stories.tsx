@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputField } from "../../components/InputField/InputField";
 
 const meta = {
@@ -11,6 +11,10 @@ type Story = StoryObj<typeof meta>;
 
 export const MainSearchField: Story = {
   args: {
+    label: "Search",
+    labelProps: {
+      className: "sr-only",
+    },
     inputProps: {
       id: "search-field",
       name: "search-field",
@@ -25,6 +29,10 @@ export const MainSearchField: Story = {
 
 export const MainSearchFieldIcon: Story = {
   args: {
+    label: "Search",
+    labelProps: {
+      className: "sr-only",
+    },
     inputProps: {
       id: "search-field",
       name: "search-field",

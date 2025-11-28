@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Modal } from "../../components/Modal/Modal";
 import { Button } from "../../components/Button/Button";
 import { useState } from "react";

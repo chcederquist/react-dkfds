@@ -4,7 +4,6 @@ import { DkfdsTranslationProvider } from "../src/contexts/translation-context";
 import { loadTranslations } from "../src/stories/translations/translations";
 
 const withSVGHeader = (Story) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const translations = loadTranslations();
 
   return (
@@ -27,11 +26,17 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+
     layout: "centered",
+
     backgrounds: {
       grid: {
         opacity: 0.1,
       },
+    },
+
+    a11y: {
+      test: "error",
     },
   },
   decorators: [withSVGHeader],

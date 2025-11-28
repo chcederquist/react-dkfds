@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { RadioButtons } from "../../components/RadioButtons/RadioButtons";
 import { InputField } from "../../components/InputField/InputField";
 import { useState } from "react";

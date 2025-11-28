@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FunctionalLink } from "../../components/FunctionalLink/FunctionalLink";
 import { Icon } from "../../components/Shared/Icon";
 

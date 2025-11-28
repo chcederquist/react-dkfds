@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Tab,
   TabContainer,
@@ -23,7 +23,7 @@ export const MainTabs: Story = {
     activeKey: undefined, // No active tab set initially
   },
   render: () => (
-    <TabContainer defaultActiveKey={"tab1"}>
+    <TabContainer defaultActiveKey="tab1">
       <Tab id="tab1" label="Faneblad 1">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
         ullamcorper, enim eu fringilla varius, massa lectus molestie lacus, sed

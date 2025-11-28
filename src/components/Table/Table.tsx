@@ -228,7 +228,7 @@ export function SelectRowCheckbox({
         }}
         id={id}
       />
-      <label htmlFor="select-all" className="form-label">
+      <label htmlFor={id} className="form-label">
         <ScreenReaderLabel>Vælg række</ScreenReaderLabel>
       </label>
     </div>

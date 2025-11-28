@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { LeftMenu, LeftMenuItem } from "../../components/LeftMenu/LeftMenu";
 
 const meta = {

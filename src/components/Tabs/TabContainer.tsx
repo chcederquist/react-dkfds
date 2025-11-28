@@ -105,7 +105,7 @@ export function TabContainer({
   });
   return (
     <div className="tab-container">
-      <div className="tab-list">
+      <div className="tab-list" role="tablist">
         {tabs.map((tab, index, array) => {
           return (
             <button
@@ -139,7 +139,7 @@ export function TabContainer({
               }}
               onClick={() => setKey(tab.id)}
               role="tab"
-              aria-controls={tab.id.toString()}
+              aria-controls={`tabpanel${tab.id}`}
               aria-selected={selectedKey === tab.id}
               id={`tabcontrol${tab.id}`}
               tabIndex={selectedKey === index ? 0 : -1}
