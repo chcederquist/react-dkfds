@@ -11,11 +11,14 @@ type Story = StoryObj<typeof meta>;
 
 export const MainSearchField: Story = {
   args: {
+    label: "Search",
+    labelProps: {
+      className: "sr-only",
+    },
     inputProps: {
       id: "search-field",
       name: "search-field",
       type: "search",
-      placeholder: "DFFDS komponent",
     },
     inputCharWidth: "27",
     searchButtonProps: {
@@ -26,11 +29,14 @@ export const MainSearchField: Story = {
 
 export const MainSearchFieldIcon: Story = {
   args: {
+    label: "Search",
+    labelProps: {
+      className: "sr-only",
+    },
     inputProps: {
       id: "search-field",
       name: "search-field",
       type: "search",
-      placeholder: "DFFDS komponent",
     },
     inputCharWidth: "27",
     searchButtonProps: {

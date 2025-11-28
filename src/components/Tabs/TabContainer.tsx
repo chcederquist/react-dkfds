@@ -139,7 +139,7 @@ export function TabContainer({
               }}
               onClick={() => setKey(tab.id)}
               role="tab"
-              aria-controls={`tabcontrol${tab.id}`}
+              aria-controls={`tabpanel${tab.id}`}
               aria-selected={selectedKey === tab.id}
               id={`tabcontrol${tab.id}`}
               tabIndex={selectedKey === index ? 0 : -1}
