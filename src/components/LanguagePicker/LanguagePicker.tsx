@@ -7,7 +7,6 @@ import { Icon } from "../Shared/Icon";
  * @property selectLanguageAriaLabel - Optional aria-label for the language selection element.
  * @property languages - Array of language objects to display in the picker.
  * @property languages[].isCurrentLanguage - Indicates if this language is currently selected.
- * @property languages[].languageSelectedLabel - Label shown when this language is selected.
  * @property languages[].languageCode - Language code (e.g., 'en', 'da').
  * @property languages[].label - Display label for the language (can be a ReactNode).
  *
@@ -22,7 +21,6 @@ export type LanguagePickerProps = {
   selectLanguageAriaLabel?: string;
   languages: {
     isCurrentLanguage: boolean;
-    languageSelectedLabel: string;
     languageCode: string;
     label: ReactNode;
   }[];
@@ -64,11 +62,7 @@ export function LanguagePicker({
               {queryParameterName ? (
                 <a
                   lang={language.languageCode}
-                  aria-label={
-                    language.isCurrentLanguage
-                      ? language.languageSelectedLabel
-                      : undefined
-                  }
+                  aria-current={language.isCurrentLanguage ? "true" : undefined}
                   href={`?${queryParameterName}=${language.languageCode}`}
                 >
                   {language.isCurrentLanguage && <Icon icon="check"></Icon>}
@@ -77,11 +71,7 @@ export function LanguagePicker({
               ) : (
                 <button
                   lang={language.languageCode}
-                  aria-label={
-                    language.isCurrentLanguage
-                      ? language.languageSelectedLabel
-                      : undefined
-                  }
+                  aria-current={language.isCurrentLanguage ? "true" : undefined}
                   onClick={() => onLanguageSelected?.(language.languageCode)}
                 ></button>
               )}
