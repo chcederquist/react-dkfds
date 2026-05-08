@@ -531,7 +531,7 @@ export function Header({
       <div className="solution-info">
         <div className="solution-info-inner container">
           <div className="solution-heading">
-            <a href="#">{texts.solutionName}</a>
+            <h2>{texts.solutionName}</h2>
           </div>
 
           <div className="additional-info">

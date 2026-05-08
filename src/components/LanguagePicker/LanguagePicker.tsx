@@ -22,7 +22,6 @@ export type LanguagePickerProps = {
   selectLanguageAriaLabel?: string;
   languages: {
     isCurrentLanguage: boolean;
-    languageSelectedLabel: string;
     languageCode: string;
     label: ReactNode;
   }[];
@@ -64,11 +63,7 @@ export function LanguagePicker({
               {queryParameterName ? (
                 <a
                   lang={language.languageCode}
-                  aria-label={
-                    language.isCurrentLanguage
-                      ? language.languageSelectedLabel
-                      : undefined
-                  }
+                  aria-current={language.isCurrentLanguage ? "true" : undefined}
                   href={`?${queryParameterName}=${language.languageCode}`}
                 >
                   {language.isCurrentLanguage && <Icon icon="check"></Icon>}
@@ -77,11 +72,7 @@ export function LanguagePicker({
               ) : (
                 <button
                   lang={language.languageCode}
-                  aria-label={
-                    language.isCurrentLanguage
-                      ? language.languageSelectedLabel
-                      : undefined
-                  }
+                  aria-current={language.isCurrentLanguage ? "true" : undefined}
                   onClick={() => onLanguageSelected?.(language.languageCode)}
                 ></button>
               )}
