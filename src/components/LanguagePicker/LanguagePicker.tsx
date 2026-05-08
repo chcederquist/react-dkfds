@@ -7,7 +7,6 @@ import { Icon } from "../Shared/Icon";
  * @property selectLanguageAriaLabel - Optional aria-label for the language selection element.
  * @property languages - Array of language objects to display in the picker.
  * @property languages[].isCurrentLanguage - Indicates if this language is currently selected.
- * @property languages[].languageSelectedLabel - Label shown when this language is selected.
  * @property languages[].languageCode - Language code (e.g., 'en', 'da').
  * @property languages[].label - Display label for the language (can be a ReactNode).
  *

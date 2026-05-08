@@ -14,19 +14,16 @@ export const MainLanguagePicker: Story = {
     languages: [
       {
         isCurrentLanguage: true,
-        languageSelectedLabel: "Dansk",
         languageCode: "da",
         label: "Dansk",
       },
       {
         isCurrentLanguage: false,
-        languageSelectedLabel: "English",
         languageCode: "en",
         label: "English",
       },
       {
         isCurrentLanguage: false,
-        languageSelectedLabel: "Svenska",
         languageCode: "sv",
         label: "Svenska",
       },
