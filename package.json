@@ -1,6 +1,6 @@
 {
   "name": "react-dkfds",
-  "version": "11.2.0",
+  "version": "11.2.1",
   "description": "React-based DKFDS components",
   "main": "dist/index.js",
   "browser": "dist/index.js",
